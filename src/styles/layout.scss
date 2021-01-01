@@ -1,0 +1,134 @@
+$global-wrapper-darkmode-bg-color: #acacac;
+$global-footer-darkmode-bg-color: #666666;
+$heading-border-color: #e0e0e0;
+
+// fonts
+$main-color: #1b6339;
+
+* {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $main-color;
+    margin-block-start: 3rem;
+}
+
+h1,
+h2,
+h3 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid $heading-border-color;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+}
+
+a,
+p,
+span {
+    font-size: 1.1rem;
+}
+
+strong {
+    color: $main-color;
+}
+
+.layout-wrapper {
+    border: 1px solid green;
+    margin: 5rem 15rem;
+}
+
+.global-wrapper {
+    border: 1px solid blue;
+}
+
+
+// Global header and navigation
+.global-header {
+    .global-nav {
+        position: fixed;
+        display: block;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        font-size: 1.2rem;
+        width: 100%;
+        transition: all 0.35s ease-in-out;
+        z-index: 99;
+    }
+    .global-nav__wrapper {
+        display: flex;
+        width: auto;
+        padding: 1rem;
+    }
+    .global-nav__title {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 300;
+        margin: 0;
+    }
+    .global-nav__links {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+
+        .global-nav__link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 45px;
+            margin: 0 10px 0 0;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #acacac2a;
+                border-radius: 50%;
+            }
+
+            .svg__icon {
+                margin: 0 10px 0 10px;
+            }
+        }
+
+        .activate {
+            background-color: #949494b7;
+            border-radius: 50%;
+        }
+    }
+
+    .top {
+        position: relative;
+        background-color: #004ba0 !important;
+        border-bottom: none !important;
+    }
+    .scroll-up {
+        background-color: #ffffff;
+        border-bottom: 1px solid #000000;
+    }
+    .scroll-down {
+        transform: translateY(-10vh);
+    }
+}
+
+.global-footer {
+    position: relative;
+
+    border: 1px solid red;
+    height: 3rem;
+}

@@ -1,14 +1,14 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
-import Layout from "../components/layout"
+import Layout from "../components/Layout.tsx"
 import SEO from "../components/seo"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
+
+  console.log(siteTitle)
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -31,7 +31,7 @@ const BlogPostTemplate = ({ data, location }) => {
         />
         <hr />
         <footer>
-          <Bio />
+        푸터 컴포넌트 넣을 곳
         </footer>
       </article>
       <nav className="blog-post-nav">
@@ -79,7 +79,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(id: { eq: $id }) {
       id
-      excerpt(pruneLength: 160)
+      excerpt(pruneLength: 200)
       html
       frontmatter {
         title

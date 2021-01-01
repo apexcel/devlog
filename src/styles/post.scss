@@ -1,0 +1,10 @@
+// blockqoute
+$blockqoute-bg-color: #e7e7e7;
+$blockqoute-border-color: #44ac6f;
+
+blockquote {
+    margin: 0;
+    padding: 1rem;
+    border-left: 0.7rem solid $blockqoute-border-color;
+    background-color: $blockqoute-bg-color;
+}
