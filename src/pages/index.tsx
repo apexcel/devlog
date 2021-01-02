@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react'
 import { PageProps, Link, graphql } from "gatsby"
-import Layout from "../components/Layout.tsx"
 import SEO from "../components/seo"
 
+import Layout from "../components/Layout.tsx"
+import CategoryButton from '../components/CategoryButton.tsx'
 
 import { Card, CardContent, CardHeader } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-
-type DataType = {
-  [key: string]: any
-}
+import { DataType } from'types.ts'
 
 const useStyles = makeStyles({
   root: {
@@ -50,6 +48,7 @@ const Index: React.FC<PageProps<DataType>> = ({
                 <Link to={post.fields.slug} itemProp="url">
                   <CardHeader title={`${post.frontmatter.title}`} subheader={`${post.frontmatter.date}`} />
                 </Link>
+                  <CategoryButton title={post.frontmatter.category} />
                 <CardContent>
                   <p
                     dangerouslySetInnerHTML={{
@@ -96,6 +95,7 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          category
         }
       }
     }

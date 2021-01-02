@@ -1,14 +1,23 @@
+// colors
+$main-color: #1b6339;
+$heading-border-color: #e0e0e0;
+$default-font-color: #3d3d3d;
+$default-bright-font-color: #e6e6e6;
+$global-header-bg-color: #11251d;
+
+// darkmode colors
 $global-wrapper-darkmode-bg-color: #acacac;
 $global-footer-darkmode-bg-color: #666666;
-$heading-border-color: #e0e0e0;
 
 // fonts
-$main-color: #1b6339;
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
-* {
+html, body, * {
     font-size: 1.2rem;
+    color: $default-font-color;
     margin: 0;
     padding: 0;
+
 }
 
 h1,
@@ -25,6 +34,7 @@ h1,
 h2,
 h3 {
     padding-bottom: 10px;
+    margin-bottom: 20px;
     border-bottom: 1px solid $heading-border-color;
 }
 
@@ -32,103 +42,89 @@ h1 {
     font-size: 2rem;
 }
 
-h2 {
+h2, h3 {
     font-size: 1.5rem;
 }
 
-h3 {
-    font-size: 1.3rem;
+h4, h5, h6 {
+    font-size: 1.2rem;
 }
 
 a,
 p,
-span {
-    font-size: 1.1rem;
+span, li, ol, ul {
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+p {
+    margin: 10px 0;
 }
 
 strong {
     color: $main-color;
 }
 
-.layout-wrapper {
-    border: 1px solid green;
-    margin: 5rem 15rem;
+li {
+    list-style-position: inside;
 }
 
 .global-wrapper {
-    border: 1px solid blue;
 }
 
+.layout-wrapper {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    max-width: 1080px;
+    margin: 0px auto;
+}
+
+.post-wrapper {
+    border: 1px solid green;
+    max-width: 720px;
+    height: auto;
+    margin-top: 1.2rem;
+    .blog-post {
+        padding: 10px;
+    }
+
+}
 
 // Global header and navigation
 .global-header {
-    .global-nav {
-        position: fixed;
-        display: block;
-        margin: 0;
-        padding: 0;
-        align-items: center;
-        font-size: 1.2rem;
-        width: 100%;
-        transition: all 0.35s ease-in-out;
-        z-index: 99;
-    }
-    .global-nav__wrapper {
-        display: flex;
-        width: auto;
-        padding: 1rem;
-    }
-    .global-nav__title {
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 300;
-        margin: 0;
-    }
-    .global-nav__links {
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-
-        .global-nav__link {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 45px;
-            margin: 0 10px 0 0;
-            text-decoration: none;
-
-            &:hover {
-                background-color: #acacac2a;
-                border-radius: 50%;
-            }
-
-            .svg__icon {
-                margin: 0 10px 0 10px;
-            }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    background-color: $global-header-bg-color;
+    & .global-header-title {
+        width: 720px;
+        justify-content: start;
+        font-family: 'Abril Fatface', cursive;
+        a {
+            font-size: 2rem;
+            color: $default-bright-font-color;
+            padding: 0 10px;
         }
-
-        .activate {
-            background-color: #949494b7;
-            border-radius: 50%;
-        }
-    }
-
-    .top {
-        position: relative;
-        background-color: #004ba0 !important;
-        border-bottom: none !important;
-    }
-    .scroll-up {
-        background-color: #ffffff;
-        border-bottom: 1px solid #000000;
-    }
-    .scroll-down {
-        transform: translateY(-10vh);
     }
 }
 
 .global-footer {
     position: relative;
-
     border: 1px solid red;
     height: 3rem;
 }
+
+// 목차
+.heading-navigation-wrapper {
+    position: sticky;
+    display: block;
+    top: 0px;
+    margin: 1.2rem;
+    width: 300px;
+    min-height: auto;
+    max-height: 50vh;
+    border: 1px solid green;
+}
+

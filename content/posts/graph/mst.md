@@ -1,5 +1,6 @@
 ---
 title: 최소 신장 트리 (MST, Minimun Spanning Tree)
+date: ''
 ---
 
 # MST(Minimun Spanning Tree)
