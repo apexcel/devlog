@@ -7,7 +7,10 @@ import CategoryButton from '../components/CategoryButton.tsx'
 
 import { Card, CardContent, CardHeader } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import { DataType } from'types.ts'
+
+type DataType = {
+  [key: string]: any
+}
 
 const useStyles = makeStyles({
   root: {

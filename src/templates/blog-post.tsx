@@ -1,12 +1,16 @@
 import React from "react"
-import { Link, graphql, Data } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Layout from "../components/Layout.tsx"
+import HeadingNavigation from "../components/HeadingNavigation.tsx"
 import SEO from "../components/seo"
 
+type DataType = {
+	[key: string]: any
+}
+
 const BlogPostTemplate = ({ data, location }) => {
-	const post = data.markdownRemark
-	const siteTitle = data.site.siteMetadata?.title || `Title`
-	const { previous, next } = data
+	const post = data.markdownRemark;
+	const siteTitle = data.site.siteMetadata?.title || `Title`;
 
 	console.log(data)
 
@@ -16,29 +20,33 @@ const BlogPostTemplate = ({ data, location }) => {
 				title={post.frontmatter.title}
 				description={post.frontmatter.description || post.excerpt}
 			/>
-			<article
-				className="blog-post"
-				itemScope
-				itemType="http://schema.org/Article"
-			>
+			<Article data={data} />
+		</Layout>
+	)
+};
+
+const Article: React.FC<DataType> = ({ data }) => {
+	const post = data.markdownRemark;
+
+	return (
+		<div className='post-wrapper'>
+			<article className='blog-post' itemScope itemType="http://schema.org/Article">
 				<header>
-					<h1 itemProp="headline">{post.frontmatter.title}</h1>
+					<h1 itemProp='headline'>{post.frontmatter.title}</h1>
 					<p>{post.frontmatter.date} {post.frontmatter.category}</p>
 				</header>
 				<section
 					dangerouslySetInnerHTML={{ __html: post.html }}
 					itemProp="articleBody"
 				/>
-				<hr />
+				<PostNavigation data={data} />
 			</article>
-		<PostNavigation data={data}/>
-		</Layout>
+			<HeadingNavigation data={data} />
+		</div>
 	)
 };
 
-const Article = ({ data })
-
-const PostNavigation: React.FC<Record<string | number, any>> = ({ data }) => {
+const PostNavigation: React.FC<DataType> = ({ data }) => {
 	const { previous, next } = data;
 	return (
 		<nav className="blog-post-nav">
@@ -94,7 +102,8 @@ export const pageQuery = graphql`
         category
       }
       headings {
-        value
+		value
+		depth
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

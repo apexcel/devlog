@@ -32,10 +32,8 @@ const Layout: React.FC<LayoutProps> = ({ location, title, children }) => {
     return (
         <div className='global-wrapper'>
             <GlobalHeader />
-            <div className='layout-wrapper'>
-                <div className='post-wrapper' data-is-root-path={isRootPath}>
-                    <main>{children}</main>
-                </div>
+            <div className='layout-wrapper' data-is-root-path={isRootPath}>
+                <main className='main-wrapper' data-is-root-path={isRootPath}>{children}</main>
             </div>
             <footer className='global-footer'>
                 <a href="">깃허브</a>
