@@ -1,0 +1,77 @@
+blockquote {
+    margin: 0;
+    padding: 1rem;
+    border-left: 0.7rem solid $blockqoute-border-color;
+    background-color: $blockqoute-bg-color !important;
+}
+
+pre[class*='language-'],
+code[class*='language-'] {
+    background-color: $codeblock-bg-color;
+    color: $codeblock-text-code-color;
+    .operator {
+        background-color: transparent;
+    }
+}
+pre[class='language-text'],
+code[class='language-text'],
+pre[class='language-markdown'],
+code[class='language-markdown'] {
+    background-color: $codeblock-text-bg-color;
+    color: $default-font-color;
+}
+.gatsby-highlight {
+    position: relative;
+}
+.gatsby-highlight pre[class*='language-']::before {
+    position: absolute;
+    font-size: 0.75rem;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+        'Courier New', monospace;
+    letter-spacing: 0.075em;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    text-transform: uppercase;
+    right: 0px;
+    top: 0px;
+    border-bottom-left-radius: 7px;
+    text-align: right;
+    color: black;
+}
+
+.gatsby-highlight[data-language='js'] pre[class*='-js']::before {
+    content: 'JAVASCRIPT';
+    background: #e7da23;
+}
+.gatsby-highlight[data-language='ts'] pre[class*='-ts']::before {
+    content: 'TYPESCRIPT';
+    background: #1d69f7;
+}
+.gatsby-highlight[data-language='rust'] pre[class*='-rust']::before {
+    content: 'RUST';
+    background: #f7911d;
+}
+.gatsby-highlight[data-language='go'] pre[class*='-go']::before {
+    content: 'GO';
+    background: #1db9f7;
+}
+.gatsby-highlight[data-language='java'] pre[class*='-java']::before {
+    content: 'JAVA';
+    background: #13ac2d;
+}
+.gatsby-highlight[data-language='text'] pre[class*='-text']::before {
+    content: 'TEXT';
+    background: #dadada;
+}
+.gatsby-highlight[data-language='markdown'] pre[class*='-markdown']::before {
+    content: 'MARKDOWN';
+    background: #dadada;
+}
+.gatsby-highlight[data-language='html'] pre[class*='-html']::before {
+    content: 'HTML';
+    background: #e6530f;
+}
+.gatsby-highlight[data-language='css'] pre[class*='-css']::before {
+    content: 'CSS';
+    background: #2445d8;
+}

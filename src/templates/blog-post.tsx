@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/Layout.tsx"
-import HeadingNavigation from "../components/HeadingNavigation.tsx"
+import TableOfContents from "../components/TableOfContents.tsx"
 import SEO from "../components/seo"
 
 type DataType = {
@@ -21,35 +21,38 @@ const BlogPostTemplate = ({ data, location }) => {
 				description={post.frontmatter.description || post.excerpt}
 			/>
 			<Article data={data} />
+			<TableOfContents data={data} />
 		</Layout>
 	)
 };
+
+export default BlogPostTemplate;
 
 const Article: React.FC<DataType> = ({ data }) => {
 	const post = data.markdownRemark;
 
 	return (
-		<div className='post-wrapper'>
-			<article className='blog-post' itemScope itemType="http://schema.org/Article">
-				<header>
+		// <div className='post-wrapper'>
+			<article className='post-article' itemScope itemType="http://schema.org/Article">
+				<header className='post-title'>
 					<h1 itemProp='headline'>{post.frontmatter.title}</h1>
 					<p>{post.frontmatter.date} {post.frontmatter.category}</p>
 				</header>
 				<section
+					className='post-section'
 					dangerouslySetInnerHTML={{ __html: post.html }}
 					itemProp="articleBody"
 				/>
 				<PostNavigation data={data} />
 			</article>
-			<HeadingNavigation data={data} />
-		</div>
+		// </div>
 	)
 };
 
 const PostNavigation: React.FC<DataType> = ({ data }) => {
 	const { previous, next } = data;
 	return (
-		<nav className="blog-post-nav">
+		<nav className="post-footer-nav">
 			<ul
 				style={{
 					display: `flex`,
@@ -74,11 +77,12 @@ const PostNavigation: React.FC<DataType> = ({ data }) => {
 					)}
 				</li>
 			</ul>
+			<div>
+				
+			</div>
 		</nav>
 	)
 };
-
-export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug(
@@ -100,11 +104,8 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         category
-      }
-      headings {
-		value
-		depth
-      }
+	  }
+	  tableOfContents
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
       fields {

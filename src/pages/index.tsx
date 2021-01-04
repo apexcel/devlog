@@ -51,7 +51,7 @@ const Index: React.FC<PageProps<DataType>> = ({
                 <Link to={post.fields.slug} itemProp="url">
                   <CardHeader title={`${post.frontmatter.title}`} subheader={`${post.frontmatter.date}`} />
                 </Link>
-                  <CategoryButton title={post.frontmatter.category} />
+                <CategoryButton title={post.frontmatter.category} />
                 <CardContent>
                   <p
                     dangerouslySetInnerHTML={{

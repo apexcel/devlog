@@ -1,0 +1,40 @@
+
+    .toc-wrapper {
+        display: block;
+        position: absolute;
+        right: calc((100vw - 1080px) / 3) ;
+        top: 0px;
+        height: 100%;
+        margin-left: 42px;
+        max-width: 240px;
+        
+        .toc-list {
+            position: sticky;
+            top: 190px;
+            border-left: 2px solid #a5a5a53a;
+        }
+
+        & li {
+            list-style: none;
+            padding: 2px 0;
+            a {
+                font-size: 0.9rem;
+                color: #6b6b6b;
+                overflow: hidden;
+            }
+            p {
+                margin: 0;
+            }
+        }
+
+        & ul {
+            margin-left: 18px;
+        }
+    }
+
+
+@media screen and (max-width: 1080px) {
+    .toc-wrapper {
+        display: none;
+    }
+}

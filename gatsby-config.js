@@ -49,8 +49,15 @@ module.exports = {
             }
           },
           {
-            resolve: `gatsby-remark-prismjs`,
+            resolve: `gatsby-remark-autolink-headers`, // prismjs 보다 앞에 와야함.
+            options: {
+              className: `link-header`,
+              maintainCase: false,
+              removeAccents: true,
+              elements: [`h1`, `h2`, 'h3', `h4`],
+            },
           },
+          `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
@@ -81,6 +88,14 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+    },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    },
   ],
 }
