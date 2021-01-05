@@ -29,9 +29,9 @@ $codeblock-bg-color: #2b2b2b;
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
 
-@import './TableOfContents.module.scss';
-@import './CodeHighlight.module.scss';
-@import './Post.module.scss';
+@import './toc.module.scss';
+@import './codeblock.module.scss';
+@import './post.module.scss';
 
 @mixin default-setting {
     html,
@@ -47,7 +47,7 @@ $codeblock-bg-color: #2b2b2b;
         text-decoration: none !important;
         box-sizing: border-box;
         vertical-align: baseline;
-        transition: all 0.5s;
+        transition: all 0.25s;
     }
 
     h1,
@@ -90,6 +90,7 @@ $codeblock-bg-color: #2b2b2b;
 }
 
 a,
+b,
 p,
 em,
 strong,

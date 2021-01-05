@@ -36,7 +36,6 @@ const Index: React.FC<PageProps<DataType>> = ({
 
   const posts = data.allMarkdownRemark.nodes;
   const classes = useStyles();
-
   if (posts.length > 0) {
     return (
       <Layout location={location} title={'title'}>

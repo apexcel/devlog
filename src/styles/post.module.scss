@@ -1,0 +1,81 @@
+.post-wrapper {
+    display: flex;
+
+    .post-article {
+        .post-title {
+            margin-bottom: 80px;
+        }
+
+        .post-section {
+            width: 720px;
+        }
+
+        .post-footer-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 160px;
+            padding-bottom: 40px;
+        }
+        .post-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #cfcfcf;
+            height: 80px;
+            padding: 10px;
+            width: 300px;
+            div {
+                display: block;
+            }
+
+            &[data-dir='prev'] {
+                text-align: right;
+            }
+            &[data-dir='next'] {
+                text-align: left;
+            }
+            &:hover {
+                border: 1px solid #9b9b9b;
+                svg {
+                    animation-name: vibe;
+                    animation-duration: 1s;
+                    animation-timing-function: ease;
+                    fill: #1b6339;
+                }
+                b, em {
+                    color: #1b6339;
+                }
+            }
+
+            em {
+                display: block;
+                font-size: 0.9rem;
+            }
+            b {
+                font-size: 1.2rem;
+            }
+
+            svg {
+                fill: #3d3d3d;
+            }
+        }
+    }
+}
+
+@keyframes vibe {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(5px);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
