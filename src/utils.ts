@@ -48,7 +48,21 @@ export function debounce(callback: Function, wait: number) {
     return function () {
         clearTimeout(onDebounce);
         onDebounce = setTimeout(() => {
-            callback.apply(this, arguments);
+            callback.apply(this);
         }, wait);
     }
+}
+
+export function addClass(element: HTMLElement, className: string) {
+    if (element) {
+        element.classList.add(className);
+    }
+    return element;
+}
+
+export function removeClass(element: HTMLElement, className: string) {
+    if (element) {
+        element.classList.remove(className);
+    }
+    return element;
 }

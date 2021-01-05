@@ -1,14 +1,14 @@
 import React from "react";
-import GlobalHeader from '../components/GlobalHeader.tsx'
+import GlobalHeader from '../components/GlobalHeader.tsx';
 
 type LayoutProps = {
-    location: Record<string | number, any>,
-    title: string,
-    isPost: boolean,
+    location: Record<string | number, any>
+    title: string
+    isPost: boolean
     children: any
-}
+};
 
-const Layout: React.FC<LayoutProps> = ({ location, title, children }) => {
+const Layout: React.FC<LayoutProps> = ({ location, children }) => {
     const rootPath = `/`;
     const isRootPath = location.pathname === rootPath;
 
@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ location, title, children }) => {
         <div className='global-wrapper'>
             <GlobalHeader />
             <div className='layout-wrapper' data-is-root-path={isRootPath}>
-                <main className='main-layout'>
+                <main className='main-wrapper'>
                     {children}
                 </main>
             </div>
@@ -25,6 +25,6 @@ const Layout: React.FC<LayoutProps> = ({ location, title, children }) => {
             </footer>
         </div>
     )
-}
+};
 
 export default Layout

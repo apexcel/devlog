@@ -6,7 +6,7 @@
 
 // Colors
 $main-color: #1b6339;
-$heading-border-color: #e0e0e0;
+$heading-border-color: #e0e0e0bd;
 $default-font-color: #3d3d3d;
 $default-bright-font-color: #e6e6e6;
 $global-header-bg-color: #11251d;
@@ -39,12 +39,15 @@ $codeblock-bg-color: #2b2b2b;
     * {
         font-family: 'Nanum Gothic', sans-serif;
         font-size: 1rem;
-        line-height: 1.3;
+        line-height: 1.7;
         color: $default-font-color;
         margin: 0;
         padding: 0;
         text-shadow: none !important;
         text-decoration: none !important;
+        box-sizing: border-box;
+        vertical-align: baseline;
+        transition: all 0.5s;
     }
 
     h1,
@@ -54,7 +57,7 @@ $codeblock-bg-color: #2b2b2b;
     h5,
     h6 {
         color: $main-color;
-        margin-block-start: 3rem;
+        padding-top: 24px;
     }
 
     h1,
@@ -88,6 +91,9 @@ $codeblock-bg-color: #2b2b2b;
 
 a,
 p,
+em,
+strong,
+i,
 span,
 li,
 ol,
@@ -99,7 +105,7 @@ ul {
 }
 
 p {
-    margin: 10px 0;
+    margin: 1.8rem 0;
 }
 
 strong {
@@ -118,10 +124,10 @@ li {
         justify-content: center;
         // min-height: 100vh;
 
-        .main-layout {
+        .main-wrapper {
             display: flex;
+            position: relative;
             width: 720px;
-            padding: 15px;
         }
     }
 }

@@ -36,8 +36,6 @@ const Index: React.FC<PageProps<DataType>> = ({
 
   const posts = data.allMarkdownRemark.nodes;
   const classes = useStyles();
-  console.log(posts)
-  console.log(data, location)
 
   if (posts.length > 0) {
     return (

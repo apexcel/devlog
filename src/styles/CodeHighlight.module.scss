@@ -1,8 +1,12 @@
 blockquote {
     margin: 0;
-    padding: 1rem;
+    padding: 1.2rem;
     border-left: 0.7rem solid $blockqoute-border-color;
     background-color: $blockqoute-bg-color !important;
+
+    p {
+        margin: 0;
+    }
 }
 
 pre[class*='language-'],
