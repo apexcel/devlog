@@ -51,7 +51,7 @@ export const pageQuery = graphql`
         description
         category
 	  }
-	  tableOfContents
+	  tableOfContents(maxDepth: 4)
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
       fields {

@@ -4,6 +4,8 @@ import SEO from "./seo"
 import PostNavBtn from "./PostNavBtn.tsx"
 import TableOfContents from "./TableOfContents.tsx"
 
+import {addClass, removeClass} from '../utils.ts'
+
 type DataType = {
     [key: string]: any
 }
@@ -57,20 +59,18 @@ const Article: React.FC<DataType> = ({ post, prev, next }) => {
             tocHeadings: HTMLCollection = document.getElementsByClassName('toc-headings'),
             currentOffsetY: number = globalThis.pageYOffset,
             values: Array<DataType> = Array.from(headings).map(v => v.getClientRects()[0]);
-        let lastHeading, prevHeading;
+        let prevHeading;
 
         values.forEach((v, i) => {
             if (v.y + currentOffsetY < currentOffsetY + v.height) {
                 if (prevHeading && prevHeading !== tocHeadings[i]) {
-                    prevHeading.classList.remove('active');
+                    removeClass(prevHeading, 'active')
                 }
-                tocHeadings[i].classList.add('active');
-                prevHeading = tocHeadings[i];
-                //prevHeading = addClass(tocHeadings[i], 'active');
+                prevHeading = addClass(tocHeadings[i], 'active');
                 return;
             }
             else {
-                tocHeadings[i].classList.remove('active')
+                removeClass(tocHeadings[i], 'active')
                 return;
             }
         })
