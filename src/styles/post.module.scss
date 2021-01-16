@@ -1,13 +1,8 @@
 .post-wrapper {
-    display: flex;
-
     .post-article {
+        width: 768px;
         .post-title {
             margin-bottom: 80px;
-        }
-
-        .post-section {
-            width: 720px;
         }
 
         .post-footer-nav {
@@ -22,17 +17,27 @@
             justify-content: space-between;
             border: 1px solid #cfcfcf;
             height: 80px;
-            padding: 10px;
             width: 300px;
+            padding: 10px;
             div {
                 display: block;
+                width: 220px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
 
             &[data-dir='prev'] {
                 text-align: right;
+                em, b {
+                    padding-right: 5px;
+                }
             }
             &[data-dir='next'] {
                 text-align: left;
+                em, b {
+                    padding-left: 5px;
+                }
             }
             &:hover {
                 border: 1px solid #9b9b9b;
@@ -52,7 +57,7 @@
                 font-size: 0.9rem;
             }
             b {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             svg {

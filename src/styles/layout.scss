@@ -6,18 +6,21 @@
 
 // Colors
 $main-color: #1b6339;
+$sub-color: #19553d;
+$bright-main-color: #2fc287;
 $heading-border-color: #e0e0e0bd;
 $default-font-color: #3d3d3d;
 $default-bright-font-color: #e6e6e6;
-$global-header-bg-color: #11251d;
+$global-header-bg-color: #2e2e2e;
 
 // Darkmode colors
 $global-wrapper-darkmode-bg-color: #acacac;
 $global-footer-darkmode-bg-color: #666666;
+$global-header-darkmode-bg-color: #243830;
 
 // Blog post
 $blockqoute-bg-color: #e7e7e7;
-$blockqoute-border-color: #44ac6f;
+$blockqoute-border-color: #368858;
 
 // Code blocks
 $codeblock-text-bg-color: #e7e7e7;
@@ -32,15 +35,17 @@ $codeblock-bg-color: #2b2b2b;
 @import './toc.module.scss';
 @import './codeblock.module.scss';
 @import './post.module.scss';
+@import './info-floater.module.scss';
+@import './category.module.scss';
 
 @mixin default-setting {
     html,
     body,
     * {
         font-family: 'Nanum Gothic', sans-serif;
-        font-size: 1rem;
         line-height: 1.7;
         color: $default-font-color;
+        scroll-behavior: smooth;
         margin: 0;
         padding: 0;
         text-shadow: none !important;
@@ -58,30 +63,29 @@ $codeblock-bg-color: #2b2b2b;
     h6 {
         color: $main-color;
         padding-top: 24px;
+        word-wrap: break-word;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2,h3 {
+        font-size: 1.5rem;
+    }
+
+    h4, h5, h6 {
+        font-size: 1.1rem;
     }
 
     h1,
     h2,
     h3 {
         padding-bottom: 10px;
-        margin-bottom: 20px;
         border-bottom: 1px solid $heading-border-color;
     }
 
-    h1 {
-        font-size: 1.5rem;
-    }
 
-    h2,
-    h3 {
-        font-size: 1.25rem;
-    }
-
-    h4,
-    h5,
-    h6 {
-        font-size: 1.1rem;
-    }
 }
 
 @include default-setting();
@@ -119,33 +123,92 @@ li {
 
 .global-wrapper {
     position: relative;
+    background-color: #e0e0e0;
+
     .layout-wrapper {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        // min-height: 100vh;
+        padding: 54px 54px 0 54px;
+        display: block;
+        width: 878px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #c4c4c4;
 
         .main-wrapper {
             display: flex;
+            margin-top: 100px;
             position: relative;
-            width: 720px;
         }
     }
 }
 // Global header and navigation
 .global-header {
-    display: flex;
-    align-items: center;
-    height: 90px;
     background-color: $global-header-bg-color;
-    & .global-header-title {
-        width: 1080px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+
+    .global-header-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 48px;
+        max-width: 868px;
         margin: 0 auto;
         font-family: 'Roboto Mono', monospace;
-        a {
-            font-size: 2rem;
-            color: $default-bright-font-color;
-            padding: 0 10px;
+
+        .global-header-title {
+            padding: 5px;
+            a {
+                font-size: 1rem;
+                font-weight: bold;
+                color: $default-bright-font-color;
+                &:hover {
+                    color: $bright-main-color;
+                }
+            }
+        }
+
+        .global-header-menu {
+            position: relative;
+            width: 30px;
+
+            .menu-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: space-evenly;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+
+                @mixin menu-btn {
+                    display: block;
+                    background-color: $default-bright-font-color;
+                    width: 30px;
+                    height: 2px;
+                }
+
+                & span:nth-child(1) {
+                    @include menu-btn();
+                }
+
+                & span:nth-child(2) {
+                    @include menu-btn();
+                    width: 18px;
+                }
+
+                & span:nth-child(3) {
+                    @include menu-btn();
+                    width: 9px;
+                }
+
+                &:hover {
+                    span {
+                        background-color: $bright-main-color;
+                        width: 30px;
+                    }
+                }
+            }
         }
     }
 }

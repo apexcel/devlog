@@ -1,9 +1,7 @@
 ---
-title: 최소 신장 트리 (MST, Minimun Spanning Tree)
-date: ''
+title: MST(Minimun Spanning Tree)
+category: Algorithm
 ---
-
-# MST(Minimun Spanning Tree)
 
 ## 최소 신장 트리
 

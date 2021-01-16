@@ -2,12 +2,24 @@ import React from 'react';
 import { Link } from 'gatsby';
 import SVG from './SVG.tsx';
 
-const PostNavBtn: React.FC = ({ props, dir }) => {
-    const postLink = props.fields.slug,
-        postTitle = props.frontmatter.title
+type PostNavBtnProps = {
+    props: Record<string, any>
+    dir: string
+}
+
+const PostNavBtn: React.FC<PostNavBtnProps> = ({ props, dir }) => {
+    let postLink = '', postTitle = '', isHidden = false;
+
+    if (props) {
+        postLink = props.fields.slug;
+        postTitle = props.frontmatter.title;
+    }
+    else {
+        isHidden = true;
+    }
 
     return (
-        <Link to={postLink} rel={dir}>
+        <Link className={`${isHidden ? 'hidden' : null}`} to={postLink} rel={dir}>
             <div className='post-nav-btn' role='post-navigation' data-dir={dir}>
                 {dir === 'prev' ?
                     <SVG

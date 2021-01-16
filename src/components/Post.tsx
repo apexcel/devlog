@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import SEO from "./seo"
 
 import PostNavBtn from "./PostNavBtn.tsx"
-import TableOfContents from "./TableOfContents.tsx"
-
-import {addClass, removeClass} from '../utils.ts'
+import TOC from "./TOC.tsx"
 
 type DataType = {
     [key: string]: any
@@ -20,7 +18,7 @@ type PostProps = {
     toc: HTMLCollection
 }
 
-const Post: React.FC<PostProps> = ({ 
+const Post: React.FC<PostProps> = ({
     seoTitle,
     seoDescription,
     siteTitle,
@@ -32,58 +30,35 @@ const Post: React.FC<PostProps> = ({
 
     return (
         <div className='post-wrapper'>
+            <PostTitle post={post} toc={toc}/>
             <SEO
                 title={seoTitle}
                 description={seoDescription}
             />
             <Article post={post} prev={prevPost} next={nextPost} />
-            <TableOfContents toc={toc} />
         </div>
     )
 };
 
 export default Post;
 
+const PostTitle: React.FC<DataType> = ({ post, toc }) => {
+    return (
+        <header className='post-title'>
+            <h1 itemProp='headline'>{post.frontmatter.title}</h1>
+            <span>{post.frontmatter.date}</span>
+            <div className='post-category'>
+                {post.frontmatter.category}
+            </div>
+            <TOC toc={toc} />
+        </header>
+    )
+};
+
 const Article: React.FC<DataType> = ({ post, prev, next }) => {
-    useEffect(() => {
-        window.addEventListener('scroll', tocActivator)
-
-        return (() => {
-            window.removeEventListener('scroll', tocActivator)
-        })
-    }, [])
-
-
-    const tocActivator = () => {
-        const headings: HTMLCollection = document.getElementsByClassName('link-header'),
-            tocHeadings: HTMLCollection = document.getElementsByClassName('toc-headings'),
-            currentOffsetY: number = globalThis.pageYOffset,
-            values: Array<DataType> = Array.from(headings).map(v => v.getClientRects()[0]);
-        let prevHeading;
-
-        values.forEach((v, i) => {
-            if (v.y + currentOffsetY < currentOffsetY + v.height) {
-                if (prevHeading && prevHeading !== tocHeadings[i]) {
-                    removeClass(prevHeading, 'active')
-                }
-                prevHeading = addClass(tocHeadings[i], 'active');
-                return;
-            }
-            else {
-                removeClass(tocHeadings[i], 'active')
-                return;
-            }
-        })
-    }
-
     return (
         <article className='post-article' itemScope itemType="http://schema.org/Article">
-            <header className='post-title'>
-                <h1 itemProp='headline'>{post.frontmatter.title}</h1>
-                <p>{post.frontmatter.date} {post.frontmatter.category}</p>
-            </header>
             <section
-                className='post-section'
                 dangerouslySetInnerHTML={{ __html: post.html }}
                 itemProp="articleBody"
             />
@@ -95,8 +70,8 @@ const Article: React.FC<DataType> = ({ post, prev, next }) => {
 const PostNavigation: React.FC<DataType> = ({ prev, next }) => {
     return (
         <nav className="post-footer-nav">
-            {prev && <PostNavBtn props={prev} dir='prev' />}
-            {next && <PostNavBtn props={next} dir='next' />}
+            {<PostNavBtn props={prev} dir='prev' />}
+            {<PostNavBtn props={next} dir='next' />}
         </nav>
     )
 };

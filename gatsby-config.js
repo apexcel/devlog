@@ -54,7 +54,7 @@ module.exports = {
               className: `link-header`,
               maintainCase: false,
               removeAccents: true,
-              elements: [`h1`, `h2`, 'h3', `h4`],
+              elements: [`h2`, 'h3', `h4`],
             },
           },
           `gatsby-remark-prismjs`,

@@ -1,0 +1,21 @@
+.info-wrapper {
+    position: absolute;
+    display: block;
+    height: auto;
+    margin-top: 20px;
+    top: 100px;
+    right: -54px;
+    margin-left: 42px;
+    border: 1px solid blue;
+    
+    .info-contents {
+        border: 1px solid red;
+        width: 240px;
+        height: 240px;
+        position: fixed;
+    }
+}
+
+.floater {
+    position: relative;
+}

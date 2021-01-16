@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GlobalHeader from '../components/GlobalHeader.tsx';
+import InfoFloater from "./InfoFloater.tsx";
 
 type LayoutProps = {
     location: Record<string | number, any>
@@ -16,6 +17,9 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
         <div className='global-wrapper'>
             <GlobalHeader />
             <div className='layout-wrapper' data-is-root-path={isRootPath}>
+                {/* <div className='floater'>
+                    <InfoFloater />
+                </div> */}
                 <main className='main-wrapper'>
                     {children}
                 </main>
