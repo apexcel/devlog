@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react'
-import { addClass, removeClass, throttle, debounce } from '../utils.ts'
-import { useGlobalScroll } from '../hooks/useGlobalScroll.ts'
-import querystring from 'querystring'
+import React, { useEffect, useRef } from 'react'
+import { useActive } from '../hooks/useActive.ts'
 
 type DataType = {
     [key: string]: any
@@ -9,50 +7,68 @@ type DataType = {
 
 const TOC: React.FC<DataType> = ({ toc }) => {
     const currentPath = location.pathname;
+    const headings = Array.from(document.querySelectorAll(`h2, h3, h4`));
+    const ref = useRef(null);
 
     useEffect(() => {
-        globalThis.addEventListener('scroll', throttle(floater, 50));
-        highlightTOC();
-        return () => globalThis.removeEventListener('scroll', floater);
+        // globalThis.addEventListener('scroll', float);
+        // highlightTOC();
+        // addEventListener('DOMContentsLoaded, ())는 그냥 userEffect에 함수만
+        // 적어주면 된다.
+        float()
+        // return () => globalThis.removeEventListener('scroll', float);
     }, [])
 
     const highlightTOC = () => {
-        let prev, prevId;
+        let prevEntry, prevId, prevRatio;
+
         const observer = new IntersectionObserver(entries => {
-            entries.forEach((entry, i) => {
+            entries.forEach(entry => {
                 const currentOffsetY = globalThis.pageYOffset;
                 const id = entry.target.getAttribute('id');
-
-                if (entry.boundingClientRect.y + currentOffsetY - 50 < currentOffsetY) {
-                    document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(id)}"]`).classList.add('active')
+                // console.log(entry, prevEntry)
+                // if (entry.boundingClientRect.y + currentOffsetY < currentOffsetY) {
+                if (entry.isIntersecting) {
+                    document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(id)}"]`).classList.add('active');
+                    if (prevId && prevId !== id) {
+                        document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(prevId)}"]`).classList.remove('active')
+                    }
                 }
-                else if (prev) {
-                    document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(prevId)}"]`).classList.remove('active')
+                else {
+                    document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(id)}"]`).classList.remove('active')
+                    if (prevId) {
+                        document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(prevId)}"]`).classList.add('active');
+                    }
                 }
-                prev = entry;
                 prevId = id;
-
+                prevEntry = entry;
             })
         }, { rootMargin: `0% 0% -100% 0%` });
 
+        console.log(document.querySelectorAll('h2'))
         document.querySelectorAll('h2').forEach(h => observer.observe(h))
         document.querySelectorAll('h3').forEach(h => observer.observe(h))
         document.querySelectorAll('h4').forEach(h => observer.observe(h))
     };
 
+    const float = () => {
+        const f = document.getElementsByClassName('toc-list')[0];
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!(entry.intersectionRatio > 0)) {
+                    f.style.top = '72px'
+                    f.style.position = 'fixed'
+                    // f.classList.add('floating');
+                }
+                else {
+                    f.style.position = 'relative'
+                    // f.classList.remove('floating');
+                }
+            })
+        }, {threshold: 0})
 
-    // TODO: React.memo 나 useMemo를 이용해서 최적화하기
-    const floater = () => {
-        const wrapper = document.getElementsByClassName('toc-list')[0],
-            currentOffsetY: number = globalThis.pageYOffset;
-        if (wrapper) {
-            if (wrapper.getClientRects()[0].y - 132 + currentOffsetY < currentOffsetY) {
-                wrapper.classList.add('floating');
-            }
-            if (wrapper.getClientRects()[0].y + 132 > currentOffsetY) {
-                wrapper.classList.remove('floating');
-            }
-        }
+        observer.observe(ref.current)
+        return () => observer.unobserve(ref.current);
     }
 
     const renderTableOfContents = () => {
@@ -61,7 +77,7 @@ const TOC: React.FC<DataType> = ({ toc }) => {
     };
 
     return (
-        <div className='toc-floater'>
+        <div ref={ref} className='toc-floater'>
             <div className='toc-wrapper'>
                 {renderTableOfContents()}
             </div>

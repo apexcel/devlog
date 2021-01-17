@@ -7,7 +7,6 @@
     position: absolute;
     left: 100%;
     margin-left: 84px;
-    margin-top: 68px;
 }
 
 .toc-wrapper {
@@ -18,7 +17,6 @@
         border-left: 2px solid #a5a5a53a;
     }
     & li {
-        position: sticky;
         list-style: none;
         padding: 2px 0;
         a {
