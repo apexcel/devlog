@@ -141,13 +141,13 @@ li {
     }
 }
 // Global header and navigation
-.global-header {
+.global-header-wrapper {
     background-color: $global-header-bg-color;
     position: fixed;
     width: 100%;
     z-index: 999;
 
-    .global-header-wrapper {
+    .global-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -211,6 +211,10 @@ li {
             }
         }
     }
+}
+
+.global-header-wrapper.hide {
+    top: -80px;
 }
 
 .global-footer {

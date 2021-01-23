@@ -2,7 +2,7 @@ export function throttle(callback: Function, wait: number) {
     let onThrottle;
     return function () {
         if (!onThrottle) {
-            callback(arguments)
+            callback.apply(this, arguments)
             onThrottle = true;
             onThrottle = setTimeout(() => {
                 onThrottle = false;
@@ -13,26 +13,14 @@ export function throttle(callback: Function, wait: number) {
 
 export function debounce(callback: Function, wait: number) {
     let onDebounce;
+    const context = this;
     return function () {
+        const args = arguments;
         clearTimeout(onDebounce);
         onDebounce = setTimeout(() => {
-            callback.apply(this);
+            callback.apply(context, args);
         }, wait);
     }
-}
-
-export function addClass(element: HTMLElement, className: string) {
-    if (element) {
-        element.classList.add(className);
-    }
-    return element;
-}
-
-export function removeClass(element: HTMLElement, className: string) {
-    if (element) {
-        element.classList.remove(className);
-    }
-    return element;
 }
 
 export function getNearest(array: number[], target: number) {

@@ -1,18 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { SetStateAction, useEffect, useRef, useMemo, useState, ReactHTML, ReactHTMLElement, RefObject } from 'react'
 import { Link } from "gatsby"
+import { throttle } from '../utils.ts';
+import '../global.ts'
 
-const toggleHeader = () => {
-    const [status, setStatus] = useState(true);
-    useEffect(() => {
+// const setHeaderEvent = (setter: React.Dispatch<SetStateAction<HeaderStatus>>, delay: number, state?: any) => {
+//     globalThis.addEventListener('scroll', debounce(() => {
+//         setter({ ...state, current: globalThis.pageYOffset })
+//     }, delay))
+// };
 
-    }, [])
-};
+// const toggleHeader = (ref: React.RefObject<HTMLDivElement>, visibility: boolean) => {
+    // visibility ? ref.current.classList.add('hide') : ref.current.classList.remove('hide')
+// };
+
+const toggleHeader = (ref: RefObject<HTMLDivElement>) => {
+    const delta = 48;
+    let prevY = 0;
+    globalThis.addEventListener('scroll', throttle(() => {
+        const currentY = globalThis.pageYOffset;
+        console.log(prevY, currentY)
+        if (Math.abs(prevY - currentY) <= delta) {
+            return;
+        }
+        currentY > prevY ? ref.current.addClass('hide') : ref.current.removeClass('hide');
+        prevY = currentY;
+    }, 150))
+}
 
 const GlobalHeader: React.FC = () => {
+    const header = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        toggleHeader(header)
+    }, [])
 
     return (
-        <div className='global-header'>
-            <div className='global-header-wrapper'>
+        <div ref={header} className='global-header-wrapper'>
+            <div className='global-header'>
                 <div className='global-header-title'>
                     <Link to='/'>Apexcel Devlog</Link>
                 </div>
