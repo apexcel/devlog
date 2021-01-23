@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "gatsby"
 
+const toggleHeader = () => {
+    const [status, setStatus] = useState(true);
+    useEffect(() => {
+
+    }, [])
+};
+
 const GlobalHeader: React.FC = () => {
-
-
 
     return (
         <div className='global-header'>

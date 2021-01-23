@@ -1,85 +1,94 @@
-import React, { useEffect, useRef } from 'react'
-import { useActive } from '../hooks/useActive.ts'
+import React, { useEffect, useRef, useState } from 'react'
+import { getNearest } from '../utils.ts'
 
-type DataType = {
-    [key: string]: any
+type Props = {
+    [key: string]: any;
 }
 
-const TOC: React.FC<DataType> = ({ toc }) => {
-    const currentPath = location.pathname;
-    const headings = Array.from(document.querySelectorAll(`h2, h3, h4`));
-    const ref = useRef(null);
+type Ref = {
+    current: HTMLElement;
+}
+
+const tocFloater = (ref: Ref) => {
+    const floater = document.getElementsByClassName('toc-list')[0];
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            entry.intersectionRatio > 0.2 ? 
+                floater.classList.remove('floating') : 
+                floater.classList.add('floating');
+        })
+    });
+    observer.observe(ref.current);
+    return () => observer.unobserve(ref.current);
+};
+
+const genTableOfContents = (collections) => {
+    if (collections.length) {
+        return collections.map((element, i) => {
+            const children = element.children;
+            return (
+                <li key={i}>
+                    { !children.length ? (<a className={`toc-headings`} href={element.hash}>{element.innerText}</a>) : null}
+                    {children.length ? (
+                        <ul>
+                            {genTableOfContents(Array.from(element.children))}
+                        </ul>
+                    ) : null}
+                </li>
+            )
+        })
+    }
+};
+
+// TODO: 최적화해서 구현하기
+const tocHighlighter = () => {
+    const headings = Array.from(document.querySelectorAll('h2, h3, h4'));
+    const convQuery = id => `nav ul li ul li a[href="#${encodeURI(id)}"]`;
+    const pos = headings.map(v => v.getBoundingClientRect().y + globalThis.pageYOffset);
+    let prevPos = -1;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach((entry, i) => {
+            const scrollY = globalThis.pageYOffset;
+
+            if (!i) {
+                const near = getNearest(pos, scrollY);
+                document.querySelectorAll(`nav ul li ul li a`).forEach(element => {
+                    element.classList.remove('active')
+                })
+                if (entry.isIntersecting) {
+                    prevPos = scrollY;
+                }
+                if (near && near.length && near[1] > 0) {
+                    const target = (scrollY < prevPos) ? headings[near[1] - 1].id : headings[near[1]].id
+                    document.querySelector(convQuery(target)).classList.add('active')
+                }
+            }
+        })
+    }, { rootMargin: `0% 0% -70% 0%` });
+
+    headings.forEach(v => observer.observe(v));
+
+    return () => headings.forEach(v => observer.unobserve(v));
+};
+
+const TOC: React.FC<Props> = ({ toc }) => {
+    const parsed = Array.from(new DOMParser().parseFromString(toc, 'text/html').querySelectorAll('body > ul > li'));
+    const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // globalThis.addEventListener('scroll', float);
-        // highlightTOC();
-        // addEventListener('DOMContentsLoaded, ())는 그냥 userEffect에 함수만
-        // 적어주면 된다.
-        float()
-        // return () => globalThis.removeEventListener('scroll', float);
+        tocFloater(ref);
+        tocHighlighter();
     }, [])
-
-    const highlightTOC = () => {
-        let prevEntry, prevId, prevRatio;
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const currentOffsetY = globalThis.pageYOffset;
-                const id = entry.target.getAttribute('id');
-                // console.log(entry, prevEntry)
-                // if (entry.boundingClientRect.y + currentOffsetY < currentOffsetY) {
-                if (entry.isIntersecting) {
-                    document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(id)}"]`).classList.add('active');
-                    if (prevId && prevId !== id) {
-                        document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(prevId)}"]`).classList.remove('active')
-                    }
-                }
-                else {
-                    document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(id)}"]`).classList.remove('active')
-                    if (prevId) {
-                        document.querySelector(`nav ul li a[href="${currentPath}#${encodeURI(prevId)}"]`).classList.add('active');
-                    }
-                }
-                prevId = id;
-                prevEntry = entry;
-            })
-        }, { rootMargin: `0% 0% -100% 0%` });
-
-        console.log(document.querySelectorAll('h2'))
-        document.querySelectorAll('h2').forEach(h => observer.observe(h))
-        document.querySelectorAll('h3').forEach(h => observer.observe(h))
-        document.querySelectorAll('h4').forEach(h => observer.observe(h))
-    };
-
-    const float = () => {
-        const f = document.getElementsByClassName('toc-list')[0];
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (!(entry.intersectionRatio > 0)) {
-                    f.style.top = '72px'
-                    f.style.position = 'fixed'
-                    // f.classList.add('floating');
-                }
-                else {
-                    f.style.position = 'relative'
-                    // f.classList.remove('floating');
-                }
-            })
-        }, {threshold: 0})
-
-        observer.observe(ref.current)
-        return () => observer.unobserve(ref.current);
-    }
-
-    const renderTableOfContents = () => {
-        const tocHeadings = toc.replace(/(<a)\b/g, `<a class='toc-headings'`);
-        return <nav className='toc-list' dangerouslySetInnerHTML={{ __html: tocHeadings }} />
-    };
 
     return (
         <div ref={ref} className='toc-floater'>
             <div className='toc-wrapper'>
-                {renderTableOfContents()}
+                <nav className='toc-list'>
+                    <ul style={{ margin: 0 }}>
+                        {genTableOfContents(parsed)}
+                    </ul>
+                </nav>
             </div>
         </div>
     )

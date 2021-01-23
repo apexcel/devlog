@@ -1,6 +1,7 @@
+require('ts-node').register();
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-require('ts-node').register();
+const { dedupeCategories } = require(`./lib/dedupeCategories.ts`)
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -21,12 +22,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             fields {
               slug
             }
+            frontmatter {
+              categories
+            }
           }
         }
       }
     `
   )
-
+  console.log(result)
   if (result.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
@@ -45,6 +49,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+      const categories = post.frontmatter.categories;
 
       createPage({
         path: post.fields.slug,
@@ -53,6 +58,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           id: post.id,
           previousPostId,
           nextPostId,
+          categories
         },
       })
     })

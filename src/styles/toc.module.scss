@@ -11,6 +11,7 @@
 
 .toc-wrapper {
     @include toc-wrapper();
+    margin-top: 72px;
 
     .toc-list {
         width: 240px;
@@ -47,7 +48,7 @@
 
 .floating {
     position: fixed;
-    top: 132px;
+    top: 70px;
 }
 
 @media screen and (max-width: 1420px) {

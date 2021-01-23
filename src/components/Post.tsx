@@ -43,12 +43,21 @@ const Post: React.FC<PostProps> = ({
 export default Post;
 
 const PostTitle: React.FC<DataType> = ({ post, toc }) => {
+    const renderCategories = () => {
+        if (post.frontmatter.categories) {
+            return post.frontmatter.categories.map((category, i) =>
+                <span key={i}>{category}</span>
+            )
+        }
+        return;
+    }
+
     return (
         <header className='post-title'>
             <h1 itemProp='headline'>{post.frontmatter.title}</h1>
-            <span>{post.frontmatter.date}</span>
+            <div>{post.frontmatter.date}</div>
             <div className='post-category'>
-                {post.frontmatter.category}
+                {renderCategories()}
             </div>
             <TOC toc={toc} />
         </header>

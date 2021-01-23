@@ -4,28 +4,28 @@ import Layout from "../components/Layout.tsx"
 import Post from "../components/Post.tsx"
 
 type DataType = {
-	[key: string]: any
+  [key: string]: any
 }
 
 const BlogPost = ({ data, location }) => {
-	const { previous, next } = data;
-	const post = data.markdownRemark;
-	const siteTitle = data.site.siteMetadata?.title || `Title`;
-	const toc = post.tableOfContents;
+  const { previous, next } = data;
+  const post = data.markdownRemark;
+  const siteTitle = data.site.siteMetadata?.title || `Title`;
+  const toc = post.tableOfContents;
 
-	return (
-		<Layout location={location}>
-			<Post 
-				seoTitle={post.frontmatter.title}
-				seoDescription={post.frontmatter.description || post.excerpt}
-				siteTitle={siteTitle}
-				post={post}
-				prevPost={previous}
-				nextPost={next}
-				toc={toc}
-			/>
-		</Layout>
-	)
+  return (
+    <Layout location={location}>
+      <Post
+        seoTitle={post.frontmatter.title}
+        seoDescription={post.frontmatter.description || post.excerpt}
+        siteTitle={siteTitle}
+        post={post}
+        prevPost={previous}
+        nextPost={next}
+        toc={toc}
+      />
+    </Layout>
+  )
 };
 
 export default BlogPost;
@@ -49,9 +49,9 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
-        category
-	  }
-	  tableOfContents(maxDepth: 4)
+        categories
+      }
+      tableOfContents(maxDepth: 4)
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
       fields {

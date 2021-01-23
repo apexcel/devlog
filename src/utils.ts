@@ -34,3 +34,17 @@ export function removeClass(element: HTMLElement, className: string) {
     }
     return element;
 }
+
+export function getNearest(array: number[], target: number) {
+    let max = Math.max(...array);
+    let nearest = 0, index = 0;
+    array.forEach((v, i) => {
+        let abs = Math.abs(v - target);
+        if (abs < max) {
+            max = abs;
+            nearest = v;
+            index = i;
+        }
+    })
+    return [nearest, index];
+}
