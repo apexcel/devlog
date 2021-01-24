@@ -1,4 +1,4 @@
-.toc-floater {
+.toc-wrapper {
     position: relative;
     margin-top: 2rem;
 }
@@ -9,7 +9,7 @@
     margin-left: 84px;
 }
 
-.toc-wrapper {
+.toc {
     @include toc-wrapper();
     margin-top: 72px;
 

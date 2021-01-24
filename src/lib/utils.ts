@@ -1,24 +1,25 @@
-export function throttle(callback: Function, wait: number) {
+export function throttle(fn: Function, wait: number) {
     let onThrottle;
-    return function () {
+    const throttled = (args) => {
         if (!onThrottle) {
-            callback.apply(this, arguments)
+            fn.apply(this, args);
             onThrottle = true;
-            onThrottle = setTimeout(() => {
-                onThrottle = false;
-            }, wait)
+            setTimeout(() => {
+                onThrottle = false;            
+            }, wait);
         }
     }
+    return throttled;
 }
 
-export function debounce(callback: Function, wait: number) {
+export function debounce(fn: Function, wait: number) {
     let onDebounce;
     const context = this;
     return function () {
         const args = arguments;
         clearTimeout(onDebounce);
         onDebounce = setTimeout(() => {
-            callback.apply(context, args);
+            fn.apply(context, args);
         }, wait);
     }
 }

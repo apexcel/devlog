@@ -1,25 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { getNearest } from '../utils.ts'
+import { getNearest } from '../lib/utils.ts'
 
 type Props = {
     [key: string]: any;
 }
 
-type Ref = {
-    current: HTMLElement;
-}
-
-const tocFloater = (ref: Ref) => {
-    const floater = document.getElementsByClassName('toc-list')[0];
+const tocFloater = (wrapper: React.RefObject<HTMLElement>, floatTarget: React.RefObject<HTMLElement>) => {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             entry.intersectionRatio > 0.2 ? 
-                floater.removeClass('floating') : 
-                floater.addClass('floating');
+                floatTarget.current?.removeClass('floating') : 
+                floatTarget.current?.addClass('floating');
         })
     });
-    observer.observe(ref.current);
-    return () => observer.unobserve(ref.current);
+    observer.observe(wrapper.current);
+    return () => observer.unobserve(wrapper.current);
 };
 
 const genTableOfContents = (collections) => {
@@ -41,7 +36,7 @@ const genTableOfContents = (collections) => {
 };
 
 // TODO: 최적화해서 구현하기
-const tocHighlighter = () => {
+const tocEmphasizer = () => {
     const headings = Array.from(document.querySelectorAll('h2, h3, h4'));
     const convQuery = id => `nav ul li ul li a[href="#${encodeURI(id)}"]`;
     const pos = headings.map(v => v.getBoundingClientRect().y + globalThis.pageYOffset);
@@ -63,13 +58,12 @@ const tocHighlighter = () => {
                     let target;
                     if (near[1] === 0 && scrollY >= near[0] - 48) {
                         target = headings[near[1]].id;
-                        document.querySelector(convQuery(target)).addClass('active')
+                        document.querySelector(convQuery(target))?.addClass('active')
                     }
                     else if (near[1] > 0){
                         target = (scrollY < prevPos) ? headings[near[1] - 1].id : headings[near[1]].id
-                        document.querySelector(convQuery(target)).addClass('active')
+                        document.querySelector(convQuery(target))?.addClass('active')
                     }
-                    console.log(target)
                 }
             }
         })
@@ -82,17 +76,18 @@ const tocHighlighter = () => {
 
 const TOC: React.FC<Props> = ({ toc }) => {
     const parsed = Array.from(new DOMParser().parseFromString(toc, 'text/html').querySelectorAll('body > ul > li'));
-    const ref = useRef<HTMLDivElement>(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    const listRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
-        tocFloater(ref);
-        tocHighlighter();
+        tocFloater(wrapperRef, listRef);
+        tocEmphasizer();
     }, [])
 
     return (
-        <div ref={ref} className='toc-floater'>
-            <div className='toc-wrapper'>
-                <nav className='toc-list'>
+        <div ref={wrapperRef} className='toc-wrapper'>
+            <div className='toc'>
+                <nav ref={listRef} className='toc-list'>
                     <ul style={{ margin: 0 }}>
                         {genTableOfContents(parsed)}
                     </ul>
