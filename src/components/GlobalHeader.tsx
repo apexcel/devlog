@@ -22,7 +22,7 @@ const toggleHeader = (ref: RefObject<HTMLDivElement>) => {
         if (Math.abs(prevY - currentY) <= delta) {
             return;
         }
-        currentY > prevY ? ref.current.addClass('hide') : ref.current.removeClass('hide');
+        currentY > prevY ? ref.current.addClass('hide').removeClass('show') : ref.current.addClass('show').removeClass('hide');
         prevY = currentY;
     }, 150))
 }

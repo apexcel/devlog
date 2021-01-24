@@ -214,7 +214,11 @@ li {
 }
 
 .global-header-wrapper.hide {
-    top: -80px;
+    top: -48px;
+}
+
+.global-header-wrapper.show {
+    top: 0px;
 }
 
 .global-footer {
