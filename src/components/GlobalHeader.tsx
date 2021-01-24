@@ -1,7 +1,6 @@
 import React, { SetStateAction, useEffect, useRef, useMemo, useState, ReactHTML, ReactHTMLElement, RefObject } from 'react'
 import { Link } from "gatsby"
 import { throttle } from '../utils.ts';
-import '../global.ts'
 
 // const setHeaderEvent = (setter: React.Dispatch<SetStateAction<HeaderStatus>>, delay: number, state?: any) => {
 //     globalThis.addEventListener('scroll', debounce(() => {

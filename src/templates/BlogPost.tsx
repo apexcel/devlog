@@ -1,7 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout.tsx"
 import Post from "../components/Post.tsx"
+import '../global.ts'
 
 type DataType = {
   [key: string]: any

@@ -14,8 +14,8 @@ const tocFloater = (ref: Ref) => {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             entry.intersectionRatio > 0.2 ? 
-                floater.classList.remove('floating') : 
-                floater.classList.add('floating');
+                floater.removeClass('floating') : 
+                floater.addClass('floating');
         })
     });
     observer.observe(ref.current);
@@ -54,18 +54,26 @@ const tocHighlighter = () => {
             if (!i) {
                 const near = getNearest(pos, scrollY);
                 document.querySelectorAll(`nav ul li ul li a`).forEach(element => {
-                    element.classList.remove('active')
+                    element.removeClass('active')
                 })
                 if (entry.isIntersecting) {
                     prevPos = scrollY;
                 }
-                if (near && near.length && near[1] > 0) {
-                    const target = (scrollY < prevPos) ? headings[near[1] - 1].id : headings[near[1]].id
-                    document.querySelector(convQuery(target)).classList.add('active')
+                if (near && near.length && near[1] >= 0) {
+                    let target;
+                    if (near[1] === 0 && scrollY >= near[0] - 48) {
+                        target = headings[near[1]].id;
+                        document.querySelector(convQuery(target)).addClass('active')
+                    }
+                    else if (near[1] > 0){
+                        target = (scrollY < prevPos) ? headings[near[1] - 1].id : headings[near[1]].id
+                        document.querySelector(convQuery(target)).addClass('active')
+                    }
+                    console.log(target)
                 }
             }
         })
-    }, { rootMargin: `0% 0% -70% 0%` });
+    }, { rootMargin: `0% 0% -95% 0%` });
 
     headings.forEach(v => observer.observe(v));
 
