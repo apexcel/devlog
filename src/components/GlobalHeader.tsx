@@ -1,29 +1,47 @@
 import React, { useState } from 'react'
+import Drawer from '@material-ui/core/Drawer';
 import { Link } from "gatsby"
+
 import useScrollPosition from '../hooks/useScrollPosition';
 
 const GlobalHeader: React.FC = () => {
-    const [visibility, setVisibility] = useState(true);
+    const [headerVisibility, setHeaderVisibility] = useState(true);
+    const [navVisibility, setNavVisibility] = useState(false);
 
     useScrollPosition(({ prev, current }) => {
-        setVisibility(prev > current);
-    }, [visibility])
+        setHeaderVisibility(prev > current);
+    }, [headerVisibility])
+
+    const showGlobalNav = ev => {
+        ev.preventDefault();
+        setNavVisibility(!navVisibility)
+    };
+
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+    }
 
     return (
-        <div className={`global-header-wrapper ${visibility ? 'show' : 'hide'}`}>
+        <header className={`global-header-wrapper ${headerVisibility ? 'show' : 'hide'}`}>
             <div className='global-header'>
                 <div className='global-header-title'>
                     <Link to='/'>Apexcel Devlog</Link>
                 </div>
                 <div className='global-header-menu'>
-                    <div className='menu-btn'>
+                    <div className='menu-btn' onClick={showGlobalNav}>
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
                 </div>
             </div>
-        </div>
+            {/* TODO: Replace to custom drawer */}
+            <Drawer anchor={'right'} open={navVisibility} onClose={toggleDrawer('right', false)}>
+            <div onClick={showGlobalNav}>Drawer</div>
+            </Drawer>
+        </header >
     )
 };
 

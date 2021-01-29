@@ -37,3 +37,19 @@ export function getNearest(array: number[], target: number) {
     })
     return [nearest, index];
 }
+
+export function className(prefix: string) {
+    return (feature) => `${prefix}-${feature}`;
+}
+
+/**
+ * 
+ * @param currentPos Current scrollbar position
+ * @returns Ratio of current scrollbar position
+ */
+
+export function getScrollRatio(currentPos: number) {
+    const bodyHeight = document.body.offsetHeight;
+    const innerHeight = globalThis.innerHeight;
+    return currentPos / (bodyHeight - innerHeight)
+}

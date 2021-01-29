@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import GlobalHeader from '../components/GlobalHeader.tsx';
+import GlobalFooter from "./GlobalFooter";
 import InfoFloater from "./InfoFloater.tsx";
 
 type LayoutProps = {
@@ -14,20 +15,18 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
     const isRootPath = location.pathname === rootPath;
 
     return (
-        <div className='global-wrapper'>
+        <>
             <GlobalHeader />
-            <div className='layout-wrapper' data-is-root-path={isRootPath}>
+            <section id='layout' data-is-root-path={isRootPath}>
                 {/* <div className='floater'>
                     <InfoFloater />
                 </div> */}
-                <main className='main-wrapper'>
+                <main id='main'>
                     {children}
                 </main>
-            </div>
-            <footer className='global-footer'>
-                <a href="">깃허브</a>
-            </footer>
-        </div>
+            </section>
+            <GlobalFooter />
+        </>
     )
 };
 
