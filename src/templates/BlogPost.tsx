@@ -1,14 +1,17 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 import Layout from "../components/Layout.tsx"
 import Post from "../components/Post.tsx"
 import '../lib/global.ts'
 
 type DataType = {
-  [key: string]: any
+  previous: string
+  next: string
+  markdownRemark: Record<string, any>
+  site: Record<string, any>
 }
 
-const BlogPost = ({ data, location }) => {
+const BlogPost: React.FC<PageProps<DataType>> = ({ data, location }) => {
   const { previous, next } = data;
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata?.title || `Title`;
@@ -50,7 +53,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
-        categories
+        tags
       }
       tableOfContents(maxDepth: 4)
     }

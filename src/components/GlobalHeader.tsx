@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import useScrollPosition from '../hooks/useScrollPosition';
 
 const GlobalHeader: React.FC = () => {
-    const [visibility, setVisibility] = useState(false);
+    const [visibility, setVisibility] = useState(true);
 
     useScrollPosition(({ prev, current }) => {
         setVisibility(prev > current);

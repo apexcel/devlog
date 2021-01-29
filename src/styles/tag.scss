@@ -1,0 +1,19 @@
+$tag-bg-color: #e0e2e6af;
+$tag-color: #156646;
+
+.tag-wrapper {
+    width: inherit;
+    list-style: none;
+    margin-top: 15px;
+    .tag {
+        display: inline-block;
+        padding: 4px 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 25px;
+        text-align: center;
+        background-color: $tag-bg-color;
+        color: $tag-color;
+        font-weight: 500;
+    }
+}

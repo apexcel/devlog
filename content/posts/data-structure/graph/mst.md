@@ -1,6 +1,6 @@
 ---
 title: MST(Minimun Spanning Tree)
-category: Algorithm
+tags: ["Algorithm"]
 ---
 
 ## 최소 신장 트리

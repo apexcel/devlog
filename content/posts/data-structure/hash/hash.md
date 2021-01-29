@@ -1,6 +1,6 @@
 ---
 title: Hash(해쉬)
-category: Data Structure
+tags: ["Data Structure"]
 ---
 
 ## 해쉬
@@ -44,7 +44,7 @@ $h$를 키 $k$를 테이블 $T$인 $T[h(k)]$에 저장하는 것. 일반적으�
 $h(k)$, $h(k)+1$, $h(k)+2$, ... $h(k)+n$ 순서로 검사하여 처음으로 빈 슬롯에 저장하는 것. 테이블의 끝에 도달하면 처음 슬롯부터 돌아가며 circular하게 작동한다.
 
 - 장점
-
+    - ?
 - 단점
     - primary cluster - key 값들이 분산되어 있지 않고 밀집 되어 있는 경우가 많다.
 

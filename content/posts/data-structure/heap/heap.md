@@ -1,6 +1,6 @@
 ---
 title: 힙(Heap)
-category: Data Structure
+tags: ["Data Structure"]
 ---
 
 ## Heap의 성질

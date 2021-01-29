@@ -1,8 +1,10 @@
 import React from 'react'
 import SEO from "./seo"
 
-import PostNavBtn from "./PostNavBtn.tsx"
 import TOC from "./TOC.tsx"
+import Tags from './Tags'
+import PostWrittenDate from './WrittenDate'
+import PostFooterNav from './PostFooterNav'
 
 type DataType = {
     [key: string]: any
@@ -30,7 +32,7 @@ const Post: React.FC<PostProps> = ({
 
     return (
         <div className='post-wrapper'>
-            <PostTitle post={post} toc={toc}/>
+            <PostTitle post={post} toc={toc} />
             <SEO
                 title={seoTitle}
                 description={seoDescription}
@@ -43,22 +45,12 @@ const Post: React.FC<PostProps> = ({
 export default Post;
 
 const PostTitle: React.FC<DataType> = ({ post, toc }) => {
-    const renderCategories = () => {
-        if (post.frontmatter.categories) {
-            return post.frontmatter.categories.map((category, i) =>
-                <span key={i}>{category}</span>
-            )
-        }
-        return;
-    }
-
+    const { title, date, tags } = post.frontmatter;
     return (
         <header className='post-title'>
-            <h1 itemProp='headline'>{post.frontmatter.title}</h1>
-            <div>{post.frontmatter.date}</div>
-            <div className='post-category'>
-                {renderCategories()}
-            </div>
+            <h1 itemProp='headline'>{title}</h1>
+            <Tags tags={tags} />
+            <PostWrittenDate date={date} />
             <TOC toc={toc} />
         </header>
     )
@@ -71,16 +63,7 @@ const Article: React.FC<DataType> = ({ post, prev, next }) => {
                 dangerouslySetInnerHTML={{ __html: post.html }}
                 itemProp="articleBody"
             />
-            <PostNavigation prev={prev} next={next} />
+            <PostFooterNav prev={prev} next={next} />
         </article>
-    )
-};
-
-const PostNavigation: React.FC<DataType> = ({ prev, next }) => {
-    return (
-        <nav className="post-footer-nav">
-            {<PostNavBtn props={prev} dir='prev' />}
-            {<PostNavBtn props={next} dir='next' />}
-        </nav>
     )
 };

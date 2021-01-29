@@ -1,13 +1,13 @@
 require('ts-node').register();
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const { dedupeCategories } = require(`./lib/dedupeCategories.ts`)
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   // Define a template for blog post
   const blogPost = path.resolve(`./src/templates/BlogPost.tsx`)
+  const taggedIndexPage = path.resolve(`./src/pages/index.tsx`)
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -23,14 +23,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               slug
             }
             frontmatter {
-              categories
+              tags
             }
+          }
+        }
+        tagsGroup: allMarkdownRemark(limit: 2000) {
+          group(field: frontmatter___tags) {
+            fieldValue
           }
         }
       }
     `
   )
-  console.log(result)
+
   if (result.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
@@ -45,6 +50,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
+  // TODO: 같은 시리즈로 묶인 포스트는 해당 시리즈의 포스트만 보여주기
   if (posts.length > 0) {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
@@ -63,6 +69,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       })
     })
   }
+
+  const tags = result.data.tagsGroup.group;
+  
+  tags.forEach(tag => {
+    createPage({
+      path: `/tags/${tag.fieldValue}`,
+      component: taggedIndexPage,
+      context: {
+        data: tags
+      }
+    })
+  })
+
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

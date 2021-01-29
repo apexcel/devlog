@@ -1,9 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { getNearest } from '../lib/utils.ts'
-
-type Props = {
-    [key: string]: any;
-}
 
 const tocFloater = (wrapper: React.RefObject<HTMLElement>, floatTarget: React.RefObject<HTMLElement>) => {
     const observer = new IntersectionObserver(entries => {
@@ -74,7 +70,7 @@ const tocEmphasizer = () => {
     return () => headings.forEach(v => observer.unobserve(v));
 };
 
-const TOC: React.FC<Props> = ({ toc }) => {
+const TOC: React.FC<Record<string, any>> = ({ toc }) => {
     const parsed = Array.from(new DOMParser().parseFromString(toc, 'text/html').querySelectorAll('body > ul > li'));
     const wrapperRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLElement>(null);

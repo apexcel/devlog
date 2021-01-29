@@ -1,6 +1,7 @@
 ---
 title: 배열(Array)
 date: "2015-05-01T22:12:03.284Z"
+tags: ["Data Structure"]
 ---
 
 ## 배열이란?

@@ -1,6 +1,6 @@
 ---
-title: 그래프
-category: Algorithm
+title: 그래프(Graph)
+tags: ["Algorithm"]
 date: 2021-01-16T04:53:33.333Z
 ---
 

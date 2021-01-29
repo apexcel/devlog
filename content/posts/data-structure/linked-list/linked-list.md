@@ -1,6 +1,6 @@
 ---
 title: 연결 리스트(Linked List)
-categories: ["Data Structure"]
+tags: ["Data Structure"]
 ---
 
 ## 연결 리스트란?

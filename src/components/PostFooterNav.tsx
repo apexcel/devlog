@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'gatsby';
 import SVG from './SVG.tsx';
 
-type PostNavBtnProps = {
+type PostNavBtn = {
     props: Record<string, any>
     dir: string
 }
 
-const PostNavBtn: React.FC<PostNavBtnProps> = ({ props, dir }) => {
+const PostNavBtn: React.FC<PostNavBtn> = ({ props, dir }) => {
     let postLink = '', postTitle = '', isHidden = false;
 
     if (props) {
@@ -46,4 +46,13 @@ const PostNavBtn: React.FC<PostNavBtnProps> = ({ props, dir }) => {
     )
 };
 
-export default PostNavBtn;
+const PostFooterNav: React.FC<Record<string, any>> = ({ prev, next }) => {
+    return (
+        <nav className="post-footer-nav">
+            <PostNavBtn props={prev} dir='prev' />
+            <PostNavBtn props={next} dir='next' />
+        </nav>
+    )
+};
+
+export default PostFooterNav;
