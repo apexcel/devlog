@@ -52,7 +52,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        description
         tags
       }
       tableOfContents(maxDepth: 4)

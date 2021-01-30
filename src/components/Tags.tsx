@@ -1,4 +1,5 @@
 import React from 'react'
+import { toKebabCase } from '../lib/utils'
 
 type Tag = {
     tag: string
@@ -16,7 +17,7 @@ const Tag: React.FC<Tag> = ({ tag, href }) => {
 const Tags: React.FC<Tags> = ({ tags }) => {
 
     if (tags && Array.isArray(tags)) {
-        const tagAnchors = tags.sort().map((tag, i) => <Tag key={i} tag={tag} href={`/tags/${encodeURI(tag)}`} />)
+        const tagAnchors = tags.sort().map((tag, i) => <Tag key={i} tag={tag} href={`/tags/${toKebabCase(tag)}`} />)
         return (
             <div className='tag-wrapper'>
                 {tagAnchors}

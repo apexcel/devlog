@@ -1,10 +1,13 @@
 .post-wrapper {
     width: 768px;
-    .post-article {
-        .post-title {
-            margin-bottom: 80px;
+    .post-title {
+        margin-bottom: 80px;
+        .post-heading {
+            font-size: 3rem;
         }
+    }
 
+    .post-article {
         .post-footer-nav {
             display: flex;
             justify-content: space-between;

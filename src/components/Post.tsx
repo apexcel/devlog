@@ -47,7 +47,7 @@ const PostTitle: React.FC<Record<string, any>> = ({ post, toc }) => {
     const { title, date, tags } = post.frontmatter;
     return (
         <header className='post-title'>
-            <h1 itemProp='headline'>{title}</h1>
+            <h1 className='post-heading' itemProp='headline'>{title}</h1>
             <Tags tags={tags} />
             <PostWrittenDate date={date} />
             <TOC toc={toc} />

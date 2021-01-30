@@ -26,6 +26,10 @@ code[class='language-markdown'] {
 }
 .gatsby-highlight {
     position: relative;
+    font-size: 1.2rem;
+    &:not(.token){
+        font-size: 1.2rem;
+    }
 }
 .gatsby-highlight pre[class*='language-']::before {
     position: absolute;
@@ -78,4 +82,20 @@ code[class='language-markdown'] {
 .gatsby-highlight[data-language='css'] pre[class*='-css']::before {
     content: 'CSS';
     background: #2445d8;
+}
+
+.token.class-name {
+    color: #e9cc26;
+}
+.token.number {
+    color: #eb6527;
+}
+.token.parameter {
+    color: $default-bright-font-color;
+}
+.token.function {
+    color: #5c8ce6;
+}
+.token.keyword {
+    color: #a26ef5;
 }

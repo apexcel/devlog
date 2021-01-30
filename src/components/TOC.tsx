@@ -19,8 +19,9 @@ const genTableOfContents = (collections) => {
             const children = element.children;
             return (
                 <li key={i}>
-                    { !children.length ? (<a className={`toc-headings`} href={element.hash}>{element.innerText}</a>) : null}
-                    {children.length ? (
+                    {/* { !children.length ? (<a className={`toc-headings`} href={element.hash}>{element.innerText}</a>) : null} */}
+                    { element.hash ? (<a className={`toc-headings`} href={element.hash}>{element.innerText}</a>) : null}
+                    { children.length ? (
                         <ul>
                             {genTableOfContents(Array.from(element.children))}
                         </ul>
@@ -70,7 +71,27 @@ const tocEmphasizer = () => {
     return () => headings.forEach(v => observer.unobserve(v));
 };
 
+const parser = (element, depth = 1) => {
+    const list = [];
+    if (element) {
+        for (const item of element) {
+            if (item.hash) {
+                list.push({
+                    hash: item.hash,
+                    depth: depth
+                })
+            }
+            else if (item.children) {
+                list.push(...parser(item.children, depth + 1))
+            }
+        }
+    }
+
+    return list;
+};
+
 const TOC: React.FC<Record<string, any>> = ({ toc }) => {
+    console.log(toc)
     const parsed = Array.from(new DOMParser().parseFromString(toc, 'text/html').querySelectorAll('body > ul > li'));
     const wrapperRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLElement>(null);

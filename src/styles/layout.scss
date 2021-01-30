@@ -11,7 +11,7 @@
     body,
     * {
         font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif;
-        line-height: 1.7;
+        line-height: 1.8;
         color: $default-font-color;
         scroll-behavior: smooth;
         margin: 0;
@@ -21,6 +21,7 @@
         box-sizing: border-box;
         vertical-align: baseline;
         transition: all 0.25s;
+        font-size: 14pt;
     }
 
     body {
@@ -36,21 +37,22 @@
         color: $main-color;
         padding-top: 24px;
         word-wrap: break-word;
+        margin-bottom: 18px;
     }
 
-    h1 {
-        font-size: 3rem;
+    h1, h2 {
+        font-size: 2.3rem;
     }
-
-    h2,
     h3 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
-    h4,
+    h4 {
+        font-size: 1.3rem;
+    }
     h5,
     h6 {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     h1,
@@ -74,10 +76,6 @@
         text-decoration: none;
         margin: 0;
         padding: 0;
-    }
-
-    p {
-        margin: 1.8rem 0;
     }
 
     strong {
