@@ -5,6 +5,7 @@ import SEO from "../components/seo"
 import Layout from "../components/Layout.tsx"
 import Tags from '../components/Tags.tsx'
 import PostWrittenDate from '../components/WrittenDate'
+import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace } from '../lib/utils'
 
 type DataType = {
 	[key: string]: any
@@ -15,19 +16,32 @@ const PostList: React.FC<DataType> = ({
 }) => {
 
 	return (
-		<div className='post-list-item'>
+		<div className='post-list'>
 			<div>
-				<Link to={slug} itemProp="url">
-					<h3>{title}</h3>
-				</Link>
+				<div className='post-list-item'>
+					<Link className='post-list-title' to={slug} itemProp="url">{title}</Link>
+					<PostWrittenDate date={date} />
+				</div>
 				<Tags tags={tags} />
 			</div>
 			<div>
-				<PostWrittenDate date={date} />
 				{/* {excerpt} */}
 			</div>
 		</div>
 	);
+}
+
+type TaggedPostsInfo = {
+	tagValue: string
+	totalCount: number
+}
+const TaggedPostsInfo: React.FC<TaggedPostsInfo> = ({ tagValue, totalCount }) => {
+	return (
+		<div>
+			<h1>Tag: {tagValue}</h1>
+			<span>Total: {totalCount}</span>
+		</div>
+	)
 }
 
 const Index: React.FC<PageProps<DataType>> = ({
@@ -35,16 +49,18 @@ const Index: React.FC<PageProps<DataType>> = ({
 	location
 }) => {
 	let posts = data.allMarkdownRemark.nodes;
+	let tagValue, totalCount;
 
 	// 인덱스 페이지가 아닐 때
 	if (location.pathname !== '/') {
 		// 패스 URL이 tags/??? 형태이면
-		if (location.pathname.match(/(tags\/)(\w+)/g)) {
+		if (location.pathname.match(/(tags\/)/g)) {
 			// 해당 그룹으로 포스트 대체
-			const tag = location.pathname.split('/')[2];
-			let taggedPosts = data.allMarkdownRemark.group.filter(post => post.fieldValue === decodeURI(tag))
-			let { nodes } = taggedPosts[0];
-			console.log(nodes)
+			tagValue = location.pathname.split('/')[2];
+			let taggedPosts = data.allMarkdownRemark.group.find(post => removeAllWhiteSpace(post.fieldValue) === toPascalCase(tagValue, true));
+			let { nodes } = taggedPosts;
+			tagValue = toPascalCase(replaceToWhiteSpace(tagValue));
+			totalCount = taggedPosts.totalCount;
 			posts = nodes;
 		}
 	}
@@ -54,6 +70,7 @@ const Index: React.FC<PageProps<DataType>> = ({
 			<Layout location={location} title={'title'}>
 				<SEO title="Apexcel" />
 				<div className='post-list-wrapper'>
+					{tagValue ? <TaggedPostsInfo tagValue={tagValue} totalCount={totalCount} /> : ''}
 					{
 						posts.map((post, i) => {
 							const { title, date, tags } = post.frontmatter;
@@ -121,6 +138,7 @@ query {
 				}
 			}
 		fieldValue
+		totalCount
 		}
 	}
 }

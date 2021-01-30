@@ -3,6 +3,7 @@ import Drawer from '@material-ui/core/Drawer';
 import { Link } from "gatsby"
 
 import useScrollPosition from '../hooks/useScrollPosition';
+import GlobalNav from './GlobalNav';
 
 const GlobalHeader: React.FC = () => {
     const [headerVisibility, setHeaderVisibility] = useState(true);
@@ -39,7 +40,8 @@ const GlobalHeader: React.FC = () => {
             </div>
             {/* TODO: Replace to custom drawer */}
             <Drawer anchor={'right'} open={navVisibility} onClose={toggleDrawer('right', false)}>
-            <div onClick={showGlobalNav}>Drawer</div>
+                <div onClick={showGlobalNav}>Drawer</div>
+                <GlobalNav />
             </Drawer>
         </header >
     )

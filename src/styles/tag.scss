@@ -1,6 +1,3 @@
-$tag-bg-color: #e0e2e6af;
-$tag-color: #156646;
-
 .tag-wrapper {
     width: inherit;
     list-style: none;
@@ -16,4 +13,19 @@ $tag-color: #156646;
         color: $tag-color;
         font-weight: 500;
     }
+}
+
+@media screen and (max-width: 768px) {
+    .tag-wrapper {
+        margin-top: 10px;
+        .tag {
+            padding: 4px 10px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    
 }

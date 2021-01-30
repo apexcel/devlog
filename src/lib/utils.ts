@@ -53,3 +53,52 @@ export function getScrollRatio(currentPos: number) {
     const innerHeight = globalThis.innerHeight;
     return currentPos / (bodyHeight - innerHeight)
 }
+
+export function removeAllWhiteSpace(string: string) {
+    return string.split(' ').join('');
+}
+
+export function isAlpha(string: string) {
+    for (let ch of string) {
+        const ascii = ch.charCodeAt(0);
+        return ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) ? true : false;
+    }
+}
+
+export function replaceToWhiteSpace(string: string) {
+    let ret = '';
+    for (let ch of string) {
+        ret += isAlpha(ch) ? ch : ' ';
+    }
+    return ret;
+}
+
+export function toKebabCase(string: string) {
+    string = string.toLocaleLowerCase();
+    return string.split(' ').join('-');
+}
+
+export function toPascalCase(string: string, remove = false) {
+    const list = [' ', '.', '-', '_'];
+    let ret = '';
+    let next = false;
+    ret += string[0].toLocaleUpperCase();
+
+    for (let i = 1; i < string.length; i += 1) {
+        if (list.findIndex(item => item === string[i]) > -1) {
+            next = true;
+            if (remove) continue;
+            else ret += string[i];
+        }
+        else {
+            if (next) {
+                next = false;
+                ret += string[i].toLocaleUpperCase();
+            }
+            else {
+                ret += string[i];
+            }
+        }
+    }
+    return ret;
+}

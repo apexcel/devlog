@@ -1,6 +1,7 @@
 require('ts-node').register();
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const { toKebabCase } = require('./src/lib/utils.ts')
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -30,6 +31,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         tagsGroup: allMarkdownRemark(limit: 2000) {
           group(field: frontmatter___tags) {
             fieldValue
+            totalCount
           }
         }
       }
@@ -71,10 +73,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const tags = result.data.tagsGroup.group;
-  
+
   tags.forEach(tag => {
     createPage({
-      path: `/tags/${tag.fieldValue}`,
+      path: `/tags/${toKebabCase(tag.fieldValue)}`,
       component: taggedIndexPage,
       context: {
         data: tags

@@ -1,6 +1,6 @@
 .post-wrapper {
+    width: 768px;
     .post-article {
-        width: 768px;
         .post-title {
             margin-bottom: 80px;
         }
@@ -82,5 +82,24 @@
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .post-wrapper {
+        width: 100%;
+    }
+
+    .post-footer-nav {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        a {
+            width: 100%;
+            margin: 10px 0;
+            .post-nav-btn {
+                width: 100% !important;
+            }
+        }
     }
 }

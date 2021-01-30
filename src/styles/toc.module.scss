@@ -3,14 +3,14 @@
     margin-top: 2rem;
 }
 
-@mixin toc-wrapper {
+@mixin toc {
     position: absolute;
     left: 100%;
     margin-left: 84px;
 }
 
 .toc {
-    @include toc-wrapper();
+    @include toc();
     margin-top: 72px;
 
     .toc-list {
@@ -52,19 +52,19 @@
 }
 
 @media screen and (max-width: 1420px) {
-    .toc-wrapper {
+    .toc {
         display: none;
     }
 }
 
 @media screen and (max-width: 1451px) {
-    .toc-wrapper {
+    .toc {
         margin-left: 74px;
     }
 }
 
 @media screen and (min-width: 1550px) {
-    .toc-wrapper {
+    .toc {
         margin-left: 108px;
     }
 }

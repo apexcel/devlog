@@ -4,42 +4,7 @@
     mobile 세로버전 가로버전
 */
 
-// Colors
-$main-color: #1b6339;
-$sub-color: #19553d;
-$bright-main-color: #2fc287;
-$heading-border-color: #e0e0e0bd;
-$default-font-color: #3d3d3d;
-$default-bright-font-color: #e6e6e6;
-$global-header-bg-color: #2e2e2e;
-$global-bg-color: #e0e0e0;
-
-// Darkmode colors
-$global-wrapper-darkmode-bg-color: #acacac;
-$global-footer-darkmode-bg-color: #666666;
-$global-header-darkmode-bg-color: #243830;
-
-// Blog post
-$blockqoute-bg-color: #e7e7e7;
-$blockqoute-border-color: #368858;
-
-// Code blocks
-$codeblock-text-bg-color: #e7e7e7;
-$codeblock-text-code-color: #cacaca;
-$codeblock-bg-color: #2b2b2b;
-
-// fonts
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
-@import './tag.scss';
-@import './toc.module.scss';
-@import './codeblock.module.scss';
-@import './post.module.scss';
 @import './info-floater.module.scss';
-@import './index.module.scss';
 
 @mixin default-setting {
     html,
@@ -94,43 +59,39 @@ $codeblock-bg-color: #2b2b2b;
         padding-bottom: 10px;
         border-bottom: 1px solid $heading-border-color;
     }
+
+    a,
+    b,
+    p,
+    em,
+    strong,
+    i,
+    span,
+    li,
+    ol,
+    ul {
+        font-size: 1rem;
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    p {
+        margin: 1.8rem 0;
+    }
+
+    strong {
+        color: $main-color;
+    }
+
+    li {
+        list-style-position: inside;
+    }
 }
 
 @include default-setting();
 
-@media (min-width: 1081px) {
-}
-
-a,
-b,
-p,
-em,
-strong,
-i,
-span,
-li,
-ol,
-ul {
-    font-size: 1rem;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-}
-
-p {
-    margin: 1.8rem 0;
-}
-
-strong {
-    color: $main-color;
-}
-
-li {
-    list-style-position: inside;
-}
-
-
-#layout {
+@mixin layout {
     position: relative;
     display: block;
     height: 100%;
@@ -142,10 +103,17 @@ li {
     border: 1px solid #c4c4c4;
     box-shadow: 0px 0px 4px 2px #c0c0c0;
     z-index: 9;
+}
 
+@mixin main {
+    display: flex;
+    margin-top: 100px;
+}
+
+#layout {
+    @include layout();
     #main {
-        display: flex;
-        margin-top: 100px;
+        @include main();
     }
 }
 
@@ -229,15 +197,15 @@ li {
 }
 
 .global-nav-wrapper {
-    width: 200px;
+    width: 100vw;
     height: 100%;
+    z-index: 99;
 }
 
 .global-footer {
-    position: relative;
     height: 600px;
+    width: 100%;
     background-color: $global-header-bg-color;
-
     z-index: 0;
 
     .global-footer-front {
@@ -254,12 +222,12 @@ li {
         bottom: 0;
         height: 200px;
         width: 100%;
-        
+
         .nav-items-wrapper {
             display: grid;
             align-items: center;
             grid-template-columns: 1fr 1fr 1fr;
-            z-index: -1 ;
+            z-index: -1;
             width: 878px;
             margin: 0 auto;
             & a {
@@ -278,7 +246,8 @@ li {
                 margin: 10px;
                 cursor: pointer;
             }
-            div, a {
+            div,
+            a {
                 display: inline-block;
             }
             div:hover::before {
@@ -292,5 +261,43 @@ li {
                 background-color: #4b4b4b;
             }
         }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #layout {
+        padding: 12px;
+        width: 100%;
+        #main {
+            width: 100%;
+        }
+    }
+
+
+    .global-header-wrapper {
+        width: 100%;
+        padding: 10px 20px;
+    }
+
+    .post-list-wrapper {
+        width: 100% !important;
+    }
+    .post-list-item {
+        .post-list-title {
+            font-size: 1.1rem !important;
+            width: 100% !important;
+        }
+        span {
+            font-size: 0.8rem;
+        }
+    }
+
+    .global-footer {
+        width: 100%;
+    }
+    .nav-items-wrapper {
+        padding: 0 20px;
+        width: 100% !important;
+        margin: 0 !important;
     }
 }
