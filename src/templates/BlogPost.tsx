@@ -2,7 +2,6 @@ import React from "react"
 import { graphql, PageProps } from "gatsby"
 import Layout from "../components/Layout.tsx"
 import Post from "../components/Post.tsx"
-import '../lib/global.ts'
 
 type DataType = {
   previous: string
@@ -54,7 +53,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         tags
       }
-      tableOfContents(maxDepth: 4)
+      tableOfContents(absolute: false, maxDepth: 4)
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
       fields {

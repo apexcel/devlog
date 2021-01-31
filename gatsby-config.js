@@ -27,12 +27,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-      }      
-    },
-    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -57,7 +51,8 @@ module.exports = {
           {
             resolve: `gatsby-remark-autolink-headers`, // prismjs 보다 앞에 와야함.
             options: {
-              className: `link-header`,
+              className: `anchor-header`,
+              icon: false,
               maintainCase: false,
               removeAccents: true,
               elements: [`h2`, 'h3', `h4`],

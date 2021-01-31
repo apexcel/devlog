@@ -1,67 +1,48 @@
-import React, { useEffect, useRef } from 'react'
-import { getNearest } from '../lib/utils.ts'
+import React, { useEffect, useRef, useState } from 'react'
+import { getNearest } from '../lib/utils';
 
 const tocFloater = (wrapper: React.RefObject<HTMLElement>, floatTarget: React.RefObject<HTMLElement>) => {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            entry.intersectionRatio > 0.2 ? 
-                floatTarget.current?.removeClass('floating') : 
-                floatTarget.current?.addClass('floating');
+            entry.intersectionRatio > 0.2 ?
+                floatTarget.current?.classList.remove('floating') :
+                floatTarget.current?.classList.add('floating');
         })
     });
     observer.observe(wrapper.current);
     return () => observer.unobserve(wrapper.current);
 };
 
-const genTableOfContents = (collections) => {
-    if (collections.length) {
-        return collections.map((element, i) => {
-            const children = element.children;
-            return (
-                <li key={i}>
-                    {/* { !children.length ? (<a className={`toc-headings`} href={element.hash}>{element.innerText}</a>) : null} */}
-                    { element.hash ? (<a className={`toc-headings`} href={element.hash}>{element.innerText}</a>) : null}
-                    { children.length ? (
-                        <ul>
-                            {genTableOfContents(Array.from(element.children))}
-                        </ul>
-                    ) : null}
-                </li>
-            )
-        })
-    }
-};
 
 // TODO: 최적화해서 구현하기
 const tocEmphasizer = () => {
-    const headings = Array.from(document.querySelectorAll('h2, h3, h4'));
-    const convQuery = id => `nav ul li ul li a[href="#${encodeURI(id)}"]`;
-    const pos = headings.map(v => v.getBoundingClientRect().y + globalThis.pageYOffset);
-    let prevPos = -1;
+    const headings: Array<Element> = Array.from(document.querySelectorAll(`h2, h3, h4`));
+    const convQuery = id => `nav > ul > li a[href="#${encodeURI(id)}"]`;
+    let prevY = 0, prevRatio = 0;
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach((entry, i) => {
             const scrollY = globalThis.pageYOffset;
+            const pos: Array<number> = headings.map(v => v.getBoundingClientRect().y + globalThis.pageYOffset);
+            const currentY = entry.boundingClientRect.y;
+            const currentRatio = entry.intersectionRatio;
+            const intersect = entry.isIntersecting;
 
             if (!i) {
-                const near = getNearest(pos, scrollY);
-                document.querySelectorAll(`nav ul li ul li a`).forEach(element => {
-                    element.removeClass('active')
-                })
+
                 if (entry.isIntersecting) {
-                    prevPos = scrollY;
+                    document.querySelectorAll(`nav > ul > li a`).forEach(element => element.classList.remove('active'));
+                    document.querySelector(convQuery(entry.target.id))?.classList.add('active')
                 }
-                if (near && near.length && near[1] >= 0) {
-                    let target;
-                    if (near[1] === 0 && scrollY >= near[0] - 48) {
-                        target = headings[near[1]].id;
-                        document.querySelector(convQuery(target))?.addClass('active')
-                    }
-                    else if (near[1] > 0){
-                        target = (scrollY < prevPos) ? headings[near[1] - 1].id : headings[near[1]].id
-                        document.querySelector(convQuery(target))?.addClass('active')
+                else if (prevY < currentY ) {
+                    document.querySelectorAll(`nav > ul > li a`).forEach(element => element.classList.remove('active'));
+                    const index = pos.filter(y => y < currentY + scrollY).length - 1;
+                    console.log(index)
+                    if (index !== -1) {
+                        document.querySelector(convQuery(headings[index].id))?.classList.add('active')                    
                     }
                 }
+                prevY = currentY
             }
         })
     }, { rootMargin: `0% 0% -95% 0%` });
@@ -71,28 +52,32 @@ const tocEmphasizer = () => {
     return () => headings.forEach(v => observer.unobserve(v));
 };
 
-const parser = (element, depth = 1) => {
-    const list = [];
-    if (element) {
-        for (const item of element) {
-            if (item.hash) {
-                list.push({
-                    hash: item.hash,
-                    depth: depth
-                })
-            }
-            else if (item.children) {
-                list.push(...parser(item.children, depth + 1))
-            }
-        }
+const createTableOfContents = (collections, hash) => {
+    if (collections.length) {
+        return collections.map((element, i) => {
+            const children = element.children;
+            return (
+                <li key={i}>
+                    { element.hash ? (<a className={`toc-headings ${hash ? 'active' : ''}`} href={element.hash}>{element.innerText}</a>) : null}
+                    { children.length ? (
+                        <ul>
+                            {createTableOfContents(Array.from(element.children), hash)}
+                        </ul>
+                    ) : null}
+                </li>
+            )
+        })
     }
-
-    return list;
 };
 
+const replaceTableOfContents = (ref, toc: string) => {
+    const replaced = toc.replace(/(<p>)|(<\/p>)/g, '').replace(/(<a)\b/g, `<a class='toc-headings'`);
+    return <nav ref={ref} className='toc-list' dangerouslySetInnerHTML={{ __html: replaced }} />
+}
+
 const TOC: React.FC<Record<string, any>> = ({ toc }) => {
-    console.log(toc)
     const parsed = Array.from(new DOMParser().parseFromString(toc, 'text/html').querySelectorAll('body > ul > li'));
+
     const wrapperRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLElement>(null);
 
@@ -101,14 +86,16 @@ const TOC: React.FC<Record<string, any>> = ({ toc }) => {
         tocEmphasizer();
     }, [])
 
+
     return (
         <div ref={wrapperRef} className='toc-wrapper'>
             <div className='toc'>
-                <nav ref={listRef} className='toc-list'>
+                {replaceTableOfContents(listRef, toc)}
+                {/* <nav ref={listRef} className='toc-list'>
                     <ul style={{ margin: 0 }}>
-                        {genTableOfContents(parsed)}
+                        {createTableOfContents(parsed, '')}
                     </ul>
-                </nav>
+                </nav> */}
             </div>
         </div>
     )

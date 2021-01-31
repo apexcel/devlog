@@ -7,7 +7,6 @@ import Tags from './Tags'
 import SVG from './SVG';
 import PostWrittenDate from './WrittenDate'
 
-
 type PostProps = {
     seoTitle: string
     seoDescription: string
@@ -45,6 +44,7 @@ export default Post;
 
 const PostTitle: React.FC<Record<string, any>> = ({ post, toc }) => {
     const { title, date, tags } = post.frontmatter;
+    
     return (
         <header className='post-title'>
             <h1 className='post-heading' itemProp='headline'>{title}</h1>
