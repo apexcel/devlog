@@ -83,6 +83,10 @@ code[class='language-markdown'] {
     content: 'CSS';
     background: #2445d8;
 }
+.gatsby-highlight[data-language='graphql'] pre[class*='-graphql']::before {
+    content: 'GRAPHQL';
+    background: #bd2fca;
+}
 
 .token.class-name {
     color: #e9cc26;

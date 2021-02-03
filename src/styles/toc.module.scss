@@ -66,5 +66,8 @@
 @media screen and (min-width: 1550px) {
     .toc {
         margin-left: 108px;
+        .toc-list {
+            width: 264px;
+        }
     }
 }
