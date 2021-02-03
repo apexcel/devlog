@@ -5,7 +5,7 @@ export function throttle(fn: Function, wait: number) {
             fn.apply(this, args);
             onThrottle = true;
             setTimeout(() => {
-                onThrottle = false;            
+                onThrottle = false;
             }, wait);
         }
     }
@@ -101,4 +101,11 @@ export function toPascalCase(string: string, remove = false) {
         }
     }
     return ret;
+}
+
+export function getScrollTop() {
+    if (!document.body) return 0;
+    return document.documentElement
+        ? document.documentElement.scrollTop || document.body.scrollTop
+        : document.body.scrollTop;
 }

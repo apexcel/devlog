@@ -1,12 +1,9 @@
 blockquote {
     margin: 0;
     padding: 1.2rem;
-    border-left: 0.7rem solid $blockqoute-border-color;
+    border-left: 8px solid $blockqoute-border-color;
     background-color: $blockqoute-bg-color !important;
-
-    p {
-        margin: 0;
-    }
+    margin: 10px 0;
 }
 
 pre[class*='language-'],
@@ -24,6 +21,7 @@ code[class='language-markdown'] {
     background-color: $codeblock-text-bg-color;
     color: $default-font-color;
 }
+
 .gatsby-highlight {
     position: relative;
     font-size: 1.2rem;
@@ -69,11 +67,11 @@ code[class='language-markdown'] {
 }
 .gatsby-highlight[data-language='text'] pre[class*='-text']::before {
     content: 'TEXT';
-    background: #dadada;
+    background: #a5a5a5;
 }
 .gatsby-highlight[data-language='markdown'] pre[class*='-markdown']::before {
     content: 'MARKDOWN';
-    background: #dadada;
+    background: #a5a5a5;
 }
 .gatsby-highlight[data-language='html'] pre[class*='-html']::before {
     content: 'HTML';

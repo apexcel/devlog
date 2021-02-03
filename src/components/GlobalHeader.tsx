@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Drawer from '@material-ui/core/Drawer';
 import { Link } from "gatsby"
 
-import useScrollPosition from '../hooks/useScrollPosition';
+import useScrollPosition from '../lib/hooks/useScrollPosition.ts';
 import GlobalNav from './GlobalNav';
 
 const GlobalHeader: React.FC = () => {

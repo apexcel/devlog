@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import GlobalHeader from '../components/GlobalHeader.tsx';
-import GlobalFooter from "./GlobalFooter";
+import LayoutFooter from "./layout/LayoutFooter";
 import InfoFloater from "./InfoFloater.tsx";
 
 type LayoutProps = {
@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
                     {children}
                 </main>
             </section>
-            <GlobalFooter />
+            <LayoutFooter />
         </>
     )
 };

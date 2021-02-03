@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react'
-import { throttle } from '../lib/utils.ts'
+import { throttle } from '../utils.ts'
 
 const useScrollPosition = (effect, deps) => {
     let scrollY = globalThis.pageYOffset;

@@ -3,8 +3,9 @@ import { PageProps, Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 
 import Layout from "../components/Layout.tsx"
-import Tags from '../components/Tags.tsx'
-import PostWrittenDate from '../components/WrittenDate'
+// import Tags from '../components/Tags.tsx'
+import Tags from '../components/tags/Tags'
+import PostWrittenDate from '../components/post/PostWrittenDate'
 import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace } from '../lib/utils'
 
 type DataType = {
@@ -22,10 +23,8 @@ const PostList: React.FC<DataType> = ({
 					<Link className='post-list-title' to={slug} itemProp="url">{title}</Link>
 					<PostWrittenDate date={date} />
 				</div>
+				{/* <Tags tags={tags} /> */}
 				<Tags tags={tags} />
-			</div>
-			<div>
-				{/* {excerpt} */}
 			</div>
 		</div>
 	);

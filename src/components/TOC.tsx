@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
+import { getScrollTop } from '../lib/utils';
+import { getTocItems } from '../lib/getTocItems';
 
 const tocFloater = (wrapper: React.RefObject<HTMLElement>, floatTarget: React.RefObject<HTMLElement>) => {
     const observer = new IntersectionObserver(entries => {
@@ -27,14 +29,13 @@ const tocEmphasizer = () => {
             if (!i) {
                 if (entry.isIntersecting) {
                     document.querySelectorAll(`nav > ul > li a`).forEach(element => element.classList.remove('active'));
-                    document.querySelector(convQuery(entry.target.id))?.classList.add('active')
+                    document.querySelector(convQuery(entry.target.id))?.classList.add('active');
                 }
-                else if (prevY < currentY ) {
+                else if (prevY < currentY - 100) {
                     document.querySelectorAll(`nav > ul > li a`).forEach(element => element.classList.remove('active'));
                     const index = pos.filter(y => y < currentY + scrollY).length - 1;
-                    console.log(index)
-                    if (index !== -1) {
-                        document.querySelector(convQuery(headings[index].id))?.classList.add('active')                    
+                    if (index > -1) {
+                        document.querySelector(convQuery(headings[index].id))?.classList.add('active')
                     }
                 }
                 prevY = currentY
@@ -52,9 +53,24 @@ const replaceTableOfContents = (ref: React.RefObject<HTMLElement>, toc: string) 
     return <nav ref={ref} className='toc-list' dangerouslySetInnerHTML={{ __html: replaced }} />
 }
 
+const createTocElements = (tocItems: Array<Record<string, any>>, activeHash) => {
+    return tocItems.map(item => {
+        const isActive = item.hash === `#${activeHash}`;
+        const currentDepth = item.depth;
+        return (
+            <li key={item.hash}>
+                <a className={`toc-headings ${isActive ? 'active' : ''}`} href={item.hash}>{item.title}</a>
+            </li>
+        )
+    })
+};
+
 const TOC: React.FC<Record<string, any>> = ({ toc }) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLElement>(null);
+    const [activeHash, setActiveHash] = useState<null | string>(null);
+    const tocItems = getTocItems(toc);
+    console.log(tocItems)
 
     useEffect(() => {
         tocFloater(wrapperRef, listRef);

@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, PageProps } from "gatsby"
 import Layout from "../components/Layout.tsx"
 import Post from "../components/Post.tsx"
+import PostTemplate from "../components/post/PostTemplate"
 
 type DataType = {
   previous: string
@@ -18,7 +19,7 @@ const BlogPost: React.FC<PageProps<DataType>> = ({ data, location }) => {
 
   return (
     <Layout location={location}>
-      <Post
+      <PostTemplate
         seoTitle={post.frontmatter.title}
         seoDescription={post.frontmatter.description || post.excerpt}
         siteTitle={siteTitle}

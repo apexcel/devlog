@@ -8,6 +8,15 @@
     }
 
     .post-article {
+
+        ul, p {
+            margin: 28px 0;
+        }
+
+        blockquote p {
+            margin: 0;
+        }
+
         .post-footer-nav {
             display: flex;
             justify-content: space-between;
@@ -67,24 +76,6 @@
                 fill: #3d3d3d;
             }
         }
-    }
-}
-
-@keyframes vibe {
-    0% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(5px);
-    }
-    50% {
-        transform: translateX(0);
-    }
-    75% {
-        transform: translateX(5px);
-    }
-    100% {
-        transform: translateX(0);
     }
 }
 
