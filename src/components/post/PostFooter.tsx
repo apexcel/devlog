@@ -7,6 +7,12 @@ const PostFooterWrapper = styled.nav`
     justify-content: space-between;
     margin-top: 160px;
     padding-bottom: 40px;
+
+    @media screen and (max-width: 768px) {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 `;
 
 const PostFooter: React.FC<Record<string, any>> = ({ prev, next }) => {

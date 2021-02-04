@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'gatsby'
-import SVG from '../SVG';
+import SVG from '../common/SVG';
 import styled from 'styled-components';
 import colors from '../../lib/styles/colors';
 
@@ -48,6 +48,12 @@ const FooterNavItemWrapper = styled.div`
     & path {
         fill: ${colors.defaultBrightFont};
     }
+
+    @media screen and (max-width: 768px) {
+        padding: 0 20px;
+        width: 100%;
+        margin: 0;
+    }
 `;
 
 const FooterNavItem = styled.div``;
@@ -75,6 +81,15 @@ const FooterContactItem = styled.div`
         padding: 2px 6px;
         border-radius: 8px;
         background-color: #4b4b4b;
+    }
+
+    @media screen and (max-width: 768px) {
+        div:hover::before {
+            top: -32px;
+            left: 0;
+            right: 0;
+            font-size: 0.8rem;
+        }
     }
 `;
 

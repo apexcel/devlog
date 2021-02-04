@@ -1,5 +1,5 @@
 import React from 'react'
-import SVG from './SVG'
+import SVG from '../common/SVG'
 
 const GlobalNav: React.FC = () => {
 

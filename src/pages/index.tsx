@@ -1,49 +1,14 @@
 import React from 'react'
-import { PageProps, Link, graphql } from "gatsby"
+import { PageProps, graphql } from "gatsby"
 import SEO from "../components/seo"
-
-import Layout from "../components/Layout.tsx"
-// import Tags from '../components/Tags.tsx'
-import Tags from '../components/tags/Tags'
-import PostWrittenDate from '../components/post/PostWrittenDate'
 import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace } from '../lib/utils'
 
-type DataType = {
-	[key: string]: any
-}
+import Layout from "../components/Layout.tsx"
+import LayoutTemplate from '../components/layout/LayoutTemplate'
+import TaggedPostsInfo from '../components/tags/TaggedPostInfo'
+import PostList from '../components/post/PostList'
 
-const PostList: React.FC<DataType> = ({
-	title, date, tags, slug, excerpt
-}) => {
-
-	return (
-		<div className='post-list'>
-			<div>
-				<div className='post-list-item'>
-					<Link className='post-list-title' to={slug} itemProp="url">{title}</Link>
-					<PostWrittenDate date={date} />
-				</div>
-				{/* <Tags tags={tags} /> */}
-				<Tags tags={tags} />
-			</div>
-		</div>
-	);
-}
-
-type TaggedPostsInfo = {
-	tagValue: string
-	totalCount: number
-}
-const TaggedPostsInfo: React.FC<TaggedPostsInfo> = ({ tagValue, totalCount }) => {
-	return (
-		<div>
-			<h1>Tag: {tagValue}</h1>
-			<span>Total: {totalCount}</span>
-		</div>
-	)
-}
-
-const Index: React.FC<PageProps<DataType>> = ({
+const Index: React.FC<PageProps<Record<string, any>>> = ({
 	data,
 	location
 }) => {
@@ -66,9 +31,9 @@ const Index: React.FC<PageProps<DataType>> = ({
 
 	if (posts.length > 0) {
 		return (
-			<Layout location={location} title={'title'}>
+			<LayoutTemplate location={location} title={'title'}>
 				<SEO title="Apexcel" />
-				<div className='post-list-wrapper'>
+				<div>
 					{tagValue ? <TaggedPostsInfo tagValue={tagValue} totalCount={totalCount} /> : ''}
 					{
 						posts.map((post, i) => {
@@ -86,7 +51,7 @@ const Index: React.FC<PageProps<DataType>> = ({
 						})
 					}
 				</div>
-			</Layout>
+			</LayoutTemplate>
 		)
 	}
 

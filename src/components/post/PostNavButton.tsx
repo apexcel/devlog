@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import SVG from '../SVG';
+import SVG from '../common/SVG';
 
 const animation = keyframes`
     {
@@ -31,6 +31,12 @@ const PostNavButtonWrapper = styled.div`
     height: 80px;
     width: 300px;
     padding: 10px;
+
+    @media screen and (max-width: 768px) {
+        padding: 0 20px;
+        width: 100% !important;
+        margin: 0 !important;
+    }
 
     div {
         display: block;
@@ -81,6 +87,19 @@ const PostNavButtonWrapper = styled.div`
     }
 `;
 
+interface LinkToProps {
+    isHidden: boolean
+}
+
+const LinkTo = styled.a<LinkToProps>`
+    visibility: ${props => props.isHidden ? 'hidden' : 'visible'};
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        margin: 10px 0;
+    }
+`;
+
 interface PostNavButtonsProps {
     postInfo: Record<string, any>
     dir: string
@@ -93,9 +112,12 @@ const PostNavButton: React.FC<PostNavButtonsProps> = ({ postInfo, dir }) => {
         postLink = postInfo.fields.slug;
         postTitle = postInfo.frontmatter.title;
     }
+    else {
+        isHidden = true;
+    }
 
     return (
-        <Link className={`${isHidden ? 'hidden' : null}`} to={postLink} rel={dir}>
+        <LinkTo isHidden={isHidden} href={postLink} rel={dir}>
             <PostNavButtonWrapper data-dir={dir}>
                 {dir === 'prev'
                     ? <SVG
@@ -118,7 +140,7 @@ const PostNavButton: React.FC<PostNavButtonsProps> = ({ postInfo, dir }) => {
                         color='black'
                     /> : null}
             </PostNavButtonWrapper>
-        </Link>
+        </LinkTo>
     )
 }
 

@@ -5,6 +5,7 @@ const colors = {
     gray2: `#2e2e2e`,
 
     layoutOutsideBg: `#e0e0e0`,
+    headerBg: `#2e2e2e`,
 
     defaultBrightFont: `#e6e6e6`,
     defaultFont: `#3d3d3d`,

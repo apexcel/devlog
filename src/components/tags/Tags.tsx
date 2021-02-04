@@ -28,6 +28,7 @@ const Tag = styled.a`
         padding: 4px 10px;
         margin-right: 5px;
         margin-bottom: 5px;
+        font-size: 0.8rem;
     }
 `;
 
