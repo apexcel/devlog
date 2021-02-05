@@ -1,8 +1,7 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
-import Layout from "../components/Layout.tsx"
-import Post from "../components/Post.tsx"
 import PostTemplate from "../components/post/PostTemplate"
+import LayoutTemplate from "../components/layout/LayoutTemplate"
 
 type DataType = {
   previous: string
@@ -18,7 +17,7 @@ const BlogPost: React.FC<PageProps<DataType>> = ({ data, location }) => {
   const toc = post.tableOfContents;
 
   return (
-    <Layout location={location}>
+    <LayoutTemplate location={location} title={siteTitle}>
       <PostTemplate
         seoTitle={post.frontmatter.title}
         seoDescription={post.frontmatter.description || post.excerpt}
@@ -28,7 +27,7 @@ const BlogPost: React.FC<PageProps<DataType>> = ({ data, location }) => {
         nextPost={next}
         toc={toc}
       />
-    </Layout>
+    </LayoutTemplate>
   )
 };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'gatsby'
 import SVG from '../common/SVG';
 import styled from 'styled-components';
-import colors from '../../lib/styles/colors';
+import colors from '../../lib/styles/colors.style';
 
 const LayoutFooterWrapper = styled.footer`
     height: 600px;

@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import useScrollPosition from '../../lib/hooks/useScrollPosition';
-import colors from '../../lib/styles/colors';
+import colors from '../../lib/styles/colors.style';
 import GlobalNav from './GlobalNav';
 
 
@@ -122,7 +122,11 @@ const LayoutHeader: React.FC = () => {
                     </HeaderMenu>
                 </HeaderMenuWrapper>
             </Header>
-            <Drawer anchor={'right'} open={navVisibility} onClose={toggleDrawer('right', false)}>
+            <Drawer 
+                variant="persistent"
+                anchor={'right'} 
+                open={navVisibility} 
+                onClose={toggleDrawer('right', false)}>
                 <div onClick={showGlobalNav}>Drawer</div>
                 <GlobalNav />
             </Drawer>

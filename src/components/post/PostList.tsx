@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import colors from '../../lib/styles/colors';
+import colors from '../../lib/styles/colors.style';
 import Tags from '../tags/Tags';
 import PostWrittenDate from './PostWrittenDate';
 

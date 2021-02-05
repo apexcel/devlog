@@ -54,4 +54,4 @@ const LayoutTemplate: React.FC<LayoutProps> = ({ location, children }) => {
     )
 };
 
-export default LayoutTemplate
+export default LayoutTemplate;

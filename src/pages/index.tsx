@@ -3,7 +3,6 @@ import { PageProps, graphql } from "gatsby"
 import SEO from "../components/seo"
 import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace } from '../lib/utils'
 
-import Layout from "../components/Layout.tsx"
 import LayoutTemplate from '../components/layout/LayoutTemplate'
 import TaggedPostsInfo from '../components/tags/TaggedPostInfo'
 import PostList from '../components/post/PostList'
@@ -56,14 +55,10 @@ const Index: React.FC<PageProps<Record<string, any>>> = ({
 	}
 
 	return (
-		<Layout location={location} title={'title'}>
+		<LayoutTemplate location={location} title={'title'}>
 			<SEO title="All posts" />
-			<p>
-				No blog posts found. Add markdown posts to "content/blog" (or the
-				directory you specified for the "gatsby-source-filesystem" plugin in
-				gatsby-config.js).
-        	</p>
-		</Layout>
+			<p>No existing post. :(</p>
+		</LayoutTemplate>
 	)
 }
 export default Index

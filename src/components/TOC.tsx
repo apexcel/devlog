@@ -70,7 +70,6 @@ const TOC: React.FC<Record<string, any>> = ({ toc }) => {
     const listRef = useRef<HTMLElement>(null);
     const [activeHash, setActiveHash] = useState<null | string>(null);
     const tocItems = getTocItems(toc);
-    console.log(tocItems)
 
     useEffect(() => {
         tocFloater(wrapperRef, listRef);
