@@ -62,6 +62,14 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          {
+            resolve: "gatsby-plugin-react-svg",
+            options: {
+              rule: {
+                include: /assets/
+              }
+            }
+          }
         ],
       },
     },
@@ -81,9 +89,9 @@ module.exports = {
         short_name: `Apexcel Devlog`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#1b6339`,
+        theme_color: `#028157`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/Logo.png`,
       },
     },
     `gatsby-plugin-react-helmet`,

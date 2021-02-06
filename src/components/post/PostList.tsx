@@ -1,27 +1,31 @@
 import React from 'react'
 import styled from 'styled-components';
-import colors from '../../lib/styles/colors.style';
+import COLORS from '../../lib/styles/colors.style';
 import Tags from '../tags/Tags';
 import PostWrittenDate from './PostWrittenDate';
 
 
 const PostListWrapper = styled.div`
     position: relative;
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin: 1.5rem 0;
-
-    @media screen and (max-width: 768px) {
-        width: 100%
-    }
+    width: 100%
 `;
-
-const Box = styled.div``;
 
 const PostListItemWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     border-bottom: 1px solid #e0e0e0bd;
+
+    &:hover {
+        border-color: ${COLORS.MAIN};
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 100%
+    }
 `;
 
 const PostTitle = styled.a`
@@ -29,7 +33,7 @@ const PostTitle = styled.a`
     display: inline-block;
     width: 600px;
     font-size: 1.5rem;
-    color: ${colors.defaultFont};
+    color: ${COLORS.FONT};
     word-break: break-all;
 
     @media screen and (max-width: 768px) {
@@ -45,13 +49,11 @@ const PostList: React.FC<Record<string, any>> = ({
 
     return (
         <PostListWrapper>
-            <Box>
-                <PostListItemWrapper>
-                    <PostTitle href={slug}>{title}</PostTitle>
-                    <PostWrittenDate date={date} />
-                </PostListItemWrapper>
-                <Tags tags={tags} />
-            </Box>
+            <PostListItemWrapper>
+                <PostTitle href={slug}>{title}</PostTitle>
+                <PostWrittenDate date={date} />
+            </PostListItemWrapper>
+            <Tags tags={tags} />
         </PostListWrapper>
     );
 }

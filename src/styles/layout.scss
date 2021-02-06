@@ -34,7 +34,7 @@
     h4,
     h5,
     h6 {
-        color: $main-color;
+        color: $default-font-color;
         padding-top: 24px;
         word-wrap: break-word;
         margin-bottom: 18px;
@@ -199,7 +199,6 @@
 }
 
 .global-nav-wrapper {
-    width: 100vw;
     height: 100%;
     z-index: 99;
 }

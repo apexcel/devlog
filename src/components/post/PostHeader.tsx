@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
+import COLORS from '../../lib/styles/colors.style';
 import Tags from "../tags/Tags";
 import TOC from "../TOC";
 import PostWrittenDate from "./PostWrittenDate";
@@ -9,7 +10,8 @@ const PostHeaderWrapper = styled.div`
 `;
 
 const PostTitle = styled.h1`
-    font-size: 3rem;
+    color: ${COLORS.FONT};
+    font-size: 2.7rem;
 `;
 
 const PostHeader: React.FC<Record<string, any>> = ({ post, toc }) => {
@@ -20,7 +22,7 @@ const PostHeader: React.FC<Record<string, any>> = ({ post, toc }) => {
             <PostTitle>{title}</PostTitle>
             <Tags tags={tags} />
             <PostWrittenDate date={date} />
-            <TOC toc={toc} />
+            <TOC title={title} toc={toc} />
         </PostHeaderWrapper>
     )
 };

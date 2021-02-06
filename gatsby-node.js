@@ -8,7 +8,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Define a template for blog post
   const blogPost = path.resolve(`./src/templates/BlogPost.tsx`)
-  const taggedIndexPage = path.resolve(`./src/pages/index.tsx`)
+  const indexPage = path.resolve(`./src/pages/index.tsx`)
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -77,7 +77,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   tags.forEach(tag => {
     createPage({
       path: `/tags/${toKebabCase(tag.fieldValue)}`,
-      component: taggedIndexPage,
+      component: indexPage,
       context: {
         data: tags
       }

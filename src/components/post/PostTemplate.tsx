@@ -6,17 +6,12 @@ import PostComments from "./PostComments";
 import PostHeader from "./PostHeader";
 
 const PostTemplateWrapper = styled.div`
-    width: 768px;
-
-    @media screen and (max-width: 768px) {
-        width: 100%;
-    }
+    width: 100%;
 `;
 
 interface PostProps {
     seoTitle: string
     seoDescription: string
-    siteTitle: string
     prevPost: string
     nextPost: string
     post: Record<string, any>
@@ -26,7 +21,6 @@ interface PostProps {
 const PostTemplate: React.FC<PostProps> = ({
     seoTitle,
     seoDescription,
-    siteTitle,
     prevPost,
     nextPost,
     post,

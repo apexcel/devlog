@@ -1,60 +1,78 @@
-import { Drawer } from '@material-ui/core';
-import { Link } from 'gatsby';
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
+
+import Logo from '../../../content/assets/Logo.svg'
+
 import useScrollPosition from '../../lib/hooks/useScrollPosition';
-import colors from '../../lib/styles/colors.style';
-import GlobalNav from './GlobalNav';
-
-
+import COLORS from '../../lib/styles/colors.style';
 interface HeaderWrapperProps {
     readonly isVisible: boolean
 }
 
 const HeaderWrapper = styled.header<HeaderWrapperProps>`
-    background-color: ${colors.headerBg};
+    background-color: ${COLORS.HEADER_FOOTER_BG};
     position: fixed;
     width: 100%;
     z-index: 999;
-    top: ${props => props.isVisible ? `0px` : `-48px`};
+    top: ${props => props.isVisible ? `0px` : `-60px`};
 
     @media screen and (max-width: 768px) {
         width: 100%;
-        padding: 10px 20px;
     }
 `;
 
 const Header = styled.div`
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 878px 1fr;
     align-items: center;
-    height: 48px;
-    max-width: 868px;
-    margin: 0 auto;
+    height: 60px;
     font-family: 'Roboto Mono', monospace;
+
+    @media screen and (max-width: 1080px) {
+        grid-template-columns: auto 1fr auto;
+    }
 `;
 
-const HeaderTtitle = styled.div`
-    padding: 5px;
-    a {
-        font-size: 1rem;
-        font-weight: bold;
-        color: ${colors.defaultBrightFont};
+const TitleAndLogoWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-self: end;
+`;
 
-        &:hover {
-            color: ${colors.mainBright};
-        }
+const PostTitleInHeader = styled.p`
+    color: ${COLORS.FONT_BRIGHT};
+    padding: 0 54px;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media screen and (max-width: 1024px) {
+    
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 0.9rem;
+        display: none;
     }
 `;
 
 const HeaderMenuWrapper = styled.div`
-    position: relative;
-    width: 30px;
+    justify-self: start;
+    padding: 10px;
+
+    @media screen and (max-width: 768px) {
+        justify-self: start;
+    }
+
+    @media screen and (max-width: 768px) {
+        justify-self: end;
+    }
 `;
 
 const menuCss = css`
     display: block;
-    background-color: ${colors.defaultBrightFont};
+    background-color: ${COLORS.FONT_BRIGHT};
     width: 30px;
     height: 2px;
 `;
@@ -84,13 +102,57 @@ const HeaderMenu = styled.div`
 
     &:hover {
         span {
-            background-color: ${colors.mainBright};
+            background-color: ${COLORS.MAIN_BRIGHT};
             width: 30px;
         }
     }
 `;
 
-const LayoutHeader: React.FC = () => {
+const TitleAndLogo = styled.a`
+    display: flex;
+    align-items: center;
+
+    path {
+        fill: ${COLORS.FONT_BRIGHT};
+        cursor: pointer;
+        &:hover {
+            fill: ${COLORS.MAIN_BRIGHT};
+        }
+    }
+`;
+
+const SiteTitle = styled.span`
+    font-size: 1rem;
+    font-weight: bold;
+
+    color: ${COLORS.FONT_BRIGHT};
+
+    &:hover {
+        color: ${COLORS.MAIN_BRIGHT};
+    }
+
+    @media screen and (max-width: 1350px) {
+            font-size: 0.8rem;
+    }
+
+
+    @media screen and (max-width: 1024px) {
+        justify-self: start;
+        display: none;
+        font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        justify-self: start;
+        display: none;
+    }
+`;
+
+interface LayoutHeaderProps {
+    siteTitle: string
+    postTitle?: string
+}
+const LayoutHeader: React.FC<LayoutHeaderProps> = ({ siteTitle, postTitle }) => {
 
     const [headerVisibility, setHeaderVisibility] = useState(true);
     const [navVisibility, setNavVisibility] = useState(false);
@@ -104,16 +166,16 @@ const LayoutHeader: React.FC = () => {
         setNavVisibility(!navVisibility)
     };
 
-    const toggleDrawer = (anchor, open) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-            return;
-        }
-    }
-
     return (
         <HeaderWrapper isVisible={headerVisibility}>
             <Header>
-                <HeaderTtitle><Link to='/'>Apexcel Devlog</Link></HeaderTtitle>
+                <TitleAndLogoWrapper>
+                    <TitleAndLogo href='/'>
+                        <Logo width='52px' height='52px' />
+                        <SiteTitle>{siteTitle}</SiteTitle>
+                    </TitleAndLogo>
+                </TitleAndLogoWrapper>
+                <PostTitleInHeader>{postTitle}</PostTitleInHeader>
                 <HeaderMenuWrapper>
                     <HeaderMenu onClick={showGlobalNav}>
                         <span></span>
@@ -122,14 +184,6 @@ const LayoutHeader: React.FC = () => {
                     </HeaderMenu>
                 </HeaderMenuWrapper>
             </Header>
-            <Drawer 
-                variant="persistent"
-                anchor={'right'} 
-                open={navVisibility} 
-                onClose={toggleDrawer('right', false)}>
-                <div onClick={showGlobalNav}>Drawer</div>
-                <GlobalNav />
-            </Drawer>
         </HeaderWrapper>
     )
 

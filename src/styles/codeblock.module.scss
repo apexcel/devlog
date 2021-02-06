@@ -15,12 +15,18 @@ code[class*='language-'] {
     }
 }
 pre[class='language-text'],
-code[class='language-text'],
 pre[class='language-markdown'],
 code[class='language-markdown'] {
     background-color: $codeblock-text-bg-color;
     color: $default-font-color;
 }
+
+code[class='language-text'] {
+    background-color: $blockqoute-bg-color !important;
+    color: $main-color;
+    padding: 4px !important;
+}
+
 
 .gatsby-highlight {
     position: relative;

@@ -5,9 +5,13 @@ import LayoutHeader from "./LayoutHeader";
 
 type LayoutProps = {
     location: Record<string | number, any>
-    title: string
+    postTitle?: string
+    siteTitle: string
     children: any
 };
+
+const Template = styled.div`
+`;
 
 const LayoutWrapper = styled.div`
     position: relative;
@@ -22,28 +26,22 @@ const LayoutWrapper = styled.div`
     box-shadow: 0px 0px 4px 2px #c0c0c0;
     z-index: 9;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 893px) {
         padding: 12px;
         width: 100%;
     }
 `;
 
 const MainLayout = styled.main`
-    display: flex;
     margin-top: 100px;
-
-    @media screen and (max-width: 768px) {
-        width: 100%;
-    }
 `;
 
-const LayoutTemplate: React.FC<LayoutProps> = ({ location, children }) => {
+const LayoutTemplate: React.FC<LayoutProps> = ({ location, children, siteTitle, postTitle }) => {
     const rootPath = `/`;
     const isRootPath = location.pathname === rootPath;
-
     return (
         <>
-            <LayoutHeader />
+            <LayoutHeader siteTitle={siteTitle} postTitle={postTitle}/>
             <LayoutWrapper data-is-root-path={isRootPath}>
                 <MainLayout>
                     {children}

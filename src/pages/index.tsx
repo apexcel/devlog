@@ -9,8 +9,9 @@ import PostList from '../components/post/PostList'
 
 const Index: React.FC<PageProps<Record<string, any>>> = ({
 	data,
-	location
+	location,
 }) => {
+	const siteTitle = data.site.siteMetadata?.title || `Title`;
 	let posts = data.allMarkdownRemark.nodes;
 	let tagValue, totalCount;
 
@@ -30,9 +31,8 @@ const Index: React.FC<PageProps<Record<string, any>>> = ({
 
 	if (posts.length > 0) {
 		return (
-			<LayoutTemplate location={location} title={'title'}>
+			<LayoutTemplate location={location} siteTitle={siteTitle}>
 				<SEO title="Apexcel" />
-				<div>
 					{tagValue ? <TaggedPostsInfo tagValue={tagValue} totalCount={totalCount} /> : ''}
 					{
 						posts.map((post, i) => {
@@ -49,13 +49,12 @@ const Index: React.FC<PageProps<Record<string, any>>> = ({
 							)
 						})
 					}
-				</div>
 			</LayoutTemplate>
 		)
 	}
 
 	return (
-		<LayoutTemplate location={location} title={'title'}>
+		<LayoutTemplate location={location} siteTitle={siteTitle}>
 			<SEO title="All posts" />
 			<p>No existing post. :(</p>
 		</LayoutTemplate>

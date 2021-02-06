@@ -17,11 +17,10 @@ const BlogPost: React.FC<PageProps<DataType>> = ({ data, location }) => {
   const toc = post.tableOfContents;
 
   return (
-    <LayoutTemplate location={location} title={siteTitle}>
+    <LayoutTemplate location={location} siteTitle={siteTitle} postTitle={post.frontmatter.title}>
       <PostTemplate
         seoTitle={post.frontmatter.title}
         seoDescription={post.frontmatter.description || post.excerpt}
-        siteTitle={siteTitle}
         post={post}
         prevPost={previous}
         nextPost={next}

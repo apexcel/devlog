@@ -5,18 +5,18 @@ import SEO from "../components/seo"
 import LayoutTemplate from "../components/layout/LayoutTemplate"
 
 const NotFoundPage = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
+    const siteTitle = data.site.siteMetadata.title
 
-  return (
-    <LayoutTemplate location={location} title={siteTitle}>
-      <SEO title="404: Not Found" />
-      <h1>404: Not Found</h1>
-      <Link to='/'>Home</Link>
-    </LayoutTemplate>
-  )
+    return (
+        <LayoutTemplate location={location} siteTitle={siteTitle}>
+            <SEO title="404: Not Found" />
+            <h1>404: Not Found</h1>
+            <Link to='/'>Home</Link>
+        </LayoutTemplate>
+    )
 }
 
-export default NotFoundPage
+export default NotFoundPage;
 
 export const pageQuery = graphql`
   query {

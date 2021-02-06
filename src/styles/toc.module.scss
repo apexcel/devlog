@@ -11,7 +11,7 @@
 
 .toc {
     @include toc();
-    margin-top: 72px;
+    margin-top: 154px;
 
     .toc-list {
         width: 240px;
@@ -41,13 +41,10 @@
         margin-left: 18px;
     }
 }
-.link-header.before {
-    top: unset;
-}
 
 .floating {
     position: fixed;
-    top: 70px;
+    top: 154px;
 }
 
 @media screen and (max-width: 1420px) {
@@ -67,6 +64,15 @@
         margin-left: 108px;
         .toc-list {
             width: 264px;
+        }
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .toc {
+        margin-left: 108px;
+        .toc-list {
+            width: 100%;
         }
     }
 }

@@ -1,18 +1,18 @@
-const colors = {
-    green1: `#156646`,
+const COLORS = {
+    // Tags
+    TAG_BG: `#e0e2e6af`,
 
-    gray1: `#e0e2e6af`,
-    gray2: `#2e2e2e`,
+    // Layout
+    LAYOUT_OUTSIDE_BG: `#e0e0e0`,
+    HEADER_FOOTER_BG: `#2e2e2e`,
 
-    layoutOutsideBg: `#e0e0e0`,
-    headerBg: `#2e2e2e`,
-
-    defaultBrightFont: `#e6e6e6`,
-    defaultFont: `#3d3d3d`,
-    main: `#1b6339`,
-    mainBright: ` #2fc287`,
+    // Text
+    FONT_BRIGHT: `#e6e6e6`,
+    FONT: `#3d3d3d`,
+    MAIN_BRIGHT: ` #2fc287`,
+    MAIN: `#028157`,
 };
 
-Object.freeze(colors);
+Object.freeze(COLORS);
 
-export default colors;
+export default COLORS;

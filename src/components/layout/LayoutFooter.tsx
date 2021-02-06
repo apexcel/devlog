@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'gatsby'
 import SVG from '../common/SVG';
 import styled from 'styled-components';
-import colors from '../../lib/styles/colors.style';
+import COLORS from '../../lib/styles/colors.style';
 
 const LayoutFooterWrapper = styled.footer`
     height: 600px;
     width: 100%;
-    background-color: ${colors.gray2};
+    background-color: ${COLORS.HEADER_FOOTER_BG};
     z-index: 0;
 `;
 
@@ -15,7 +15,7 @@ const FooterFront = styled.div`
     display: block;
     position: relative;
     width: 100%;
-    background-color: ${colors.layoutOutsideBg};
+    background-color: ${COLORS.LAYOUT_OUTSIDE_BG};
     height: 240px;
     z-index: 1;
 `;
@@ -42,11 +42,11 @@ const FooterNavItemWrapper = styled.div`
 
     & a {
         font-size: 1.2rem;
-        color: ${colors.defaultBrightFont};
+        color: ${COLORS.FONT_BRIGHT};
     }
 
     & path {
-        fill: ${colors.defaultBrightFont};
+        fill: ${COLORS.FONT_BRIGHT};
     }
 
     @media screen and (max-width: 768px) {
@@ -77,7 +77,7 @@ const FooterContactItem = styled.div`
         top: -34px;
         left: 106px;
         content: attr(data-text);
-        color: ${colors.mainBright};
+        color: ${COLORS.MAIN_BRIGHT};
         padding: 2px 6px;
         border-radius: 8px;
         background-color: #4b4b4b;
