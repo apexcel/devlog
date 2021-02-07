@@ -109,7 +109,7 @@ class DisjointSet {
 
 앞선 일반적인 `union-find`보다 트리의 높이가 낮아진 것을 확인할 수 있다. 높이가 `h`인 트리가 생기기 위해서는 `h-1`인 트리 2개가 합쳐져야 한다. `h`가 `1`이면 `0`인 노드 2개가 필요하고 `h`가 `2`이면 `h`가 `1`인 노드가 최소 2개는 필요하다. 따라서 `h-1`의 높이를 가지기 위해 `n`개의 노드가 필요하다면 `h`의 높이를 갖기 위해서는 최소 `2n`개의 노드가 필요하다. 즉, 높이가 `h`일 때 노드의 개수는 최소 $2^h$개 이므로 노드의 개수가 `n`개라면 $h = logn$이 된다. 따라서 탐색과 병합 연산은 $O(logn)$이 된다.
 
-## Path Compression
+### Path Compression
 
 다른 최적화 방법도 있는데, `weighted union`이 합치는 단계에서 시간을 절약한다면 `경로 압축(path compression)`은 탐색하는 과정에서 시간을 줄이는 방법이다.
 
@@ -124,7 +124,11 @@ find = u => {
 
 ### Weighted Union with Path Compression
 
-두 가지 최적화를 모두 적용한 경우, `n`개의 원소에 대해 `union-find`를 `m`번 수행했을 때 평균 시간 복잡도가 $O(n + mlog^*n)$이라고 한다. 자세한 내용은 [아커만 함수(Ackermann function)](https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98)에서 확인할 수 있다. 간략히 말하면 다룰 수 있는 모든 크기 `n`이 `5`보다 커질 일이 없다는 뜻이다.
+두 가지 최적화를 모두 적용한 경우, `n`개의 원소에 대해 `union-find`를 `m`번 수행했을 때 평균 시간 복잡도가 $O(mlog^*n)$이라고 한다.
+
+> $log^*n = min(k | loglog...logn <= 1)$
+
+$log^*n$은 $n$에 $log$를 계속 취할 때 `k`가 `1`이하가 된다는 뜻으로, 간략히 말하면 다룰 수 있는 모든 수에 대해 5보다 작으며 평균적으로 상수 시간이 걸린다.
 
 ## 참조
 
@@ -133,3 +137,4 @@ find = u => {
 - https://www.geeksforgeeks.org/linked-list-representation-disjoint-set-data-structures/
 - https://algs4.cs.princeton.edu/15uf/
 - https://www.cs.princeton.edu/~rs/AlgsDS07/01UnionFind.pdf
+- https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98

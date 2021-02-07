@@ -7,6 +7,10 @@ const PostArticleWrapper = styled.article`
         margin: 28px 0;
     }
 
+    ul > li > * {
+        word-break: break-all;
+    }
+
     blockquote p {
         margin: 0;
     }
