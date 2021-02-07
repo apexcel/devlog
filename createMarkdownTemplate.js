@@ -32,7 +32,7 @@ const ask = () => {
     const where = path.resolve(__dirname, `./content/posts/${postInfo['filename']}.md`);
     const data = `
 ---
-title: ${postInfo.title}
+title: "${postInfo.title}"
 tags: [${postInfo.tags}]
 date: ${postInfo.date}
 ---

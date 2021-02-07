@@ -28,15 +28,12 @@ const Header = styled.div`
     height: 60px;
     font-family: 'Roboto Mono', monospace;
 
-    @media screen and (max-width: 1080px) {
+    @media screen and (max-width: 1280px) {
         grid-template-columns: auto 1fr auto;
     }
 `;
 
 const TitleAndLogoWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
     justify-self: end;
 `;
 
@@ -47,10 +44,6 @@ const PostTitleInHeader = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
 
-    @media screen and (max-width: 1024px) {
-    
-    }
-
     @media screen and (max-width: 768px) {
         font-size: 0.9rem;
         display: none;
@@ -59,11 +52,7 @@ const PostTitleInHeader = styled.p`
 
 const HeaderMenuWrapper = styled.div`
     justify-self: start;
-    padding: 10px;
-
-    @media screen and (max-width: 768px) {
-        justify-self: start;
-    }
+    padding: 0 20px;
 
     @media screen and (max-width: 768px) {
         justify-self: end;
@@ -111,7 +100,10 @@ const HeaderMenu = styled.div`
 const TitleAndLogo = styled.a`
     display: flex;
     align-items: center;
-
+    
+    svg {
+        padding: 0 10px;
+    }
     path {
         fill: ${COLORS.FONT_BRIGHT};
         cursor: pointer;
@@ -124,6 +116,8 @@ const TitleAndLogo = styled.a`
 const SiteTitle = styled.span`
     font-size: 1rem;
     font-weight: bold;
+    padding-left: 10px;
+    width: max-content;
 
     color: ${COLORS.FONT_BRIGHT};
 
@@ -131,19 +125,11 @@ const SiteTitle = styled.span`
         color: ${COLORS.MAIN_BRIGHT};
     }
 
-    @media screen and (max-width: 1350px) {
-            font-size: 0.8rem;
-    }
-
-
     @media screen and (max-width: 1024px) {
-        justify-self: start;
         display: none;
-        font-size: 0.9rem;
     }
 
     @media screen and (max-width: 768px) {
-        justify-self: start;
         display: none;
     }
 `;

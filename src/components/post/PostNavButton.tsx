@@ -32,12 +32,6 @@ const PostNavButtonWrapper = styled.div`
     width: 300px;
     padding: 10px;
 
-    @media screen and (max-width: 768px) {
-        padding: 0 20px;
-        width: 100% !important;
-        margin: 0 !important;
-    }
-
     div {
         display: block;
         width: 220px;
@@ -84,6 +78,16 @@ const PostNavButtonWrapper = styled.div`
 
     path {
         fill: #3d3d3d;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 0 20px;
+        width: 100%;
+        margin: 0;
+
+        div {
+            width: 100%;
+        }
     }
 `;
 
