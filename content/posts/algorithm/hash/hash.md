@@ -159,8 +159,8 @@ $i$가 1일 때라 가정하고 예시를 들어보면 다음과 같다. `[60, 3
 
 위의 그림에서 선형 조사를 이용하여 해시 값을 구하였을 때, `1`의 값을 삭제하고 `26`을 탐색한다고 하자. `26`의 해시 값인 `0`을 탐색하고 그 다음인 `1`을 탐색하지만 값이 없으므로 `26`은 테이블내에 존재하지 않는다고 판단할 수 있다. 이럴 경우 값을 삭제한 뒤 해당 자리에 값이 존재 했었다고 표시(`DELETED`)를 해주면 된다. 새로운 값을 삽입할 경우에는 `DELETED` 상수를 제거하고 삽입하면 된다.
 
-## 참조
+## 참조(References)
 
-- 문병로, (2018), 쉽게 배우는 알고리즘: 관계 중심의 사고법, 한빛 아카데미
-- [Wikipedia, Hash Table](https://en.wikipedia.org/wiki/Hash_table)
-- [Wikipedia, Primary Clustering](https://en.wikipedia.org/wiki/Primary_clustering)
+- 문병로, <i>쉽게 배우는 알고리즘: 관계 중심의 사고법</i>, (한빛 아카데미, 2018).
+- "Hash Table", <i>Wikipedia</i>, (Access: Feb, 02, 2021), https://en.wikipedia.org/wiki/Hash_table.
+- "Primary Clustering", <i>Wikipedia</i>, (Access: Feb, 02, 2021), https://en.wikipedia.org/wiki/Primary_clustering.
