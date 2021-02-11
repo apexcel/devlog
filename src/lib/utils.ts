@@ -65,10 +65,10 @@ export function isAlpha(string: string) {
     }
 }
 
-export function replaceToWhiteSpace(string: string) {
+export function replaceAll(string: string, target: string, replaceTo: string) {
     let ret = '';
     for (let ch of string) {
-        ret += isAlpha(ch) ? ch : ' ';
+        ret += (ch === target) ? replaceTo : ch;
     }
     return ret;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { PageProps, graphql } from "gatsby"
 import SEO from "../components/seo"
-import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace } from '../lib/utils'
+import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace, toKebabCase, replaceAll } from '../lib/utils'
 
 import LayoutTemplate from '../components/layout/LayoutTemplate'
 import TaggedPostsInfo from '../components/tags/TaggedPostInfo'
@@ -20,12 +20,15 @@ const Index: React.FC<PageProps<Record<string, any>>> = ({
 		// 패스 URL이 tags/??? 형태이면
 		if (location.pathname.match(/(tags\/)/g)) {
 			// 해당 그룹으로 포스트 대체
-			tagValue = location.pathname.split('/')[2];
-			let taggedPosts = data.allMarkdownRemark.group.find(post => removeAllWhiteSpace(post.fieldValue) === toPascalCase(tagValue, true));
-			let { nodes } = taggedPosts;
-			tagValue = toPascalCase(replaceToWhiteSpace(tagValue));
+			const postTag = location.pathname.split('/')[2];
+			const taggedPosts = data.allMarkdownRemark.group.find(post => {
+				if (toKebabCase(post.fieldValue) === postTag) {
+					tagValue = post.fieldValue;
+					return true;
+				}
+			});
 			totalCount = taggedPosts.totalCount;
-			posts = nodes;
+			posts = taggedPosts.nodes;
 		}
 	}
 
