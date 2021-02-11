@@ -113,6 +113,10 @@ class DisjointSet {
 
 다른 최적화 방법도 있는데, `weighted union`이 합치는 단계에서 시간을 절약한다면 `경로 압축(path compression)`은 탐색하는 과정에서 시간을 줄이는 방법이다.
 
+![Path Compression](path-compression.png)
+
+`find(u)`를 통해 `u`가 속하는 루트 노드를 찾았을 때 `u`의 루트 노드를 바로 바꾸어 버리면 다음번에 경로를 탐색할 필요 없이 바로 루트 노드를 찾을 수 있게 된다.
+
 ```js
 find = u => {
     if (u === this.set[u]) return u;
@@ -120,7 +124,7 @@ find = u => {
 }
 ```
 
-`find(u)`를 통해 `u`가 속하는 루트 노드를 찾았을 때 `u`의 루트 노드를 바로 바꾸어 버리면 다음번에 경로를 탐색할 필요 없이 바로 루트 노드를 찾을 수 있게 된다.
+기존 코드의 리턴 값에 위와 같이 추가 해주면 된다.
 
 ### Weighted Union with Path Compression
 
@@ -128,13 +132,12 @@ find = u => {
 
 > $log^*n = min(k | loglog...logn <= 1)$
 
-$log^*n$은 $n$에 $log$를 계속 취할 때 `k`가 `1`이하가 된다는 뜻으로, 간략히 말하면 다룰 수 있는 모든 수에 대해 5보다 작으며 평균적으로 상수 시간이 걸린다.
+$log^*n$은 $n$에 $log$를 계속 취할 때 `k`가 `1`이하가 된다는 뜻으로, [Ackermann fucntion](https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98)와 관련이 있다. 간략히 말하면 다룰 수 있는 모든 수에 대해 5보다 작으며 평균적으로 상수 시간이 걸린다.
 
 ## 참조
 
 - 문병로, (2018), 쉽게 배우는 알고리즘: 관계 중심의 사고법, 한빛 아카데미
 - 구종만, (2012), 알고리즘 문제 해결 전략
-- https://www.geeksforgeeks.org/linked-list-representation-disjoint-set-data-structures/
-- https://algs4.cs.princeton.edu/15uf/
-- https://www.cs.princeton.edu/~rs/AlgsDS07/01UnionFind.pdf
-- https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98
+- [Geeks for Geeks, Linked List representation of Disjoint Set Data Structures](https://www.geeksforgeeks.org/linked-list-representation-disjoint-set-data-structures/)
+- [Algorithms, 4th Edition, Case Study: Union-Find](https://algs4.cs.princeton.edu/15uf/)
+- [Wikipedia, Ackermann fucntion](https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98)
