@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import COLORS from '../../lib/styles/colors.style'
-import { toKebabCase } from '../../lib/utils';
+import COLORS from '../../../lib/styles/colors.style'
+import { toKebabCase } from '../../../lib/utils';
 
 const Wrapper = styled.div`
     width: inherit;

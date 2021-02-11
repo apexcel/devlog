@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
-import { getScrollTop } from '../lib/utils';
-import { getTocItems } from '../lib/getTocItems';
+import { getScrollTop } from '../../lib/utils';
+import { getTocItems } from '../../lib/getTocItems';
 
 const tocFloater = (wrapper: React.RefObject<HTMLElement>, floatTarget: React.RefObject<HTMLElement>) => {
     const observer = new IntersectionObserver(entries => {
