@@ -136,9 +136,9 @@ $log^*n$은 $n$에 $log$를 `k`번 적용할 때 `1`이하가 된다는 뜻으�
 
 ## 참조(References)
 
-- 문병로, <i>쉽게 배우는 알고리즘: 관계 중심의 사고법</i>, (한빛 아카데미, 2018)
-- 구종만, <i>알고리즘 문제 해결 전략</i>, (인사이트, 2012)
-- "Linked List representation of Disjoint Set Data Structures", <i>Geeks for Geeks</i>, (Access: Feb, 06, 2021), https://www.geeksforgeeks.org/linked-list-representation-disjoint-set-data-structures/
+- 문병로, <i>쉽게 배우는 알고리즘: 관계 중심의 사고법</i>, (한빛 아카데미, 2018).
+- 구종만, <i>알고리즘 문제 해결 전략</i>, (인사이트, 2012).
+- "Linked List representation of Disjoint Set Data Structures", <i>Geeks for Geeks</i>, (Access: Feb, 06, 2021), https://www.geeksforgeeks.org/linked-list-representation-disjoint-set-data-structures/.
 - Robert Sedgewick, Kevin Wayne, Algorithms, 4th Edition, "Case Study: Union-Find", <i>
-Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne</i>, (Access: Feb, 06, 2021), https://algs4.cs.princeton.edu/15uf/
-- "Ackermann fucntion", <i>Wikipedia</i>, (Access: Feb, 06, 2021), https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98
+Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne</i>, (Access: Feb, 06, 2021), https://algs4.cs.princeton.edu/15uf/.
+- "Ackermann fucntion", <i>Wikipedia</i>, (Access: Feb, 06, 2021), https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98.
