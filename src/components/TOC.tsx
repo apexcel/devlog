@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
-import { getScrollTop } from '../../lib/utils';
-import { getTocItems } from '../../lib/getTocItems';
 
 const tocFloater = (wrapper: React.RefObject<HTMLElement>, floatTarget: React.RefObject<HTMLElement>) => {
     const observer = new IntersectionObserver(entries => {
@@ -65,11 +63,39 @@ const createTocElements = (tocItems: Array<Record<string, any>>, activeHash) => 
     })
 };
 
+const parseStringToDom = (toc: string) => {
+    const replaced = toc.replace(/(<p>)|(<\/p>)/g, '');
+    const parsed = new DOMParser().parseFromString(replaced, 'text/html');
+    return Array.from(parsed.querySelectorAll(`body > ul > li`));
+};
+
+
+const stringToObject = (elements, depth: number = 1) => {
+    const toc = [];
+    for (const element of elements) {
+        if (element.children.length > 0) {
+            if (element.tagName === 'UL') depth = depth + 1;
+            toc.push(...stringToObject(Array.from(element.children), depth));
+        }
+        if (element?.hash) {
+            toc.push({
+                depth: depth,
+                hash: element.hash,
+                title: element.textContent
+            });
+        }
+    }
+    return toc;
+};
+
+const getTocItems = (toc: string) => {
+    return stringToObject(parseStringToDom(toc));
+}
+
 const TOC: React.FC<Record<string, any>> = ({ toc }) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLElement>(null);
     const [activeHash, setActiveHash] = useState<null | string>(null);
-    const tocItems = getTocItems(toc);
 
     useEffect(() => {
         tocFloater(wrapperRef, listRef);

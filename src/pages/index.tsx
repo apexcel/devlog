@@ -1,7 +1,7 @@
 import React from 'react'
 import { PageProps, graphql } from "gatsby"
 import SEO from "../components/seo"
-import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace } from '../../lib/utils'
+import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace } from '../lib/utils'
 
 import LayoutTemplate from '../components/layout/LayoutTemplate'
 import TaggedPostsInfo from '../components/tags/TaggedPostInfo'
