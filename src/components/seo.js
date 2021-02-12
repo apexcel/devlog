@@ -50,6 +50,10 @@ const SEO = ({ description, lang, meta, title }) => {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: "google-site-verification",
+          content: "OnjN4gflTR9bWQw5zZz4PJ_hAfNkEEjaepj0zruubTQ"
         }
       ].concat(meta)}
     />

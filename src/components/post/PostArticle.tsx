@@ -7,6 +7,15 @@ const PostArticleWrapper = styled.article`
         margin: 28px 0;
     }
 
+    li > p {
+        display: inline;
+        margin: 0;
+    }
+
+    li > ul {
+        margin: 0 0 0 40px;
+    }
+
     ul > li > * {
         word-break: break-all;
     }
