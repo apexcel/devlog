@@ -52,7 +52,7 @@ const SEO = ({ description, lang, meta, title }) => {
           content: `website`,
         },
         {
-          property: "google-site-verification",
+          name: "google-site-verification",
           content: "OnjN4gflTR9bWQw5zZz4PJ_hAfNkEEjaepj0zruubTQ"
         }
       ].concat(meta)}
