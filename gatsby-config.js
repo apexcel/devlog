@@ -6,7 +6,7 @@ module.exports = {
       summary: `Blog about the web and software development.`,
     },
     description: `Blog about the web and software development.`,
-    siteUrl: `https://apexcel.github.io/devlog`,
+    siteUrl: `https://apexcel.blog`,
     social: {
     },
   },
@@ -107,5 +107,15 @@ module.exports = {
         // Add any options here
       },
     },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+    },
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: `https://www.apexcel.blog`,
+        sitemap: `https://www.apexcel.blog/sitemap.xml`
+      }
+    }
   ],
 }
