@@ -23,6 +23,22 @@ const PostArticleWrapper = styled.article`
     blockquote p {
         margin: 0;
     }
+
+    table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        
+        th {
+            border: 1px solid black;
+            padding: 10px;
+            vertical-align: bottom;
+        }
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            vertical-align: bottom;
+        }
+    }
 `;
 
 const PostSection = styled.section``;
