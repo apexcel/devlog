@@ -1,6 +1,6 @@
 import React from 'react'
 import { PageProps, graphql } from "gatsby"
-import SEO from "../components/seo"
+import SEO from "../components/SEO"
 import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace, toKebabCase, replaceAll } from '../lib/utils'
 
 import LayoutTemplate from '../components/layout/LayoutTemplate'
@@ -35,7 +35,7 @@ const Index: React.FC<PageProps<Record<string, any>>> = ({
 	if (posts.length > 0) {
 		return (
 			<LayoutTemplate location={location} siteTitle={siteTitle}>
-				<SEO title="Apexcel" />
+				<SEO title="Apexcel Devlog" />
 					{tagValue ? <TaggedPostsInfo tagValue={tagValue} totalCount={totalCount} /> : ''}
 					{
 						posts.map((post, i) => {

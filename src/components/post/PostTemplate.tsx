@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import SEO from "../seo";
+import SEO from "../SEO";
 import PostArticle from "./PostArticle";
 import PostComments from "./PostComments";
 import PostHeader from "./PostHeader";
@@ -28,8 +28,8 @@ const PostTemplate: React.FC<PostProps> = ({
 }) => {
     return (
         <PostTemplateWrapper>
-            <PostHeader post={post} toc={toc} />
             <SEO title={seoTitle} description={seoDescription} />
+            <PostHeader post={post} toc={toc} />
             <PostArticle post={post} prev={prevPost} next={nextPost} />
             <PostComments />
         </PostTemplateWrapper>
