@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import PostTableStyle from '../../lib/styles/table.style';
 import PostFooter from './PostFooter';
 
 const PostArticleWrapper = styled.article`
@@ -24,21 +25,7 @@ const PostArticleWrapper = styled.article`
         margin: 0;
     }
 
-    table {
-        border: 1px solid black;
-        border-collapse: collapse;
-        
-        th {
-            border: 1px solid black;
-            padding: 10px;
-            vertical-align: bottom;
-        }
-        td {
-            border: 1px solid black;
-            padding: 10px;
-            vertical-align: bottom;
-        }
-    }
+    ${PostTableStyle};
 `;
 
 const PostSection = styled.section``;
