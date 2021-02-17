@@ -4,9 +4,10 @@ module.exports = {
     author: {
       name: `Apexcel`,
       summary: `Blog about the web and software development.`,
+      githun: 'apexcel',
     },
     description: `Blog about the web and software development.`,
-    siteUrl: `https://apexcel.blog`,
+    siteUrl: `https://www.apexcel.blog`,
     social: {
     },
   },
