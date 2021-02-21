@@ -162,5 +162,5 @@ $i$가 1일 때라 가정하고 예시를 들어보면 다음과 같다. `[60, 3
 ## 참조(References)
 
 - 문병로, <i>쉽게 배우는 알고리즘: 관계 중심의 사고법</i>, (한빛 아카데미, 2018).
-- "Hash Table", <i>Wikipedia</i>, (Access: Feb, 02, 2021), https://en.wikipedia.org/wiki/Hash_table.
-- "Primary Clustering", <i>Wikipedia</i>, (Access: Feb, 02, 2021), https://en.wikipedia.org/wiki/Primary_clustering.
+- "Hash Table", <i>Wikipedia</i>, https://en.wikipedia.org/wiki/Hash_table.
+- "Primary Clustering", <i>Wikipedia</i>, https://en.wikipedia.org/wiki/Primary_clustering.
