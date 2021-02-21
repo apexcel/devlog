@@ -1,6 +1,7 @@
 ---
-title: 최소 신장 트리(MST, Minimun Spanning Tree)
+title: "최소 신장 트리(MST, Minimun Spanning Tree)"
 tags: [Algorithm, Data Structure, Tree, Graph, Kruskal, Prim, MST]
+date: "2021-02-21T09:16:03.113Z"
 ---
 
 ## 최소 신장 트리

@@ -34,7 +34,7 @@ const ask = () => {
 ---
 title: "${postInfo.title}"
 tags: [${postInfo.tags}]
-date: ${postInfo.date}
+date: "${postInfo.date}"
 ---
 `.trim();
     fs.writeFile(where, data, (err) => {
