@@ -6,7 +6,7 @@ date: 2021-02-06T21:34:25.870Z
 
 ## 유니온-파인드
 
-`유니온-파인드(union-find)`는 트리형 자료 구조의 일종으로 일반적인 트리의 형태와는 조금 다르다. 상호 배타적인 집합을 다루기 때문에`서로소 집합(disjoint set)`라고도 한다. 상호 배타적이기 때문에 두 집합의 교집합은 공집합이기 때문에 교집합연산은 필요없다. 해당 자료구조에서 필요한 연산은 다음 3가지이다.
+**유니온-파인드(union-find)**는 트리형 자료 구조의 일종으로 일반적인 트리의 형태와는 조금 다르다. 상호 배타적인 집합을 다루기 때문에 **서로소 집합(disjoint set)**이라고도 한다. 상호 배타적이기 때문에 두 집합의 교집합은 공집합이기 때문에 교집합연산은 필요없다. 해당 자료구조에서 필요한 연산은 다음 3가지이다.
 
 - $MakeSet(x)$: 원소 $x$를 집합으로 만든다.
 - $Find(x)$: 원소 $x$를 가진 집합을 찾는다.
@@ -20,9 +20,9 @@ date: 2021-02-06T21:34:25.870Z
 
 ![Linked-List2](./linked-list2.png)
 
-두 집합 `A`와 `B`를 합치는 `union` 연산을 할 때 큰 집합에 작은 집합을 이어 붙이면 된다. 당연하게도 작은 집합의 원소 개수가 더 적기 때문에 대표 원소로 포인터를 옮기는 작업이 적기 때문이다. 작은 집합의 대표 원소의 포인터를 큰 집합의 대표 원소의 주소를 가리키게 하고 큰 집합의 마지막 노드의 다음 노드를 작은 집합의 대표 원소를 가리키면 된다. 이와 같은 방법은 `무게를 고려한(weighted) union`이라한다.
+두 집합 `A`와 `B`를 합치는 `union` 연산을 할 때 큰 집합에 작은 집합을 이어 붙이면 된다. 당연하게도 작은 집합의 원소 개수가 더 적기 때문에 대표 원소로 포인터를 옮기는 작업이 적기 때문이다. 작은 집합의 대표 원소의 포인터를 큰 집합의 대표 원소의 주소를 가리키게 하고 큰 집합의 마지막 노드의 다음 노드를 작은 집합의 대표 원소를 가리키면 된다. 이와 같은 방법은 **무게를 고려한(weighted) union**이라한다.
 
-이 방법에서 시간 복잡도는 `makeSet`과 `find`연산은 $O(1)$에 가능하고 `weighted union`연산 중 `m`번의 `makeSet`, `union,`, `find` 연산을 수행 할 때 `n`번이 `makeSet`이라면 $O(m + nlogn)$에 가능하다.
+이 방법에서 시간 복잡도는 `makeSet`과 `find`연산은 $O(1)$에 가능하고 weighted union 연산 중 `m`번의 `makeSet`, `union,`, `find` 연산을 수행 할 때 `n`번이 `makeSet`이라면 $O(m + nlogn)$에 가능하다.
 
 ## 트리로 구현
 
@@ -70,7 +70,7 @@ class DisjointSet {
 ### Weighted Union
 
 앞선 구현에서는 `find`와 `union`을 실행하는 데 걸리는 시간은 트리의 높이에 비례한다. 다만 이 방법은 이진 트리와 같이 연산 순서에 따라 한쪽으로 편향된 트리의 모습이 될 수도있다. 이 해결책으로는 여러가지 방법이 있는데 그 중 하나가 항상 높이가 더 낮은 트리를 높이가 더 큰 트리 밑에 집어넣는 것이다.
-이러한 최적화를 `weighted union`라 부른다. 각 노드가 자신을 루트로 하는 서브 트리의 높이를 `rank`라 부르고 단 하나의 노드로 된 트리의 경우 `rank`는 `0`이다.
+이러한 최적화를 앞서 말한 **weighted union**라 부른다. 각 노드가 자신을 루트로 하는 서브 트리의 높이를 `rank`라 부르고 단 하나의 노드로 된 트리의 경우 `rank`는 `0`이다.
 
 ![Union Find Tree with Rank](./union-find-tree-rank.png)
 
@@ -99,7 +99,7 @@ class DisjointSet {
     }
 ```
 
-`weighted union`을 이용하기 위해 기존 코드에 몇 가지를 추가했다.
+weighted union 을 이용하기 위해 기존 코드에 몇 가지를 추가했다.
 
 - `makeSet`에 랭크 값을 담는 배열을 `0`으로 초기화 해준다.
 - `union` 실행시 `u` 의 랭크가 더 크다면 `v`를 `u`의 서브 트리로 추가한다.
@@ -111,7 +111,7 @@ class DisjointSet {
 
 ### Path Compression
 
-다른 최적화 방법도 있는데, `weighted union`이 합치는 단계에서 시간을 절약한다면 `경로 압축(path compression)`은 탐색하는 과정에서 시간을 줄이는 방법이다.
+다른 최적화 방법도 있는데, weighted union이 합치는 단계에서 시간을 절약한다면 **경로 압축(path compression)**은 탐색하는 과정에서 시간을 줄이는 방법이다.
 
 ![Path Compression](path-compression.png)
 
@@ -136,9 +136,9 @@ $log^*n$은 $n$에 $log$를 `k`번 적용할 때 `1`이하가 된다는 뜻으�
 
 ## 참조(References)
 
-- 문병로, <i>쉽게 배우는 알고리즘: 관계 중심의 사고법</i>, (한빛 아카데미, 2018).
-- 구종만, <i>알고리즘 문제 해결 전략</i>, (인사이트, 2012).
-- "Linked List representation of Disjoint Set Data Structures", <i>Geeks for Geeks</i>, https://www.geeksforgeeks.org/linked-list-representation-disjoint-set-data-structures/.
-- Robert Sedgewick, Kevin Wayne, Algorithms, 4th Edition, "Case Study: Union-Find", <i>
-Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne</i>, https://algs4.cs.princeton.edu/15uf/.
-- "Ackermann fucntion", <i>Wikipedia</i>, https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98.
+- 문병로, *쉽게 배우는 알고리즘: 관계 중심의 사고법*, (한빛 아카데미, 2018).
+- 구종만, *알고리즘 문제 해결 전략*, (인사이트, 2012).
+- "Linked List representation of Disjoint Set Data Structures", *Geeks for Geeks*, https://www.geeksforgeeks.org/linked-list-representation-disjoint-set-data-structures/.
+- Robert Sedgewick, Kevin Wayne, Algorithms, 4th Edition, "Case Study: Union-Find", *
+Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne*, https://algs4.cs.princeton.edu/15uf/.
+- "Ackermann fucntion", *Wikipedia*, https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98.

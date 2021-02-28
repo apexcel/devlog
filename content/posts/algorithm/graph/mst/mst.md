@@ -8,16 +8,16 @@ date: "2021-02-21T09:16:03.113Z"
 
 ![MST](mst-example.png)
 
-최소 신장 트리(MST, Minimum Spanning Tree)는 그래프 $G = (V, E)$에서 정점 집합 $V$에 대해 간선의 가중치의 합이 최소가 되는 간선의 개수를 $V - 1$개만 남겨 놓은 트리이다. 트리임으로 사이클이 존재하면 안 되며 그래프에 따라 MST는 여러 형태로 존재할 수도 있다. 위의 그림 `A`와 `B`모두 MST이다.
+최소 신장 트리(MST, Minimum Spanning Tree)는 그래프 $G = (V, E)$에서 정점 집합 $V$에 대해 간선의 가중치의 합이 최소가 되는 간선의 개수를 $V - 1$개만 남겨 놓은 트리이다. 트리임으로 사이클이 존재하면 안 되며 그래프에 따라 MST는 여러 형태로 존재할 수도 있다. 위의 그림 A와 B모두 MST이다.
 
-그래프에서 MST를 구하는 대표적인 알고리즘 두 가지가 있는데 `Kruskal's algorithm`과 `Prim's algorithm`이 있다. 크루스칼의 알고리즘은 `상호 배타적 집합(disjoint set)` 자료구조를 사용하는 좋은 예이고 프림의 알고리즘의 경우 그래프에서 최단 거리를 찾는 `Dijkstra's algorithm`과 형태가 유사하다.
+그래프에서 MST를 구하는 대표적인 알고리즘 두 가지가 있는데 **크루스칼 알고리즘(Kruskal's algorithm)**과 **프림 알고리즘(Prim's algorithm)**이 있다. 크루스칼의 알고리즘은 **상호 배타적 집합(disjoint set)** 자료구조를 사용하는 좋은 예이고 프림의 알고리즘의 경우 그래프에서 최단 거리를 찾는 **Dijkstra's algorithm**과 형태가 유사하다.
 
 ## Kruskal's Algorithm
 
 크루스칼의 알고리즘은 가중치가 작은 것들 먼저 선택하는 것을 기본적인 알고리즘으로 둔다. 요약하자면 다음과 같다.
 
 - 간선들을 가중치를 기준으로 오름차순으로 정렬.
-- 간선들을 순서대로 하나씩 선택하며 이미 선택된 간선들과 `사이클(cycle)`을 형성하면 선택하지 않는다.
+- 간선들을 순서대로 하나씩 선택하며 이미 선택된 간선들과 **사이클(cycle)**을 형성하면 선택하지 않는다.
 - $V-1$개의 간선이 선택되면 종료한다.
 
 ![Kruskal Example](kruskal.png)
@@ -100,7 +100,7 @@ for (let i = 0; i < g.length; i += 1) {
 
 ### 시간복잡도 분석
 
-- 먼저 V8엔진에서는 2018년 이후부터는 `Timsort`를 사용해 정렬을 한다. 정렬할 때 최악의 경우 $O(nlogn)$ 이므로 $O(ElogE)$가 걸린다. [V8 소스코드](https://github.com/v8/v8/blob/78f2610345fdd14ca401d920c140f8f461b631d1/third_party/v8/builtins/array-sort.tq#L5)
+- 먼저 V8엔진에서는 2018년 이후부터는 [Timsort](https://en.wikipedia.org/wiki/Timsort)를 사용해 정렬을 한다. 정렬할 때 최악의 경우 $O(nlogn)$ 이므로 $O(ElogE)$가 걸린다. [V8 소스코드](https://github.com/v8/v8/blob/78f2610345fdd14ca401d920c140f8f461b631d1/third_party/v8/builtins/array-sort.tq#L5)
 - 집합을 구성하는데 $O(V)$가 걸린다.
 - `while`문의 경우 최소 $V - 1$에서 최대 $E$번 까지 수행한다.
 - `pop()`는 상수 시간에 해결된다.
@@ -175,14 +175,14 @@ addEdgeEach(6, 7, 49)
 const cmp = (a, b) => a[1] < b[1];
 
 const Prim = (graph, begin) => {
-    const dist = new MinHeap(null, cmp);
+    const pq = new MinHeap(null, cmp);
     const isVisited = Array(V + 1).fill(false);
     const mst = [];
-    dist.insert([begin, 0]);
+    pq.insert([begin, 0]);
 
-    while (dist.heap.length > 0) {
+    while (pq.heap.length > 0) {
         if (mst.length >= V) break;
-        const [node, weight] = dist.pop();
+        const [node, weight] = pq.pop();
         
         if (!isVisited[node]) {
             isVisited[node] = true;
@@ -190,7 +190,7 @@ const Prim = (graph, begin) => {
 
             for (let i = 0; i < graph[node].length; i += 1) {
                 const link = graph[node][i];
-                if (!isVisited[link[0]]) dist.insert(link);
+                if (!isVisited[link[0]]) pq.insert(link);
             }
         }
     }
@@ -198,9 +198,9 @@ const Prim = (graph, begin) => {
 };
 ```
 
-`dist`는 우선 순위 큐(최소 힙)으로 매개변수로 배열과 비교 함수를 받는다. 비교 함수로 사용될 함수는 `cmp`이며 매개변수 `a`가 더 작은 값인지 확인한다.
+`pq`는 우선 순위 큐(최소 힙)으로 매개변수로 배열과 비교 함수를 받는다. 비교 함수로 사용될 함수는 `cmp`이며 매개변수 `a`가 더 작은 값인지 확인한다.
 
-방문한 정점인지 아닌지 확인하기 위해 `isVisited`배열과 선택된 정점들을 담을 `mst`배열을 선언한뒤 `dist`의 시작 정점의 가중치를 `0`으로 초기화한다.
+방문한 정점인지 아닌지 확인하기 위해 `isVisited`배열과 선택된 정점들을 담을 `mst`배열을 선언한뒤 `pq`의 시작 정점의 가중치를 `0`으로 초기화한다.
 
 `while`문은 큐가 비어 있을 때까지 반복한다. 모든 정점을 선택했음에도 큐에 값이 들어 있을 수 있기 때문에 모든 값이 선택 되었다면 반복문을 탈출한다.
 
@@ -233,6 +233,6 @@ const Prim = (graph, begin) => {
 
 ## 참조(References)
 
-- 문병로, <i>쉽게 배우는 알고리즘: 관계 중심의 사고법</i>, (한빛 아카데미, 2018).
-- 구종만, <i>알고리즘 문제 해결 전략</i>, (인사이트, 2012).
-- "Javascript Array.sort implementation?", <i>Stack overflow</i>, https://stackoverflow.com/questions/234683/javascript-array-sort-implementation.
+- 문병로, *쉽게 배우는 알고리즘: 관계 중심의 사고법*, (한빛 아카데미, 2018).
+- 구종만, *알고리즘 문제 해결 전략*, (인사이트, 2012).
+- "Javascript Array.sort implementation?", *Stack overflow*, https://stackoverflow.com/questions/234683/javascript-array-sort-implementation.
