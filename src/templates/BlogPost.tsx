@@ -31,7 +31,8 @@ const BlogPost: React.FC<PageProps<DataType>> = ({ data, location }) => {
 };
 
 export default BlogPost;
-
+// TODO: category 분류를 새로 추가했음.
+// 이에 따른 쿼리를 불러오고 template에 props 추가 해주기
 export const pageQuery = graphql`
   query BlogPostBySlug(
     $id: String!
@@ -51,6 +52,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        category
       }
       tableOfContents(absolute: false, maxDepth: 4)
     }

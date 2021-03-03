@@ -52,12 +52,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
-  // TODO: 같은 시리즈로 묶인 포스트는 해당 시리즈의 포스트만 보여주기
+  // TODO: 같은 카테고리로 묶인 포스트는 해당 카테고리의 포스트만 보여주기
   if (posts.length > 0) {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
-      const categories = post.frontmatter.categories;
+      const categories = post.frontmatter.category;
 
       createPage({
         path: post.fields.slug,

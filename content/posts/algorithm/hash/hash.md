@@ -1,7 +1,8 @@
 ---
-title: 해시(Hash)와 해시 테이블(Hash Table)
+title: "해시(Hash)와 해시 테이블(Hash Table)"
 tags: [Data Structure, Hash, Hash Table]
-date: 2021-02-02T17:55:11.062Z
+category: "Algorithm"
+date: "2021-02-02T17:55:11.062Z"
 ---
 
 ## 해시

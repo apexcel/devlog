@@ -67,3 +67,6 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# Incompleted post
+/content/posts/algorithm/graph/shortest-path

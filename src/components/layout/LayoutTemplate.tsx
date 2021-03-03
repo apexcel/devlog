@@ -4,7 +4,7 @@ import LayoutFooter from "./LayoutFooter";
 import LayoutHeader from "./LayoutHeader";
 
 type LayoutProps = {
-    location: Record<string | number, any>
+    location: Record<string, any>
     postTitle?: string
     siteTitle: string
     children: any

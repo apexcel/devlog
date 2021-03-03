@@ -2,7 +2,7 @@ const readline = require('readline');
 const fs = require('fs');
 const path = require('path');
 
-const questions = ['location', 'filename', 'title', 'tags']
+const questions = ['location', 'filename', 'title', 'category', 'tags']
 const askQuestion = (rl, question) => new Promise(resolve => rl.question(
     question, ans => resolve(ans)
 ))
@@ -34,6 +34,7 @@ const ask = () => {
 ---
 title: "${postInfo.title}"
 tags: [${postInfo.tags}]
+category: "${postInfo.category}"
 date: "${postInfo.date}"
 ---
 `.trim();

@@ -1,6 +1,7 @@
 ---
 title: "유니온-파인드(Union-Find)"
 tags: [Union-Find,Disjoint Set,Algorithm,Data Structure,Tree]
+category: "Algorithm"
 date: 2021-02-06T21:34:25.870Z
 ---
 
