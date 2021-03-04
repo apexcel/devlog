@@ -5,6 +5,8 @@ category: "Programming"
 date: "2021-03-03T11:32:08.791Z"
 ---
 
+> 이 글은 용찬호, *시작하세요! 도커/쿠버네티스: 친절한 설명으로 쉽게 이해하는 컨테이너 관리*, (2020, 위키북스)를 읽고 정리한 포스트입니다.
+
 ## 도커와 유용성
 
 > **도커(Docker)**는 리눅스의 응용 프로그램들을 소프트웨어 컨테이너에 배치시키는 일을 자동화하는 오픈 소스 프로젝트이다.
@@ -46,14 +48,22 @@ Status: Downloaded newer image for ubuntu:20.04
 root@a7ccae32086d:/# 
 ```
 
-로컬에 도커 이미지가 없다면 도커 허브에서 자동으로 이미지를 내려받는다. 
-컨테이너의 기본 사용자는 **root**이며 호스트 이름은 무작위 16진수 해시값이며 앞의 일부분만 표시된다.
-실행 시킨 프로세스에서 상호 작용을 하기 위해서는 반드시 `-i`와 `-t` 옵션을 붙여줘야한다. `-i`는 `attach`되지 않은 경우에도 interactive 할 수 있도록 해주며 `-t`는 `TTY`를 활성화 시킨다. 줄여서 `-it`로 사용할 수도 있다. `run` 명령어는 `pull` > `create` > `start` 순으로 명령어를 실행한 후 `attach`한다.
+`run` 명령어는 `pull` > `create` > `start` 순으로 명령어를 실행한 후 `attach`한다.
 
 - `pull`: 이미지를 내려 받음.
 - `create`: 이미지를 이용해 컨테이너 생성.
 - `start`: 컨테이너 실행.
 - `attach`: 실행된 컨테이너에 연결.
+
+실행 시킨 프로세스에서 상호 작용을 하기 위해서는 반드시 `-i`와 `-t` 옵션을 붙여줘야한다. `-i`는 `attach`되지 않은 경우에도 interactive 할 수 있도록 해주며 `-t`는 `TTY`를 활성화 시킨다. 줄여서 `-it`로 사용할 수도 있다. 로컬에 해당하는 도커 이미지가 없다면 도커 허브에서 자동으로 이미지를 내려받으며 컨테이너의 기본 사용자는 **root**이며 호스트 이름은 무작위 16진수 해시값이며 앞의 일부분만 표시된다.
+
+```bash
+> docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+ubuntu       20.04     f63181f19b2f   5 weeks ago   72.9MB
+```
+
+`docker images`로 로컬에 내려 받은 이미지들을 확인 할 수 있다.
 
 ## 컨테이너 목록
 
@@ -113,18 +123,49 @@ Are you sure you want to continue? [y/N] y
 
 만약 정지된 상태가 아니라 실행중인 컨테이너를 삭제하려고 하는 경우 에러 메시지를 띄우는데 이 경우 `docker stop` 명령어를 이용해 컨테이너를 중지 시키고 삭제하거나 `-f` 옵션을 이용해 강제로 삭제하는 방법이 있다. 여러개의 정지된 도커 컨테이너를 한 번에 삭제하고 싶다면 `prune` 명령어를 이용하면 된다.
 
-## 이미지 확인
+## 컨테이너 외부에 노출
+
+컨테이너는 가상 IP주소를 할당 받는다. `ifconfig` 명령어를 통해 네트워크 인터페이스를 확인하면 이더넷 `eth0`와 로컬 호스트인 `lo`가 나타난다. 기본적인 상태에서는 호스트를 제외하고는 외부에서 해당 컨테이너로의 접근이 불가능하다.
 
 ```bash
-> docker images
-REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
-ubuntu       20.04     f63181f19b2f   5 weeks ago   72.9MB
+> docker run -it --name test ubuntu:20.04
+root@65a10791f777:/# ifconfig
+
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 5597  bytes 23488769 (23.4 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4523  bytes 310907 (310.9 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-`docker images`는 로컬에 내려 받은 이미지들을 확인 할 수 있다.
+```bash
+> docker run -it --name network_test -p 80:80 ubuntu:20.04
+> docker run -it --name network_test -p 443:443 -p 192.168.0.1:4321:80 ubuntu:20.04
+```
+
+해당 컨테이너를 삭제하고 새롭게 컨테이너를 생성하는데 이때 `-p` 옵션을 추가한다. `-p` 옵션은 `--publish`로 대체할 수 있다. 해당 옵션은 `호스트의 포트:컨테이너의 포트` 형태로 바인딩해준다. 여러개의 포트를 사용하고자 한다면 `-p` 옵션을 여러번 사용하여 명시해주면 된다.
+
+```bash
+> docker run -it --name network_test -p 80:80 ubuntu:20.04
+root@67d41886df41:/# apt update && apt upgrade -y && apt install apache2 -y
+root@67d41886df41:/# service apache2 start
+```
+
+아파치 웹 서버를 설치한 후 로컬 호스트의 80포트로 접속하면 아파치 웹 서버의 디폴트 페이지가 보인다. 컨테이너의 80포트로 접근하려면 172.17.0.2:80을 통해 접근해야 하지만 `-p` 옵션을 통해 호스트의 80포트를 컨테이너의 80포트로 포워딩 해주었기 때문에 접근이 가능하다.
 
 ## 참조(References)
 
 - 용찬호, *시작하세요! 도커/쿠버네티스: 친절한 설명으로 쉽게 이해하는 컨테이너 관리*, (2020, 위키북스).
 - "Monolithic application", *Wikipedia*, https://en.wikipedia.org/wiki/Monolithic_application.
 - "Docker run reference", *Docker Docs*, https://docs.docker.com/engine/reference/run/.
+- "Docker Container networking", *Docker Docs*, https://docs.docker.com/config/containers/container-networking/.
