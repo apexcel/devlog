@@ -1,6 +1,7 @@
 # Devlog
 
-Link
+[Link](https://www.apexcel.blog)
+
 ## Tech Stack
 
 - Gatsby
