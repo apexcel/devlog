@@ -1,3 +1,5 @@
+@import './fonts.module.scss';
+
 blockquote {
     margin: 0;
     padding: 1.2rem;
@@ -8,6 +10,8 @@ blockquote {
 
 pre[class*='language-'],
 code[class*='language-'] {
+    font-family: 'D2Coding ligature', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
     background-color: $codeblock-bg-color;
     color: $codeblock-text-code-color;
     .operator {
@@ -92,6 +96,10 @@ code[class='language-text'] {
     background: #bd2fca;
 }
 
+.token {
+    font-family: 'D2Coding ligature', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
 .token.class-name {
     color: #e9cc26;
 }

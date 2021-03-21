@@ -65,7 +65,6 @@ const Dijkstra = (graph, begin) => {
 
 ![Default graph](dijkstra.png)
 
-
 ## 시간 복잡도 분석
 
 - 각 정점은 한 번씩 방문되고 각 정점에 인접한 간선들에 대해 한 번씩 검사하므로 $O(E)$가 걸릴 수 있다.

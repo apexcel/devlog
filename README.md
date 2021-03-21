@@ -7,4 +7,4 @@
 - Gatsby
 - Typescript
 - Styled-Component
-- Sass
+- Sass (Legacy)

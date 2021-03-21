@@ -60,20 +60,21 @@ date: "2021-02-21T09:16:03.113Z"
 ### 구현
 
 ```js
-const g = [], mst = [], V = 7;
+const g = [
+    [1, 2, 19],
+    [1, 3, 13],
+    [1, 4, 30],
+    [1, 5, 14],
+    [1, 7, 54],
+    [2, 3, 12],
+    [2, 6, 39],
+    [3, 6, 17],
+    [3, 5, 57],
+    [4, 7, 28],
+    [5, 7, 76],
+    [6, 7, 49]
+], mst = [], V = 7;
 
-g.push([1, 2, 19]);
-g.push([1, 3, 13]);
-g.push([1, 4, 30]);
-g.push([1, 5, 14]);
-g.push([1, 7, 54]);
-g.push([2, 6, 39]);
-g.push([2, 3, 12]);
-g.push([3, 5, 57]);
-g.push([3, 6, 17]);
-g.push([4, 7, 28]);
-g.push([5, 7, 76]);
-g.push([6, 7, 49]);
 g.sort((a, b) => a[2] - b[2]);
 ```
 
@@ -151,23 +152,28 @@ for (let i = 0; i < g.length; i += 1) {
 ### 구현
 
 ```js
-const V = 7, g = Array.from(Array(V + 1), () => Array());
-function addEdgeEach(u, v, w) {
+const V = 7, E = 12;
+const g = Array.from(Array(V + 1), () => Array());
+const data = [
+    [1, 2, 19],
+    [1, 3, 13],
+    [1, 4, 30],
+    [1, 5, 14],
+    [1, 7, 54],
+    [2, 3, 12],
+    [2, 6, 39],
+    [3, 6, 17],
+    [3, 5, 57],
+    [4, 7, 28],
+    [5, 7, 76],
+    [6, 7, 49]
+];
+
+data.forEach(datum => {
+    const [u, v, w] = datum;
     g[u].push([v, w]);
     g[v].push([u, w]);
-};
-addEdgeEach(1, 2, 19)
-addEdgeEach(1, 3, 13)
-addEdgeEach(1, 4, 30)
-addEdgeEach(1, 5, 14)
-addEdgeEach(1, 7, 54)
-addEdgeEach(2, 3, 12)
-addEdgeEach(2, 6, 39)
-addEdgeEach(3, 6, 17)
-addEdgeEach(3, 5, 57)
-addEdgeEach(4, 7, 28)
-addEdgeEach(5, 7, 76)
-addEdgeEach(6, 7, 49)
+});
 ```
 
 크루스칼과 다르게 프림의 경우 각 정점의 정보가 필요하기 때문에 각 정점마다 인접한 정점의 정보를 가지고 있어야한다. 따라서 2차원 배열에 각 정점의 인접 정점의 정보를 담아준다.
