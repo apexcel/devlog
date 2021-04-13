@@ -70,16 +70,6 @@ $= (0.5 × A) + (0.5 × B)$
 
 ![Blending2](blending2.png)
 
-이를 자바스크립트 코드로 나타내면 다음과 같다.
-
-```js
-const blend = (A, B, t) => {
-    if (t < 0) return A;
-    if (t > 1) return B;
-    return (1-t) * A + t * B;
-};
-```
-
 ### 복합 데이터의 혼합(Blending Compound Data)
 
 단순히 숫자뿐이 아니라 2차원이나 3차원의 벡터를 혼합할 수도 있다. 3차원 벡터의 경우 각각의 값을 블렌딩해주면 된다.
