@@ -75,7 +75,7 @@ class DisjointSet {
 
 ![Union Find Tree with Rank](./union-find-tree-rank.png)
 
-각 노드에 랭크를 표시했다. 랭크가 1인 집합을 랭크가 2인 집합에 붙였고 랭크의 크기는 늘어나지 않았다. 랭크가 커지는 경우는 두 랭크가 같을 경우에만 늘어난다.
+각 노드에 랭크를 표시했다. 집합 A와 B를 합치기 위해 전체 랭크가 1인 B집합을 전체 랭크가 2인 A 집합에 붙였고 전체 랭크의 크기는 늘어나지 않았다. 합치는 두 집합의 랭크가 같은 경우에만 전체 랭크의 크기가 커진다.
 
 ```js
     makeSet = n => {
@@ -116,7 +116,7 @@ weighted union 을 이용하기 위해 기존 코드에 몇 가지를 추가했�
 
 ![Path Compression](path-compression.png)
 
-`find(u)`를 통해 `u`가 속하는 루트 노드를 찾았을 때 `u`의 루트 노드를 바로 바꾸어 버리면 다음번에 경로를 탐색할 필요 없이 바로 루트 노드를 찾을 수 있게 된다.
+위 그림을 보면 좌측의 `e` 노드의 경우 `d - c - a` 순서로 부모를 탐색해나간다. 탐색을 한 번 수행 했으므로 다음 번 `e` 노드의 루트 노드를 바로 `a` 노드로 바꾸어 준다면 다음 번 `e`를 탐색할 때 불필요한 과정을 거칠 필요가 없는 것이다.
 
 ```js
 find = u => {
@@ -125,7 +125,7 @@ find = u => {
 }
 ```
 
-기존 코드의 리턴 값에 위와 같이 추가 해주면 된다.
+`find(u)`를 통해 `u`가 속하는 루트 노드를 찾았을 때 그 값을 반환하고 그렇지 않을 경우 루트 노드를 찾을 때 까지 재귀적으로 호출하여 루트 노드를 갱신한다.
 
 ### Weighted Union with Path Compression
 
@@ -140,6 +140,5 @@ $log^*n$은 $n$에 $log$를 `k`번 적용할 때 `1`이하가 된다는 뜻으�
 - 문병로, *쉽게 배우는 알고리즘: 관계 중심의 사고법*, (한빛 아카데미, 2018).
 - 구종만, *알고리즘 문제 해결 전략*, (인사이트, 2012).
 - "Linked List representation of Disjoint Set Data Structures", *Geeks for Geeks*, https://www.geeksforgeeks.org/linked-list-representation-disjoint-set-data-structures/.
-- Robert Sedgewick, Kevin Wayne, Algorithms, 4th Edition, "Case Study: Union-Find", *
-Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne*, https://algs4.cs.princeton.edu/15uf/.
+- Robert Sedgewick, Kevin Wayne, Algorithms, 4th Edition, "Case Study: Union-Find", *Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne*, https://algs4.cs.princeton.edu/15uf/.
 - "Ackermann fucntion", *Wikipedia*, https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98.
