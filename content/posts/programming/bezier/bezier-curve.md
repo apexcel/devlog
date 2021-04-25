@@ -145,6 +145,5 @@ $t = 0$일 때 시작점이어야 하므로 $P_0$이 나오게 되고 $t = 1$일
 - "De Casteljau's algorithm", *Wikipedia*, https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm.
 - "베지어 곡선", *Javascript Info*, https://ko.javascript.info/bezier-curve.
 - Squirrel Eiserloh, "Interpolation and Splines", *Essential Math for Games Programmers*, https://www.essentialmath.com/tutorial.htm.
-- "프런트엔드 엔지니어를 위한 베지에 곡선(Bezier Curves) - 3편", *Coderifleman's blog*, https://blog.coderifleman.com/2017/03/19/bezier-curves-for-frontend-engineer-3/.
 - "프런트엔드 엔지니어를 위한 베지에 곡선(Bezier Curves) - 2편", *Coderifleman's blog*, https://blog.coderifleman.com/2017/01/03/bezier-curves-for-frontend-engineer-2/.
 - "프런트엔드 엔지니어를 위한 베지에 곡선(Bezier Curves) - 1편", *Coderifleman's blog*, https://blog.coderifleman.com/2017/01/02/bezier-curves-for-frontend-engineer-1/.
