@@ -2,7 +2,7 @@
 title: "베지어 곡선(Bezier Curve) Simulator 만들기 - 2"
 tags: [Programming,Canvas,Bezier Curve,Animation]
 category: "Programming"
-date: "2021-04-15T05:06:56.074Z"
+date: "2021-04-25T04:23:14.790Z"
 ---
 
 ## 개요
