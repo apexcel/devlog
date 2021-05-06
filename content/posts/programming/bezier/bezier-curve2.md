@@ -205,10 +205,7 @@ calculateBezier = (t) => {
 
 위 과정을 그림을 통해 보면 더블 클릭을 통해 생성한 점들 `A`, `B`, `C`는 `coords`배열에 담기게 되고 애니메이션을 실행하면 이 배열을 `calculatePosition()`에서 계산을 한다. 계산을 통해 나온 점들의 좌표가 담긴 `calced`에는 `D`, `E`가 담겨 있고 다시 `calculatePosition()`을 호출한다. 계산 결과 나온 값이 바로 `F`가 되고 이 `F`가 베지어 곡선을 그리는 점이 된다.
 
-만들게 된 과정에 대해서 이야기를 해보자면 CSS에 보면 `animation-timing-function` 라고하는 애니메이션의 시간당 속도를 설정하는 속성이 있다. 이 속성의 값 중에 `cubic-bezier()`라는 녀석이 있는데, 궁금해서 이에 관해 찾다 보니 이걸 이용해서 갖고 놀 수 있을만한 걸 만들어볼 수 있지 않나 해서 만들게 되었다. 이미 비슷한 기능을 하는 사이트들이 있지만 직접 만들어보니 재미있었다
-
-구현하는 건 어렵지 않았는데 과정속에 담긴 이론들을 정확히 이해하려고 하는데에 시간을 많이 쏟았던 것 같다.🤯🤯🤯 근데 찾으면 찾을수록 연관된 이론과 계산들이 많았는데 모든 걸 다 알면 좋겠지만 적당히 만족하는 수준까지만 알아보고 이 기억들을 까먹기전에 글로 메다닥 작성해서 기록하기로 했다.
-그리고 [Coderifleman's blog](https://blog.coderifleman.com/2017/03/19/bezier-curves-for-frontend-engineer-3/)에 베지어 곡선과 관련하여 잘 정리되어 있으니 참고하면 좋다.
+추가적으로 [Coderifleman's blog](https://blog.coderifleman.com/2017/03/19/bezier-curves-for-frontend-engineer-3/)에 베지어 곡선과 관련하여 잘 정리되어 있으니 참고하면 좋다.
 
 ## 참조(References)
 
