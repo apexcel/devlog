@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import COLORS from '../../lib/styles/colors.style'
 import { toKebabCase } from '../../lib/utils';
+import colors from '../../styles/colors';
 
 const Wrapper = styled.div`
     width: inherit;
@@ -21,8 +22,7 @@ const Tag = styled.a`
     border-radius: 25px;
     text-align: center;
     background-color: ${COLORS.TAG_BG};
-    color: ${COLORS.main};
-    font-weight: 500;
+    color: ${colors.font};
     font-size: 0.9rem;
 
     @media screen and (max-width: 768px) {

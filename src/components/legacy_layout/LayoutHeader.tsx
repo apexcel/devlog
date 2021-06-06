@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 
 import Logo from '../../../content/assets/Logo.svg'
 
-import useScrollPosition from '../../lib/hooks/useScrollPosition';
+import useScrollPosition from '../../hooks/useScrollPosition';
 import COLORS from '../../lib/styles/colors.style';
 interface HeaderWrapperProps {
     readonly isVisible: boolean

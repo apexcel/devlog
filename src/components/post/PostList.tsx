@@ -29,10 +29,10 @@ const PostListItemWrapper = styled.div`
 `;
 
 const PostTitle = styled.a`
-    font-weight: 600;
+    font-weight: 400;
     display: inline-block;
-    width: 600px;
-    font-size: 1.5rem;
+    width: 720px;
+    font-size: 1.3rem;
     color: ${COLORS.FONT};
     word-break: break-all;
 

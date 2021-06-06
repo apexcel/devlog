@@ -2,18 +2,18 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 
 import SEO from "../components/SEO"
-import LayoutTemplate from "../components/layout/LayoutTemplate"
+import Layout from "../components/Layout"
 
 const NotFoundPage = ({ data, location }) => {
-    const siteTitle = data.site.siteMetadata.title
+	const siteTitle = data.site.siteMetadata.title
 
-    return (
-        <LayoutTemplate location={location} siteTitle={siteTitle}>
-            <SEO title="404: Not Found" />
-            <h1>404: Not Found</h1>
-            <Link to='/'>Home</Link>
-        </LayoutTemplate>
-    )
+	return (
+		<Layout>
+			<SEO title="404: Not Found" />
+			<h1>404: Not Found</h1>
+			<Link to='/'>Home</Link>
+		</Layout>
+	)
 }
 
 export default NotFoundPage;

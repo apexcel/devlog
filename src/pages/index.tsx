@@ -3,9 +3,9 @@ import { PageProps, graphql } from "gatsby"
 import SEO from "../components/SEO"
 import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace, toKebabCase, replaceAll } from '../lib/utils'
 
-import LayoutTemplate from '../components/layout/LayoutTemplate'
 import TaggedPostsInfo from '../components/tags/TaggedPostInfo'
 import PostList from '../components/post/PostList'
+import Layout from '../components/Layout'
 
 const Index: React.FC<PageProps<Record<string, any>>> = ({
 	data,
@@ -34,25 +34,28 @@ const Index: React.FC<PageProps<Record<string, any>>> = ({
 
 	if (posts.length > 0) {
 		return (
-			<LayoutTemplate location={location} siteTitle={siteTitle}>
+			// <LayoutTemplate location={location} siteTitle={siteTitle}>
+			<Layout>
+
 				<SEO title="Apexcel Devlog" />
-					{tagValue ? <TaggedPostsInfo tagValue={tagValue} totalCount={totalCount} /> : ''}
-					{
-						posts.map((post, i) => {
-							const { title, date, tags } = post.frontmatter;
-							return (
-								<PostList
-									key={i}
-									title={title}
-									date={date}
-									tags={tags}
-									excerpt={post.excerpt}
-									slug={post.fields.slug}
-								/>
-							)
-						})
-					}
-			</LayoutTemplate>
+				{tagValue ? <TaggedPostsInfo tagValue={tagValue} totalCount={totalCount} /> : ''}
+				{
+					posts.map((post, i) => {
+						const { title, date, tags } = post.frontmatter;
+						return (
+							<PostList
+								key={i}
+								title={title}
+								date={date}
+								tags={tags}
+								excerpt={post.excerpt}
+								slug={post.fields.slug}
+							/>
+						)
+					})
+				}
+			</Layout>
+			// </LayoutTemplate>
 		)
 	}
 

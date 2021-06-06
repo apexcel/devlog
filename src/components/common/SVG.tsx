@@ -49,7 +49,7 @@ type SVGProps = {
 }
 
 export default function SVG(props) {
-    const { title, name, pathClassName, svgClassName, width, height, color, viewBox }: SVGProps = props;
+    const { title, name, pathClassName, svgClassName, width, height, color, viewBox, fill }: SVGProps = props;
 
     const renderPath = (name) => {
         return svg[name].map((v, i) => {
