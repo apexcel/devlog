@@ -33,10 +33,6 @@ const Tag = styled.a`
     }
 `;
 
-interface Tags {
-    tags: Array<string>
-}
-
 const Tags: React.FC<Tags> = ({ tags }) => {
     return (
         <Wrapper>

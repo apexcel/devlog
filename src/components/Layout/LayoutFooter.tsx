@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import Logo from '../../../content/assets/Logo.svg';
 
 import COLORS from '../../lib/styles/colors.style';
 import SVG from '../common/SVG';
@@ -22,17 +23,26 @@ const FooterContents = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 14px;
 `;
 
 const FooterNav = styled.nav`
     & > a {
-        color: ${colors.font_bright};
-        &:hover {
-            color: ${colors.main_green};
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        & > * {
+            margin-right: 4px;
         }
-    }
-    & > * {
-        margin-right: 10px;
+
+        & g {
+            fill: ${colors.font_bright};
+        }
+
+        span {
+            color: ${colors.font_bright};
+        }
     }
 `;
 
@@ -63,9 +73,10 @@ const LayoutFooter: React.FC = () => {
         <Footer>
             <FooterContents>
                 <FooterNav>
-                    <Link to='/'>Home</Link>
-                    <Link to='/blog'>Blog</Link>
-                    <Link to='/portfolio'>Portfolio</Link>
+                    <Link to='/'>
+                        <Logo width='32px' height='32px' />
+                        <span>Apexcel's Devlog</span>
+                    </Link>
                 </FooterNav>
                 <FooterIcons>
                     <Mail aria-valuetext={mailText} title='Copy e-Mail' onClick={copyEmail} ><SVG name='gmail' color='white' width='32px' height='32px' viewBox='0 0 216 216' /></Mail>

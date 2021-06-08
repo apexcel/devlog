@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
-import COLORS from '../../lib/styles/colors.style';
+import colors from '../../styles/colors';
 import Tags from '../tags/Tags';
 import PostWrittenDate from './PostWrittenDate';
-
 
 const PostListWrapper = styled.div`
     position: relative;
@@ -20,7 +19,7 @@ const PostListItemWrapper = styled.div`
     border-bottom: 1px solid #e0e0e0bd;
 
     &:hover {
-        border-color: ${COLORS.MAIN};
+        border-color: ${colors.main_green};
     }
 
     @media screen and (max-width: 768px) {
@@ -31,9 +30,9 @@ const PostListItemWrapper = styled.div`
 const PostTitle = styled.a`
     font-weight: 400;
     display: inline-block;
-    width: 720px;
+    width: 700px;
     font-size: 1.3rem;
-    color: ${COLORS.FONT};
+    color: ${colors.font};
     word-break: break-all;
 
     @media screen and (max-width: 768px) {

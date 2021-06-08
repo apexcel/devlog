@@ -1,7 +1,7 @@
 import React from 'react'
 import { PageProps, graphql } from "gatsby"
 import SEO from "../components/SEO"
-import { toPascalCase, removeAllWhiteSpace, replaceToWhiteSpace, toKebabCase, replaceAll } from '../lib/utils'
+import { toKebabCase } from '../lib/utils'
 
 import TaggedPostsInfo from '../components/tags/TaggedPostInfo'
 import PostList from '../components/post/PostList'
@@ -34,9 +34,7 @@ const Index: React.FC<PageProps<Record<string, any>>> = ({
 
 	if (posts.length > 0) {
 		return (
-			// <LayoutTemplate location={location} siteTitle={siteTitle}>
 			<Layout>
-
 				<SEO title="Apexcel Devlog" />
 				{tagValue ? <TaggedPostsInfo tagValue={tagValue} totalCount={totalCount} /> : ''}
 				{
@@ -55,15 +53,14 @@ const Index: React.FC<PageProps<Record<string, any>>> = ({
 					})
 				}
 			</Layout>
-			// </LayoutTemplate>
 		)
 	}
 
 	return (
-		<LayoutTemplate location={location} siteTitle={siteTitle}>
+		<Layout>
 			<SEO title="All posts" />
 			<p>No existing post. :(</p>
-		</LayoutTemplate>
+		</Layout>
 	)
 }
 export default Index
