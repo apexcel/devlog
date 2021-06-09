@@ -33,9 +33,13 @@ const GlobalStyle = createGlobalStyle`
         font-size: 14pt;
     }
 
-    strong, b, em {
+    strong, b {
         color: ${colors.main};
         font-weight: bold;
+    }
+
+    em {
+        color: ${colors.main};
     }
 
     h1 {

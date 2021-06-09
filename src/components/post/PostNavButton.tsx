@@ -71,10 +71,12 @@ const PostNavButtonWrapper = styled.div`
     em {
         display: block;
         font-size: 0.9rem;
+        color: ${colors.font};
     }
 
     b {
         font-size: 1.1rem;
+        color: ${colors.font};
     }
 
     path {
