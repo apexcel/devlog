@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import colors from '../../styles/colors';
 import PostFooter from './PostFooter';
 
 const PostArticleWrapper = styled.article`
@@ -22,6 +23,11 @@ const PostArticleWrapper = styled.article`
 
     blockquote p {
         margin: 0;
+    }
+
+    a {
+        color: ${colors.main};
+        text-decoration: underline;
     }
 `;
 
