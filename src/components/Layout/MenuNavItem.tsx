@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React, { useRef, useEffect, useMemo, useState, useCallback } from 'react';
 import styled from 'styled-components';
+import colors from '../../styles/colors';
 import Tags from '../tags/Tags';
 
 const MenuNavItemWrapper = styled.nav`
@@ -10,13 +11,16 @@ const MenuTitle = styled.h3``;
 
 
 const SubItemWrapper = styled.div`
+    margin: 10px 0;
 `;
-const SubItemTitle = styled.h6`
-    padding: 0 0 0 12px;
-    margin: 0;
+const SubItemTitle = styled.h6<{active: boolean}>`
     border-left: 1px solid rgba(0, 0, 0, 0.7);
     display: inline-block;
     cursor: pointer;
+    color: ${props => props.active ? colors.main : colors.font};
+    margin: 0;
+    padding-left: ${props => props.active ? '12px' : '8px'};
+    font-weight: ${props => props.active ? 'bold' : 'regular'};
 `;
 const SubItemCount = styled.span`
     font-size: 0.8rem;
@@ -28,8 +32,8 @@ const SubItemContentWrapper = styled.div<{ active: boolean }>`
 `;
 const SubItemContent = styled.a`
     display: block;
-    font-size: 0.8rem;
-    margin-left: 14px;
+    font-size: 0.9rem;
+    margin-left: 18px;
     padding: 2px 0;
 `;
 
@@ -79,10 +83,10 @@ const MenuNavItem: React.FC = () => {
 
     const renderItems = () => {
         const categoryTitles = Object.keys(nodeData.items);
-        const values: unknown = Object.values(nodeData.items);
+        const values: NavSubItem[][] = Object.values(nodeData.items);
         return categoryTitles.map((cTitle, i) =>
             <SubItemWrapper key={i}>
-                <SubItemTitle onClick={() => contentNumberToggler(i)}>{cTitle}</SubItemTitle>
+                <SubItemTitle active={i === subContentNumber} onClick={() => contentNumberToggler(i)}>{cTitle}</SubItemTitle><SubItemCount>({values[i].length})</SubItemCount>
                 <SubItemContentWrapper active={i === subContentNumber}>
                     {
                         values[i].map((v: NavSubItem, j) =>

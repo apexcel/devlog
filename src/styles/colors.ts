@@ -1,5 +1,5 @@
 export default {
-    main: '#3a6ea5',
+    main: '#3455bb',
     footer_bg: '#2d2d2d',
 
     font: '#3d3d3d',

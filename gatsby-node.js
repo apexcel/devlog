@@ -1,7 +1,7 @@
 require('ts-node').register();
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
-const { toKebabCase } = require('./src/lib/utils.ts')
+const path = require(`path`);
+const { createFilePath } = require(`gatsby-source-filesystem`);
+const { toKebabCase } = require('./src/utils');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
