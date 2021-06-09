@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import COLORS from '../../lib/styles/colors.style'
-import { toKebabCase } from '../../lib/utils';
+import { toKebabCase } from '../../utils';
 import colors from '../../styles/colors';
 
 const Wrapper = styled.div`
@@ -21,7 +20,7 @@ const Tag = styled.a`
     margin-bottom: 10px;
     border-radius: 25px;
     text-align: center;
-    background-color: ${COLORS.TAG_BG};
+    background-color: ${colors.tag_bg};
     color: ${colors.font};
     font-size: 0.9rem;
 

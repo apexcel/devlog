@@ -32,7 +32,7 @@ const HeaderLogo = styled.div`
     padding: 14px;
     margin: 0 32px;
     &:hover g {
-        fill: ${colors.main_green};
+        fill: ${colors.main};
     }
 
     @media screen and (max-width: 1024px) {
@@ -58,7 +58,7 @@ const LayoutHeader: React.FC<LayoutHeaderProps> = ({ headerNavState, setHeaderNa
     const [headerVisibility, setHeaderVisibility] = useState(true);
 
     useScrollPosition(({ prev, current}) => {
-        setHeaderVisibility(prev > current);
+        if (window.innerWidth <= 1024) setHeaderVisibility(prev > current);
     }, [headerVisibility]);
 
     return (

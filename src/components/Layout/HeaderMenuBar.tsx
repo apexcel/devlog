@@ -37,7 +37,7 @@ const menuBar1 = css`
     }
     &:hover {
         span {
-            background-color: ${colors.main_green};
+            background-color: ${colors.main};
             width: 48px;
         }
     }

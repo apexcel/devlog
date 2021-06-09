@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import PostTableStyle from '../../lib/styles/table.style';
 import PostFooter from './PostFooter';
 
 const PostArticleWrapper = styled.article`
@@ -24,8 +23,6 @@ const PostArticleWrapper = styled.article`
     blockquote p {
         margin: 0;
     }
-
-    ${PostTableStyle};
 `;
 
 const PostSection = styled.section``;

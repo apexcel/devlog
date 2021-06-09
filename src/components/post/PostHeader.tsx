@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
-import COLORS from '../../lib/styles/colors.style';
+import colors from '../../styles/colors';
 import Tags from "../tags/Tags";
 import TOC from "../TOC";
 import PostWrittenDate from "./PostWrittenDate";
@@ -10,7 +10,7 @@ const PostHeaderWrapper = styled.div`
 `;
 
 const PostTitle = styled.h1`
-    color: ${COLORS.FONT};
+    color: ${colors.font};
     font-size: 2.7rem;
 `;
 

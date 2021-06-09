@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
+import styled from 'styled-components';
+import colors from '../styles/colors';
 
 const tocFloater = (wrapper: React.RefObject<HTMLElement>, floatTarget: React.RefObject<HTMLElement>) => {
     const observer = new IntersectionObserver(entries => {
@@ -92,6 +94,52 @@ const getTocItems = (toc: string) => {
     return stringToObject(parseStringToDom(toc));
 }
 
+const TOCWrapper = styled.div`
+    position: relative;
+    margint-top: 2rem;
+
+    .floating {
+        position: fixed;
+        top: 154px;
+    }
+
+    @media screen and (max-width: 1024px) {
+        display: none;
+    }
+`;
+
+const TOCItem = styled.div`
+    position: absolute;
+    left: 100%;
+    margin-top: 154px;
+    margin-left: 30px;
+
+    & li {
+        list-style: none;
+        a {
+            display: block;
+            font-size: 0.8rem;
+            color: ${colors.font};
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        p {
+            margin: 0;
+        }
+        .active {
+            color: ${colors.main};
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    }
+
+    & ul {
+        padding: 2px;
+        margin-left: 14px;
+    }
+`;
+
 const TOC: React.FC<Record<string, any>> = ({ toc }) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLElement>(null);
@@ -104,11 +152,11 @@ const TOC: React.FC<Record<string, any>> = ({ toc }) => {
 
 
     return (
-        <div ref={wrapperRef} className='toc-wrapper'>
-            <div className='toc'>
+        <TOCWrapper ref={wrapperRef}>
+            <TOCItem>
                 {replaceTableOfContents(listRef, toc)}
-            </div>
-        </div>
+            </TOCItem>
+        </TOCWrapper>
     )
 }
 

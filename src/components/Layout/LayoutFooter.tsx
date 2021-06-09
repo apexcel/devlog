@@ -3,7 +3,6 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Logo from '../../../content/assets/Logo.svg';
 
-import COLORS from '../../lib/styles/colors.style';
 import SVG from '../common/SVG';
 import colors from '../../styles/colors';
 
@@ -15,7 +14,7 @@ const Footer = styled.footer`
         '. footer-contents .';
     width: 100%;
     height: 128px;
-    background-color: ${COLORS.HEADER_FOOTER_BG};
+    background-color: ${colors.footer_bg};
 `;
 
 const FooterContents = styled.section`

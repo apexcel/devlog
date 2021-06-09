@@ -1,6 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import colors from '../../styles/colors';
 import SVG from '../common/SVG';
 
 const animation = keyframes`
@@ -60,10 +61,10 @@ const PostNavButtonWrapper = styled.div`
             animation-timing-function: ease;
         }
         path {
-            fill: #1b6339;
+            fill: ${colors.main};
         }
         b, em {
-            color: #1b6339;
+            color: ${colors.main};
         }
     }
 
@@ -91,11 +92,7 @@ const PostNavButtonWrapper = styled.div`
     }
 `;
 
-interface LinkToProps {
-    isHidden: boolean
-}
-
-const LinkTo = styled.a<LinkToProps>`
+const LinkTo = styled.a<{isHidden: boolean}>`
     visibility: ${props => props.isHidden ? 'hidden' : 'visible'};
 
     @media screen and (max-width: 768px) {

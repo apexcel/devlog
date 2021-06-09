@@ -1,7 +1,7 @@
 import React from 'react'
 import { PageProps, graphql } from "gatsby"
 import SEO from "../components/SEO"
-import { toKebabCase } from '../lib/utils'
+import { toKebabCase } from '../utils'
 
 import TaggedPostsInfo from '../components/tags/TaggedPostInfo'
 import PostList from '../components/post/PostList'

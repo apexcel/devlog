@@ -1,11 +1,10 @@
 import { css } from 'styled-components'
-import COLORS from './colors.style';
+import colors from './colors';
 
-const PostTableStyle = css`
+const tableStyle = css`
 table {
     display: block;
     border-collapse: collapse;
-    // overflow-x: auto;
     text-align: left;
 
     thead {
@@ -17,7 +16,7 @@ table {
             flex-basis: 0;
             flex-grow: 1;
             width: 100%;
-            border-bottom: 2px solid ${COLORS.MAIN};
+            border-bottom: 2px solid ${colors.main};
             padding: 10px 0;
         }
     }
@@ -33,13 +32,12 @@ table {
             }
 
             &:nth-child(even) {
-                background-color: ${COLORS.TABLE_BG};
-                border-bottom: 1px solid ${COLORS.TABLE_BORDER};
+                background-color: ${colors.blockquote_bg};
             }
 
             &:nth-child(odd) {
-                border-bottom: 1px solid ${COLORS.TABLE_BORDER};
             }
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
         }
 
         td {
@@ -52,4 +50,4 @@ table {
 }
 `;
 
-export default PostTableStyle;
+export default tableStyle;

@@ -15,6 +15,7 @@ const NavWrapper = styled.div<{isVisible: boolean}>`
     overflow-y: auto;
 
     @media screen and (max-width: 1024px) {
+        transform: translateX(${props => props.isVisible ? `0px` : `100vw`});
         width: 100%;
         padding: 72px 14px 14px 14px;
         background: white;
