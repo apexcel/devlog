@@ -94,8 +94,6 @@ $P_z = (s × A_z) + (t × B_z)$
 - 매개변수 평가(parametric evaluation): 여러번의 프레임에 걸쳐 시작점과 끝 점을 혼합하는 방법
 - 수치 적분(numerical integration): 현재 위치에서 도달해야할 곳으로 이동하는 속도를 혼합하는 방법
 
-이에 대해 자세하게 파고들지는 않을 것이다. 어쨌거나 시간에 따라 혼합하는 것을 보간이라고 한다.
-
 ### 카스텔조 알고리즘(De Casteljau's Algorithm)
 
 [카스텔조 알고리즘](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm)은 재귀적인 선형 보간법으로 베지어 곡선을 시각적으로 표현할 수 있는 방법이다.
