@@ -6,7 +6,7 @@ const useScrollPosition = (effect, deps) => {
 
     const callback = () => {
         const y = globalThis.pageYOffset;
-        effect({prev: scrollY, current: y})
+        effect({ prev: scrollY, current: y })
         scrollY = y;
     };
 

@@ -85,6 +85,10 @@ const codeblockStyle = css`
         content: 'JAVA';
         background: #13ac2d;
     }
+    .gatsby-highlight[data-language='cpp'] pre[class*='-cpp']::before {
+        content: 'C++';
+        background: #3654db;
+    }
     .gatsby-highlight[data-language='text'] pre[class*='-text']::before {
         content: 'TEXT';
         background: #a5a5a5;

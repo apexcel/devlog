@@ -29,6 +29,24 @@ const PostArticleWrapper = styled.article`
         color: ${colors.main};
         text-decoration: underline;
     }
+
+    @media screen and (max-width: 420px) {
+        img {
+            width: 400px;
+        }
+    }
+
+    @media screen and (max-width: 360px) {
+        img {
+            width: 320px;
+        }
+    }
+
+    @media screen and (max-width: 320px) {
+        img {
+            width: 300px;
+        }
+    }
 `;
 
 const PostSection = styled.section``;
