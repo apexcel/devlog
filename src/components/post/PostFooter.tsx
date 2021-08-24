@@ -15,7 +15,7 @@ const PostFooterWrapper = styled.nav`
     }
 `;
 
-const PostFooter: React.FC<Record<string, any>> = ({ prev, next }) => {
+const PostFooter: React.FC<PostFooterProps> = ({ prev, next }) => {
     return (
         <PostFooterWrapper>
             <PostNavButton postInfo={prev} dir='prev' />

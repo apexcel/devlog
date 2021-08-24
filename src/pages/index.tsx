@@ -7,13 +7,10 @@ import TaggedPostsInfo from '../components/tags/TaggedPostInfo'
 import PostList from '../components/post/PostList'
 import Layout from '../components/Layout'
 
-const Index: React.FC<PageProps<Record<string, any>>> = ({
-	data,
-	location,
-}) => {
-	const siteTitle = data.site.siteMetadata?.title || `Title`;
-	let posts = data.allMarkdownRemark.nodes;
-	let tagValue, totalCount;
+const Index: React.FC<PageProps<DataType>> = ({ data, location }) => {
+	let posts = data.allMarkdownRemark.nodes,
+		tagValue: string, 
+		totalCount: number;
 
 	// 인덱스 페이지가 아닐 때
 	if (location.pathname !== '/') {

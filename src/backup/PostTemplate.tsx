@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
-import SEO from "../SEO";
-import PostArticle from "./PostArticle";
-import PostComments from "./PostComments";
-import PostHeader from "./PostHeader";
+import SEO from "../components/SEO";
+import PostArticle from "../components/post/PostArticle";
+import PostComments from "../components/post/PostComments";
+import PostTitle from "../components/post/PostTitle";
 
 const PostTemplateWrapper = styled.div`
     width: 100%;
@@ -29,7 +29,7 @@ const PostTemplate: React.FC<PostProps> = ({
     return (
         <PostTemplateWrapper>
             <SEO title={seoTitle} description={seoDescription} />
-            <PostHeader post={post} toc={toc} />
+            <PostTitle post={post} toc={toc} />
             <PostArticle post={post} prev={prevPost} next={nextPost} />
             <PostComments />
         </PostTemplateWrapper>

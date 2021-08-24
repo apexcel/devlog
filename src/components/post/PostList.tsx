@@ -41,10 +41,12 @@ const PostTitle = styled.a`
     }
 `;
 
+interface PostListProps {
 
-const PostList: React.FC<Record<string, any>> = ({
-    title, date, tags, slug, excerpt
-}) => {
+}
+
+
+const PostList: React.FC<Record<string, any>> = ({ title, date, tags, slug, excerpt }) => {
 
     return (
         <PostListWrapper>

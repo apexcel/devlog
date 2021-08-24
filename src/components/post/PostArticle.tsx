@@ -49,13 +49,17 @@ const PostArticleWrapper = styled.article`
     }
 `;
 
-const PostSection = styled.section``;
+interface PostArticleProps {
+    article: string;
+    nextPostInfo: AdjacentPost;
+    prevPostInfo: AdjacentPost;
+}
 
-const PostArticle: React.FC<Record<string, any>> = ({ post, prev, next }) => {
+const PostArticle: React.FC<PostArticleProps> = ({ article, nextPostInfo, prevPostInfo }) => {
     return (
         <PostArticleWrapper>
-            <PostSection dangerouslySetInnerHTML={{ __html: post.html }} />
-            <PostFooter prev={prev} next={next} />
+            <section dangerouslySetInnerHTML={{ __html: article }} />
+            <PostFooter prev={prevPostInfo} next={nextPostInfo} />
         </PostArticleWrapper>
     )
 };

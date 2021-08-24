@@ -7,7 +7,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/BlogPost.tsx`)
+  // TODO: 업데이트한 템플릿으로 이름 변경
+  const postTemplate = path.resolve(`./src/templates/PostTemplate.tsx`)
   const indexPage = path.resolve(`./src/pages/index.tsx`)
 
   // Get all markdown blog posts sorted by date
@@ -61,7 +62,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
       createPage({
         path: post.fields.slug,
-        component: blogPost,
+        component: postTemplate,
         context: {
           id: post.id,
           previousPostId,

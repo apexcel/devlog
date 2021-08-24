@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import EmptyBox from '../common/EmptyBox';
 
@@ -76,6 +76,9 @@ const TocList = styled.li<TocListProps>`
 `;
 
 const PostTableOfContents:React.FC<Record<string, any>> = ({ toc }) => {
+    useEffect(() => {
+        console.log(toc)
+    }, [])
     return (
         <EmptyBox>
             <Toc>

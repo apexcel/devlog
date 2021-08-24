@@ -1,19 +1,12 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
-import PostTemplate from "../components/post/PostTemplate"
+import PostTemplate from "./PostTemplate"
 import Layout from "../components/Layout"
 
-type DataType = {
-  previous: string
-  next: string
-  markdownRemark: Record<string, any>
-  site: Record<string, any>
-}
-
 const BlogPost: React.FC<PageProps<DataType>> = ({ data, location }) => {
+  console.log(data)
   const { previous, next } = data;
   const post = data.markdownRemark;
-  const siteTitle = data.site.siteMetadata?.title || `Title`;
   const toc = post.tableOfContents;
 
   return (
@@ -34,7 +27,7 @@ export default BlogPost;
 // TODO: category 분류를 새로 추가했음.
 // 이에 따른 쿼리를 불러오고 template에 props 추가 해주기
 export const pageQuery = graphql`
-  query BlogPostBySlug(
+  query aBlogPostBySlug(
     $id: String!
     $previousPostId: String
     $nextPostId: String

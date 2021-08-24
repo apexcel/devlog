@@ -1,19 +1,7 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import styled from 'styled-components';
+import useFloating from '../hooks/useFloating';
 import colors from '../styles/colors';
-
-const tocFloater = (wrapper: React.RefObject<HTMLElement>, floatTarget: React.RefObject<HTMLElement>) => {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            entry.intersectionRatio > 0.2 ?
-                floatTarget.current?.classList.remove('floating') :
-                floatTarget.current?.classList.add('floating');
-        })
-    });
-    observer.observe(wrapper.current);
-    return () => observer.unobserve(wrapper.current);
-};
-
 
 const tocEmphasizer = () => {
     const headings: Array<Element> = Array.from(document.querySelectorAll(`h2, h3, h4`));
@@ -48,53 +36,7 @@ const tocEmphasizer = () => {
     return () => headings.forEach(v => observer.unobserve(v));
 };
 
-const replaceTableOfContents = (ref: React.RefObject<HTMLElement>, toc: string) => {
-    const replaced = toc.replace(/(<p>)|(<\/p>)/g, '').replace(/(<a)\b/g, `<a class='toc-headings'`);
-    return <nav ref={ref} className='toc-list' dangerouslySetInnerHTML={{ __html: replaced }} />
-}
-
-const createTocElements = (tocItems: Array<Record<string, any>>, activeHash) => {
-    return tocItems.map(item => {
-        const isActive = item.hash === `#${activeHash}`;
-        const currentDepth = item.depth;
-        return (
-            <li key={item.hash}>
-                <a className={`toc-headings ${isActive ? 'active' : ''}`} href={item.hash}>{item.title}</a>
-            </li>
-        )
-    })
-};
-
-const parseStringToDom = (toc: string) => {
-    const replaced = toc.replace(/(<p>)|(<\/p>)/g, '');
-    const parsed = new DOMParser().parseFromString(replaced, 'text/html');
-    return Array.from(parsed.querySelectorAll(`body > ul > li`));
-};
-
-
-const stringToObject = (elements, depth: number = 1) => {
-    const toc = [];
-    for (const element of elements) {
-        if (element.children.length > 0) {
-            if (element.tagName === 'UL') depth = depth + 1;
-            toc.push(...stringToObject(Array.from(element.children), depth));
-        }
-        if (element?.hash) {
-            toc.push({
-                depth: depth,
-                hash: element.hash,
-                title: element.textContent
-            });
-        }
-    }
-    return toc;
-};
-
-const getTocItems = (toc: string) => {
-    return stringToObject(parseStringToDom(toc));
-}
-
-const TOCWrapper = styled.div`
+const TOCPositioner = styled.div`
     position: relative;
     margint-top: 2rem;
 
@@ -108,7 +50,7 @@ const TOCWrapper = styled.div`
     }
 `;
 
-const TOCItem = styled.div`
+const TOCWrapper = styled.div`
     position: absolute;
     left: 100%;
     margin-top: 154px;
@@ -141,22 +83,28 @@ const TOCItem = styled.div`
 `;
 
 const TOC: React.FC<Record<string, any>> = ({ toc }) => {
-    const wrapperRef = useRef<HTMLDivElement>(null);
-    const listRef = useRef<HTMLElement>(null);
-    const [activeHash, setActiveHash] = useState<null | string>(null);
+    const positionerRef = useRef<HTMLDivElement>(null);
+    const tocNavRef = useRef<HTMLElement>(null);
+    const tocElement = useMemo(() => toc.replace(/<p>|<\/p>/g, ''), [toc]);
+
+    const getPostHeaders = () => document.querySelectorAll(`main > h1, h2, h3`);
+    useFloating(positionerRef, tocNavRef);
 
     useEffect(() => {
-        tocFloater(wrapperRef, listRef);
+        console.log(document.querySelectorAll(`article h2, h3, h4`))
         tocEmphasizer();
     }, [])
 
 
     return (
-        <TOCWrapper ref={wrapperRef}>
-            <TOCItem>
-                {replaceTableOfContents(listRef, toc)}
-            </TOCItem>
-        </TOCWrapper>
+        <TOCPositioner ref={positionerRef}>
+            <TOCWrapper>
+                <nav
+                    ref={tocNavRef}
+                    dangerouslySetInnerHTML={{ __html: tocElement }}>
+                </nav>
+            </TOCWrapper>
+        </TOCPositioner>
     )
 }
 

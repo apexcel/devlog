@@ -39,7 +39,7 @@ const SubItemContent = styled.a`
 
 const MenuNavItem: React.FC = () => {
 
-    const data: RawNavItems = useStaticQuery(graphql`
+    const data: DataType = useStaticQuery(graphql`
     query {
         allMarkdownRemark {
             nodes {
@@ -60,7 +60,7 @@ const MenuNavItem: React.FC = () => {
         setSubContentNumber(subContentNumber === index ? -1 : index);
     };
 
-    const parseNodeData = (): NavItems => {
+    const parseNodeData = () => {
         const nodes = data.allMarkdownRemark.nodes;
         const items = {};
         let uniqueTags = new Set();
@@ -83,13 +83,13 @@ const MenuNavItem: React.FC = () => {
 
     const renderItems = () => {
         const categoryTitles = Object.keys(nodeData.items);
-        const values: NavSubItem[][] = Object.values(nodeData.items);
+        const values = Object.values(nodeData.items);
         return categoryTitles.map((cTitle, i) =>
             <SubItemWrapper key={i}>
                 <SubItemTitle active={i === subContentNumber} onClick={() => contentNumberToggler(i)}>{cTitle}</SubItemTitle><SubItemCount>({values[i].length})</SubItemCount>
                 <SubItemContentWrapper active={i === subContentNumber}>
                     {
-                        values[i].map((v: NavSubItem, j) =>
+                        values[i].map((v, j) =>
                             <SubItemContent href={v.slug} key={j}>{v.title}</SubItemContent>
                         )
                     }
