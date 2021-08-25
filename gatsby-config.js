@@ -53,8 +53,8 @@ module.exports = {
           {
             resolve: `gatsby-remark-autolink-headers`, // prismjs 보다 앞에 와야함.
             options: {
-              className: `anchor-header`,
-              icon: false,
+              icon: `<svg></svg>`,
+              className: `a-header`,
               maintainCase: false,
               removeAccents: true,
               elements: [`h2`, 'h3', `h4`],
