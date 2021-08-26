@@ -20,8 +20,8 @@ const TagItem = styled(Link)`
     margin-bottom: 10px;
     border-radius: 25px;
     text-align: center;
-    background-color: ${props => props.theme.tag.background};
-    color: ${props => props.theme.colors.default};
+    background-color: var(--tag-background);
+    color: var(--default-color);
     font-size: 0.9rem;
 
     @media screen and (max-width: 768px) {

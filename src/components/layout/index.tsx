@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { useThemeToggler, Theme } from '../../hooks/useThemeToggler';
-import { GlobalStyle, globalTheme } from '../../styles/GlobalStyle';
+import { GlobalStyle } from '../../styles/GlobalStyle';
 import Floater from '../common/Floater';
 import LayoutFooter from './LayoutFooter';
 import LayoutHeader from './LayoutHeader';
@@ -16,9 +16,9 @@ const LayoutWrapper = styled.section`
         '. main .'
         'footer footer footer';
     margin: 0 auto;
-    background-color: ${props => props.theme.layout.background};
-    color: ${props => props.theme.colors.default};
-    transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+    color: var(--default-color);
+    background-color: var(--layout-background);
+    transition: color 0.25s ease-in-out, background 0.25s ease-in-out;
 `;
 
 const LayoutMain = styled.main`
@@ -53,7 +53,7 @@ const Layout: React.FC = ({ children }) => {
 
     return (
         <>
-            <ThemeProvider theme={globalTheme[theme as string]}>
+            {/* <ThemeProvider theme={globalTheme[theme as string]}> */}
                 <Theme.Provider value={{ theme, themeToggler }}>
                     <GlobalStyle />
                     <LayoutWrapper>
@@ -67,7 +67,7 @@ const Layout: React.FC = ({ children }) => {
                     </LayoutWrapper>
                     <Membrane headerNavState={headerNavState} onClick={headerToggler} />
                 </Theme.Provider>
-            </ThemeProvider>
+            {/* </ThemeProvider> */}
         </>
     )
 };

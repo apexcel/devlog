@@ -11,8 +11,8 @@ const codeblockStyle = css`
     blockquote {
         margin: 0;
         padding: 1.2rem;
-        border-left: 8px solid ${props => props.theme.colors.signature};
-        background-color: ${props => props.theme.blockquote.background} !important;
+        border-left: 8px solid var(--signature-color);
+        background-color: var(--blockquote-color) !important;
         margin: 10px 0;
     }
     
@@ -20,8 +20,8 @@ const codeblockStyle = css`
     code[class*='language-'] {
         font-family: 'D2Coding ligature', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
         'Courier New', monospace;
-        background-color: ${props => props.theme.codeblock.background};
-        color: ${props => props.theme.codeblock.color};
+        background-color: var(--codeblock-background);
+        color: var(--codeblcok-color);
         text-shadow: none;
 
         .operator {
@@ -32,13 +32,13 @@ const codeblockStyle = css`
     pre[class='language-text'] > code[class='language-text'],
     pre[class='language-markdown'],
     code[class='language-markdown'] {
-        background-color: ${props => props.theme.blockquote.background};
-        color: ${props => props.theme.colors.default} !important;
+        background-color: var(--blockquote-color);
+        color: var(--default-color) !important;
     }
     
     code[class='language-text'] {
-        background-color: ${props => props.theme.blockquote.background} !important;
-        color: ${props => props.theme.colors.signature};
+        background-color: var(--blockquote-color) !important;
+        color: var(--signature-color);
         padding: 4px !important;
     }
     
@@ -126,7 +126,7 @@ const codeblockStyle = css`
         color: #eb6527;
     }
     .token.parameter {
-        color: ${props => props.theme.colors.signature};
+        color: var(--signature-color);
     }
     .token.function {
         color: #5c8ce6;

@@ -18,7 +18,7 @@ const Header = styled.header<{isVisible: boolean}>`
     z-index: 999;
 
     @media screen and (max-width: 1024px) {
-        background: ${props => props.theme.layout.background};
+        background: var(--layout-background);
 
         height: 72px;
         border-bottom: 1px solid rgba(0,0,0,0.3);
@@ -34,11 +34,11 @@ const HeaderLogo = styled.div`
     margin: 0 32px;
 
     g {
-        fill: ${props => props.theme.colors.default};
+        fill: var(--default-color);
     }
 
     &:hover g {
-        fill: ${props => props.theme.colors.signature};
+        fill: var(--sinature-color);
     }
 
     @media screen and (max-width: 1024px) {

@@ -15,7 +15,7 @@ table {
             flex-basis: 0;
             flex-grow: 1;
             width: 100%;
-            border-bottom: 2px solid ${props => props.theme.colors.default};
+            border-bottom: 2px solid var(--default-color);
             padding: 10px 0;
         }
     }
@@ -31,7 +31,7 @@ table {
             }
 
             &:nth-child(even) {
-                color: ${props => props.theme.colors.default};
+                color: var(--default-color);
                 background-color: #6c799c;
             }
 

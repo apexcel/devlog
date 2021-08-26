@@ -33,7 +33,7 @@ const Toggler = styled.input`
         transition: all 0.25s cubic-bezier(.45,.27,.39,.79);
     }
     &:checked {
-        border-color: ${props => props.theme.colors.signature};
+        border-color: var(--signature-color);
         &:after{
             transform: translatex(32px);
         }

@@ -28,7 +28,7 @@ const TOCWrapper = styled.div`
         a {
             display: block;
             font-size: 0.8rem;
-            color: ${props => props.theme.colors.default};
+            color: var(--default-color);
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
@@ -37,7 +37,7 @@ const TOCWrapper = styled.div`
             margin: 0;
         }
         .active {
-            color: ${props => props.theme.colors.signature};
+            color: var(--sinature-color);
             font-weight: bold;
             font-size: 1rem;
         }

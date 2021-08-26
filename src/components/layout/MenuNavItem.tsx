@@ -20,7 +20,7 @@ const SubItemTitle = styled.h6`
     border-left: 1px solid rgba(0, 0, 0, 0.7);
     display: inline-block;
     cursor: pointer;
-    color: ${props => props['aria-hidden'] ? props.theme.colors.signature : props.theme.colors.default};
+    color: ${props => props['aria-hidden'] ? `var(--signature-color)` : `var(--default-color)`};
     margin: 0;
     padding-left: ${props => props['aria-hidden'] ? '12px' : '8px'};
     font-weight: ${props => props['aria-hidden'] ? 'bold' : 'regular'};

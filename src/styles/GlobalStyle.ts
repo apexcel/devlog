@@ -16,33 +16,36 @@ const scrollbarStyle = css`
 `;
 
 const customTheme = css`
-body {
-    &.light {
-        --default-color: #3d3d3d;
-        --signature-color: #3455bb;
+    body {
+        &.light {
+            --default-color: #3d3d3d;
+            --signature-color: #3455bb;
 
-        --layout-background: #fffff;
-        --tag-background: #e0e2e66f;
+            --layout-background: #ffffff;
+            --layout-footer-background: #0c0c0c;
 
-        --codeblock-background: #2b2b2b;
-        --codeblock-color: #cacaca;
+            --tag-background: #e0e2e66f;
 
-        --blockquote-background: #e6e6e6;
+            --codeblock-background: #2b2b2b;
+            --codeblock-color: #cacaca;
+
+            --blockquote-background: #e6e6e6;
+        }
+        &.dark {
+            --default-color: #eaeaea;
+            --signature-color: #3455bb;
+
+            --layout-background: #1b1b1b;
+            --layout-footer-background: #0c0c0c;
+            
+            --tag-background: #3737376f;
+
+            --codeblock-background: #2b2b2b;
+            --codeblock-color: #cacaca;
+
+            --blockquote-background: #111111;
+        }
     }
-
-    &.dark {
-        --default-color: #eaeaea;
-        --signature-color: #3455bb;
-
-        --layout-background: #1b1b1b;
-        --tag-background: #3737376f;
-
-        --codeblock-background: #2b2b2b;
-        --codeblock-color: #cacaca;
-
-        --blockquote-background: #111111;
-    }
-}
 `;
 
 const reset = css`
@@ -57,26 +60,24 @@ const reset = css`
         padding: 0;
         box-sizing: border-box;
         text-decoration: none;
-        transition: background-color 0.25s ease-in-out;
     }
 
     strong, b {
-        color: ${props => props.theme.colors.signature};
+        color: var(--signature-color);
         font-weight: bold;
     }
 
     em {
-        color: ${props => props.theme.colors.signature};
+        color: var(--signature-color);
     }
 
     a {
         text-decoration: none;
-        color: ${props => props.theme.colors.default};
+        color: var(--default-color);
         &:hover {
-            color: ${props => props.theme.colors.signature};
+            color: var(--signature-color);
         }
     }
-
 
     h1 {
         font-size: 2.3rem;
@@ -110,51 +111,10 @@ const reset = css`
         height: 0;
         user-select: none;
     }
+
+    ${customTheme}
     ${scrollbarStyle}
 `;
-
-export const globalTheme = {
-    light: {
-        colors: {
-            default: `#3d3d3d`,
-            signature: `#3455bb`
-        },
-        layout: {
-            background: `#ffffff`,
-            footerBackground: `#0c0c0c`
-        },
-        tag: {
-            background: `#e0e2e66f`
-        },
-        codeblock: {
-            background: `#2b2b2b`,
-            color: `#cacaca`
-        },
-        blockquote: {
-            background: `#e6e6e6`
-        }
-    },
-    dark: {
-        colors: {
-            default: `#eaeaea`,
-            signature: `#3455bb`
-        },
-        layout: {
-            background: `#1b1b1b`,
-            footerBackground: `#0c0c0c`
-        },
-        tag: {
-            background: `#3737376f`
-        },
-        codeblock: {
-            background: `#2b2b2b`,
-            color: `#cacaca`
-        },
-        blockquote: {
-            background: `#111111`
-        }
-    }
-};
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}

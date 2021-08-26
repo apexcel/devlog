@@ -64,22 +64,22 @@ const PostNavButtonWrapper = styled.div`
             animation-timing-function: ease;
         }
         path {
-            fill: ${props => props.theme.colors.signature};
+            fill: var(--sinature-color);
         }
         b, em {
-            color: ${props => props.theme.colors.signature};
+            color: var(--sinature-color);
         }
     }
 
     em {
         display: block;
         font-size: 0.9rem;
-        color: ${props => props.theme.colors.default};
+        color: var(--default-color);
     }
 
     b {
         font-size: 1.1rem;
-        color: ${props => props.theme.colors.default};
+        color: var(--default-color);
     }
 
     path {

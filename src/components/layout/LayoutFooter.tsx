@@ -13,7 +13,11 @@ const Footer = styled.footer`
         '. footer-contents .';
     width: 100%;
     height: 128px;
+<<<<<<< HEAD
+    background-color: var(--layout-footer-background);
+=======
     background-color: ${props => props.theme.layout.footerBackground};
+>>>>>>> 0efbd7e5238d8df512fb462bfa5511558ab65fc4
 `;
 
 const FooterContents = styled.section`
@@ -35,11 +39,15 @@ const FooterNav = styled.nav`
         }
 
         & g {
+<<<<<<< HEAD
+            fill: var(--default-color);
+=======
             fill: ${props => props.theme.colors.default};
+>>>>>>> 0efbd7e5238d8df512fb462bfa5511558ab65fc4
         }
 
         span {
-            color: ${props => props.theme.colors.default};
+            color: var(--default-color);
         }
     }
 `;
