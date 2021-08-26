@@ -19,7 +19,6 @@ const LayoutWrapper = styled.section`
     background-color: ${props => props.theme.layout.background};
     color: ${props => props.theme.colors.default};
     transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
-
 `;
 
 const LayoutMain = styled.main`
@@ -56,8 +55,8 @@ const Layout: React.FC = ({ children }) => {
         <>
             <ThemeProvider theme={globalTheme[theme as string]}>
                 <Theme.Provider value={{ theme, themeToggler }}>
-                    <LayoutWrapper>
-                        <GlobalStyle />
+                    <GlobalStyle />
+                        <LayoutWrapper>
                         <LayoutHeader headerNavState={headerNavState} headerToggler={headerToggler} />
                         <LayoutMain>
                             {/* <Floater /> */}
