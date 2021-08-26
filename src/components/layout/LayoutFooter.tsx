@@ -39,11 +39,7 @@ const FooterNav = styled.nav`
         }
 
         & g {
-<<<<<<< HEAD
             fill: var(--default-color);
-=======
-            fill: ${props => props.theme.colors.default};
->>>>>>> 0efbd7e5238d8df512fb462bfa5511558ab65fc4
         }
 
         span {
