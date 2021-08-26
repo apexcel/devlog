@@ -1,7 +1,5 @@
-import { Link } from 'gatsby';
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import colors from '../../styles/colors';
 import SVG from '../common/SVG';
 
 const animation = keyframes`
@@ -31,7 +29,6 @@ const PostNavButtonWrapper = styled.div`
     border: 1px solid #cfcfcf;
     height: 80px;
     width: 300px;
-    padding: 10px;
 
     div {
         display: block;
@@ -39,6 +36,11 @@ const PostNavButtonWrapper = styled.div`
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        padding: 6px;
+    }
+
+    svg {
+        padding: 6px;
     }
 
     &[data-dir='prev'] {
@@ -61,22 +63,22 @@ const PostNavButtonWrapper = styled.div`
             animation-timing-function: ease;
         }
         path {
-            fill: ${colors.main};
+            fill: ${props => props.theme.colors.signature};
         }
         b, em {
-            color: ${colors.main};
+            color: ${props => props.theme.colors.signature};
         }
     }
 
     em {
         display: block;
         font-size: 0.9rem;
-        color: ${colors.font};
+        color: ${props => props.theme.colors.default};
     }
 
     b {
         font-size: 1.1rem;
-        color: ${colors.font};
+        color: ${props => props.theme.colors.default};
     }
 
     path {
@@ -84,7 +86,6 @@ const PostNavButtonWrapper = styled.div`
     }
 
     @media screen and (max-width: 768px) {
-        padding: 0 20px;
         width: 100%;
         margin: 0;
 
@@ -92,6 +93,7 @@ const PostNavButtonWrapper = styled.div`
             width: 100%;
         }
     }
+
 `;
 
 const LinkTo = styled.a<{isHidden: boolean}>`

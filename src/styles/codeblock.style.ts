@@ -1,6 +1,8 @@
 import { css } from 'styled-components';
 import colors from './colors';
 
+// TODO: 다크모드 컬러 설정
+
 const codeblockStyle = css`
     font-family: 'D2Coding ligature';
     font-weight: normal;
@@ -108,6 +110,10 @@ const codeblockStyle = css`
     .gatsby-highlight[data-language='graphql'] pre[class*='-graphql']::before {
         content: 'GRAPHQL';
         background: #bd2fca;
+    }
+    .gatsby-highlight[data-language='shell'] pre[class*='-shell']::before {
+        content: 'SHELL';
+        background: #d8e6e7;
     }
     
     .token {

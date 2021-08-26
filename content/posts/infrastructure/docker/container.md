@@ -26,14 +26,14 @@ date: "2021-03-03T11:32:08.791Z"
 
 ## 컨테이너 생성
 
-```bash
+```shell
 > docker -v
 Docker version 20.10.5, build 55c4c88
 ```
 
 먼저 버전 확인을 한다.
 
-```bash
+```shell
 > docker run -i -t ubuntu:20.04
 Unable to find image 'ubuntu:20.04' locally
 20.04: Pulling from library/ubuntu
@@ -54,7 +54,7 @@ root@a7ccae32086d:/#
 
 실행 시킨 프로세스에서 상호 작용을 하기 위해서는 반드시 `-i`와 `-t` 옵션을 붙여줘야한다. `-i`는 `attach`되지 않은 경우에도 interactive 할 수 있도록 해주며 `-t`는 `TTY`를 활성화 시킨다. 줄여서 `-it`로 사용할 수도 있다. 로컬에 해당하는 도커 이미지가 없다면 도커 허브에서 자동으로 이미지를 내려받으며 컨테이너의 기본 사용자는 **root**이며 호스트 이름은 무작위 16진수 해시값이며 앞의 일부분만 표시된다.
 
-```bash
+```shell
 > docker images
 REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
 ubuntu       20.04     f63181f19b2f   5 weeks ago   72.9MB
@@ -64,14 +64,14 @@ ubuntu       20.04     f63181f19b2f   5 weeks ago   72.9MB
 
 ## 컨테이너 목록
 
-```bash
+```shell
 > docker ps
 CONTAINER ID   IMAGE          COMMAND       CREATED        STATUS          PORTS     NAMES
-a7ccae32086d   ubuntu:20.04   "/bin/bash"   13 hours ago   Up 36 seconds             determined_galileo
+a7ccae32086d   ubuntu:20.04   "/bin/shell"   13 hours ago   Up 36 seconds             determined_galileo
 
 > docker ps -a
 CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS                     PORTS     NAMES
-a7ccae32086d   ubuntu:20.04   "/bin/bash"   7 minutes ago   Exited (0) 7 seconds ago             determined_galileo
+a7ccae32086d   ubuntu:20.04   "/bin/shell"   7 minutes ago   Exited (0) 7 seconds ago             determined_galileo
 ```
 
 - `CONTAINER ID`: 컨테이너에 할당되는 고유 아이디 값.
@@ -82,16 +82,16 @@ a7ccae32086d   ubuntu:20.04   "/bin/bash"   7 minutes ago   Exited (0) 7 seconds
 - `PORT`: 컨테이너가 개방한 포트와 호스트에 연결된 포트.
 - `NAMES`: 컨테이너가 생서될 때 이름을 명시하지 않으면 형용사_명사 형태로 무작위하게 결정된다. 이름을 변경할 때는 `rename` 명령어로 바꿀 수 있다.
 
-```bash
+```shell
 > docker rename a7 test_image
 > docker ps -a
 CONTAINER ID   IMAGE          COMMAND       CREATED        STATUS                     PORTS     NAMES
-a7ccae32086d   ubuntu:20.04   "/bin/bash"   14 hours ago   Exited (0) 9 minutes ago             test_image
+a7ccae32086d   ubuntu:20.04   "/bin/shell"   14 hours ago   Exited (0) 9 minutes ago             test_image
 ```
 
 실행된 컨테이너를 빠져나오는데에는 두 가지 방법이 있다. `exit`을 입력하거나 `Ctrl+D`를 통해 컨테이너를 빠져나오면서 정지시킬수 있고 다른 방법은 `Ctrl+P, Q`를 통해 정지하지 않고 빠져 나오는 방법이 있다. `docker ps`는 현재 실행중인 컨테이너만 나타내며 `-a` 옵션을 사용하면 정지된 컨테이너를 포함하여 모든 컨테이너를 출력한다.
 
-```bash
+```shell
 > docker start a7
 a7
 > docker attach a7
@@ -104,7 +104,7 @@ root@a7ccae32086d:/#
 
 컨테이너 삭제를 할 때는 `docker rm` 명령어를 사용한다. 한 번 삭제하면 복구할 수 없으므로 주의 해야한다.
 
-```bash
+```shell
 > docker rm a7
 Error response from daemon: You cannot remove a running container a7ccae32086dd7d70b13db01ba67d2b68b5fd5f4d2ce4f526b1d2e4bd8aa0280. Stop the container before attempting removal or force remove
 
@@ -124,7 +124,7 @@ Are you sure you want to continue? [y/N] y
 
 컨테이너는 가상 IP주소를 할당 받는다. `ifconfig` 명령어를 통해 네트워크 인터페이스를 확인하면 이더넷 `eth0`와 로컬 호스트인 `lo`가 나타난다. 기본적인 상태에서는 호스트를 제외하고는 외부에서 해당 컨테이너로의 접근이 불가능하다.
 
-```bash
+```shell
 > docker run -it --name test ubuntu:20.04
 root@65a10791f777:/# ifconfig
 
@@ -145,14 +145,14 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-```bash
+```shell
 > docker run -it --name network_test -p 80:80 ubuntu:20.04
 > docker run -it --name network_test -p 443:443 -p 192.168.0.1:4321:80 ubuntu:20.04
 ```
 
 해당 컨테이너를 삭제하고 새롭게 컨테이너를 생성하는데 이때 `-p` 옵션을 추가한다. `-p` 옵션은 `--publish`로 대체할 수 있다. 해당 옵션은 `호스트의 포트:컨테이너의 포트` 형태로 바인딩해준다. 여러개의 포트를 사용하고자 한다면 `-p` 옵션을 여러번 사용하여 명시해주면 된다.
 
-```bash
+```shell
 > docker run -it --name network_test -p 80:80 ubuntu:20.04
 root@67d41886df41:/# apt update && apt upgrade -y && apt install apache2 -y
 root@67d41886df41:/# service apache2 start

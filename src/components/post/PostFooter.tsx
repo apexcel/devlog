@@ -5,7 +5,7 @@ import PostNavButton from './PostNavButton';
 const PostFooterWrapper = styled.nav`
     display: flex;
     justify-content: space-between;
-    margin-top: 160px;
+    margin: 160px 0;
     padding-bottom: 40px;
 
     @media screen and (max-width: 768px) {
@@ -14,6 +14,11 @@ const PostFooterWrapper = styled.nav`
         flex-direction: column;
     }
 `;
+
+interface PostFooterProps {
+    next: AdjacentPost;
+    prev: AdjacentPost;
+}
 
 const PostFooter: React.FC<PostFooterProps> = ({ prev, next }) => {
     return (

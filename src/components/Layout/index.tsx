@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import GlobalStyle from '../../styles/GlobalStyle';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { useThemeToggler, Theme } from '../../hooks/useThemeToggler';
+import { GlobalStyle, globalTheme } from '../../styles/GlobalStyle';
 import LayoutFooter from './LayoutFooter';
 import LayoutHeader from './LayoutHeader';
 import MenuNav from './MenuNav';
@@ -23,7 +24,7 @@ const LayoutMain = styled.main`
     min-height: 100vh;
 `;
 
-const Membrane = styled.div<{headerNavState: boolean}>`
+const Membrane = styled.div<{ headerNavState: boolean }>`
     display: ${props => props.headerNavState ? 'block' : 'none'};
     position: fixed;
     top: 0;
@@ -35,22 +36,27 @@ const Membrane = styled.div<{headerNavState: boolean}>`
     cursor: pointer;
 `;
 
+
 const Layout: React.FC = ({ children }) => {
-
     const [headerNavState, setHeaderNavState] = useState(false);
-
+    const [theme, themeToggler] = useThemeToggler();
+    
     return (
         <>
-            <LayoutWrapper>
-                <GlobalStyle />
-                <LayoutHeader headerNavState={headerNavState} setHeaderNavState={setHeaderNavState} />
-                <LayoutMain>
-                    {children}
-                    <MenuNav headerNavState={headerNavState} />
-                </LayoutMain>
-                <LayoutFooter />
-            </LayoutWrapper>
-            <Membrane headerNavState={headerNavState} onClick={() => setHeaderNavState(false)}/>
+            <ThemeProvider theme={globalTheme[theme as string]}>
+                <Theme.Provider value={{ theme, themeToggler }}>
+                    <LayoutWrapper>
+                        <GlobalStyle />
+                        <LayoutHeader headerNavState={headerNavState} setHeaderNavState={setHeaderNavState} />
+                        <LayoutMain>
+                            {children}
+                            <MenuNav headerNavState={headerNavState} />
+                        </LayoutMain>
+                        <LayoutFooter />
+                    </LayoutWrapper>
+                    <Membrane headerNavState={headerNavState} onClick={() => setHeaderNavState(false)} />
+                </Theme.Provider>
+            </ThemeProvider>
         </>
     )
 };

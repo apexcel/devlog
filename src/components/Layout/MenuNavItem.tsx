@@ -1,10 +1,13 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React, { useRef, useEffect, useMemo, useState, useCallback } from 'react';
 import styled from 'styled-components';
-import colors from '../../styles/colors';
+import ThemeToggler from '../common/ThemeToggler';
 import Tags from '../tags/Tags';
 
 const MenuNavItemWrapper = styled.nav`
+    @media screen and (max-width: 1024px) {
+        padding: 72px 14px 14px 14px;
+    }
 `;
 
 const MenuTitle = styled.h3``;
@@ -17,7 +20,7 @@ const SubItemTitle = styled.h6<{active: boolean}>`
     border-left: 1px solid rgba(0, 0, 0, 0.7);
     display: inline-block;
     cursor: pointer;
-    color: ${props => props.active ? colors.main : colors.font};
+    color: ${props => props.active ? props.theme.colors.signature : props.theme.colors.default};
     margin: 0;
     padding-left: ${props => props.active ? '12px' : '8px'};
     font-weight: ${props => props.active ? 'bold' : 'regular'};
@@ -35,6 +38,9 @@ const SubItemContent = styled.a`
     font-size: 0.9rem;
     margin-left: 18px;
     padding: 2px 0;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
 
 const MenuNavItem: React.FC = () => {
@@ -100,6 +106,7 @@ const MenuNavItem: React.FC = () => {
 
     return (
         <MenuNavItemWrapper>
+            <ThemeToggler/>
             <MenuTitle>Category</MenuTitle>
             {renderItems()}
             <MenuTitle>Series</MenuTitle>

@@ -109,8 +109,3 @@ export function getScrollTop() {
         ? document.documentElement.scrollTop || document.body.scrollTop
         : document.body.scrollTop;
 }
-
-export function stringToElement(string: string) {
-    const parser = new DOMParser();
-    return parser.parseFromString(string, 'text/html').body.firstElementChild;
-}

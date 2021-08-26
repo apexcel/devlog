@@ -32,7 +32,7 @@ const PostTitle = styled.a`
     display: inline-block;
     width: 700px;
     font-size: 1.3rem;
-    color: ${colors.font};
+    color: ${props => props.theme.colors.default};
     word-break: break-all;
 
     @media screen and (max-width: 768px) {

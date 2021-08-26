@@ -39,6 +39,7 @@ const menuBar1 = css`
         span {
             background-color: ${colors.main};
             width: 48px;
+            transition: all 0.25s;
         }
     }
 `;
@@ -64,6 +65,7 @@ const menuBar2 = css`
         width: 24px;
         transform: rotate(-35deg) translate(5px, -4px);
     }
+    transition: all 0.25s;
 }
 `;
 
@@ -77,7 +79,6 @@ const HeaderMenu = styled.div<{headerNavState: boolean}>`
     cursor: pointer;
 
     ${props => props.headerNavState ? menuBar2 : menuBar1}
-
 `;
 
 interface HeaderMenuProps {

@@ -25,6 +25,8 @@ const Header = styled.header<{isVisible: boolean}>`
         top: 0px;
         transform: translateY(${props => props.isVisible ? `0px` : `-72px`});
     }
+
+    transition: all 0.25s ease;
 `;
 
 const HeaderLogo = styled.div`

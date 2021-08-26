@@ -37,20 +37,20 @@ date: "2021-08-17T11:22:55.148Z"
 
 먼저 사용될 사용자 정의 도커 네트워크를 생성한다. 생성된 네트워크는 `docker network connect [container_name]`와 `docker network disconnect [container_name]`를 이용하여 붙이거나 제거할 수 있다.
 
-```bash
+```shell
 > docker network create mynet
 ```
 
 nginx와 mysql 컨테이너를 같은 네트워크로 지정하여 생성한다.
 
-```bash
+```shell
 > docker run --name nginx -d -p 80:80 --network mynet nginx
 > docker run --name mysql -d --network mynet mysql
 ```
 
 `docker network inspect [network_name]` 명령어를 활용하여 네트워크의 정보와 어떠한 컨테이너가 연결되어 있는지 확인 할 수 있다.
 
-```bash
+```shell
 [
     {
         "Name": "mynet",
@@ -76,7 +76,7 @@ nginx와 mysql 컨테이너를 같은 네트워크로 지정하여 생성한다.
 
 실제로 잘 동작하는지 확인하기 위해서 `ping` 명령어를 해본다.
 
-```bash
+```shell
 > docker exec -it nginx ping mysql
 PING mysql (172.18.0.3) 56(84) bytes of data.
 64 bytes from mysql.mynet (172.18.0.3): icmp_seq=1 ttl=64 time=0.087 ms

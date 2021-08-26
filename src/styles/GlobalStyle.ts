@@ -4,43 +4,69 @@ import katexStyle from './katex.style';
 import tableStyle from './table.style';
 import colors from './colors';
 
-const anchorStyle = css`
-    a {
-        text-decoration: none;
-        color: ${colors.font};
-        &:hover {
-            color: ${colors.main};
-        }
-    }
-`;
-
-const GlobalStyle = createGlobalStyle`
-    html, body {
-        margin: 0;
-        padding: 0;
-    }
-    
-    * {
+const reset = css`
+    body {
+        background: ${props => props.theme.layout.background};
+        color: ${props => props.theme.colors.default};
         font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif;
         font-weight: 300;
         line-height: 1.8;
-        colors: ${colors.font};
-        text-shadow: none;
-        text-decoration: none;
-        box-sizing: border-box;
-        vertical-align: baseline;
-        transition: all 0.25s;
         font-size: 14pt;
+        text-shadow: none;
+        vertical-align: baseline;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
     }
 
     strong, b {
-        color: ${colors.main};
+        color: ${props => props.theme.colors.signature};
         font-weight: bold;
     }
 
     em {
-        color: ${colors.main};
+        color: ${props => props.theme.colors.signature};
     }
+
+    a {
+        text-decoration: none;
+        color: ${props => props.theme.colors.default};
+        &:hover {
+            color: ${props => props.theme.colors.signature};
+        }
+    }
+`;
+
+export const globalTheme = {
+    light: {
+        colors: {
+            default: `#3d3d3d`,
+            signature: `#3455bb`
+        },
+        layout: {
+            background: `#ffffff`
+        },
+        tag: {
+            background: `#e0e2e66f`
+        }
+    },
+    dark: {
+        colors: {
+            default: `#eaeaea`,
+            signature: `#3455bb`
+        },
+        layout: {
+            background: `#1b1b1b`
+        },
+        tag: {
+            background: `#3737376f`
+        }
+    }
+};
+
+export const GlobalStyle = createGlobalStyle`
+    ${reset}
 
     h1 {
         font-size: 2.3rem;
@@ -67,10 +93,15 @@ const GlobalStyle = createGlobalStyle`
         border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     }
 
+    /* for gatsby-remark-autolink-headers */
+    .a-header {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        user-select: none;
+    }
+
     ${katexStyle}
-    ${anchorStyle}
     ${codeblockStyle}
     ${tableStyle}
 `;
-
-export default GlobalStyle;
