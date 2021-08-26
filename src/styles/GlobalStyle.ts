@@ -59,7 +59,6 @@ const reset = css`
         padding: 0;
         box-sizing: border-box;
         text-decoration: none;
-        transition: color 0.25s ease-in-out, background 0.25s ease-in-out;
     }
 
     strong, b {
@@ -79,6 +78,39 @@ const reset = css`
         }
     }
 
+
+    h1 {
+        font-size: 2.3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+    }
+
+    h5, h6 {
+        font-size: 1rem;
+    }
+
+    h1, h2, h3 {
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+    /* for gatsby-remark-autolink-headers */
+    .a-header {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        user-select: none;
+    }
     ${scrollbarStyle}
 `;
 
@@ -125,40 +157,6 @@ export const globalTheme = {
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}
-
-    h1 {
-        font-size: 2.3rem;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    h3 {
-        font-size: 1.5rem;
-    }
-
-    h4 {
-        font-size: 1.2rem;
-    }
-
-    h5, h6 {
-        font-size: 1rem;
-    }
-
-    h1, h2, h3 {
-        padding-bottom: 10px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    }
-
-    /* for gatsby-remark-autolink-headers */
-    .a-header {
-        visibility: hidden;
-        width: 0;
-        height: 0;
-        user-select: none;
-    }
-
     ${katexStyle}
     ${codeblockStyle}
     ${tableStyle}
