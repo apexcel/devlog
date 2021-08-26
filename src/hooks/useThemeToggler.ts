@@ -1,14 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
-function isPreferDark() {
-    if (!window.matchMedia || window.matchMedia(`(prefers-color-scheme)`).media !== `not-all`) {
-        return false;
-    }
-    return window.matchMedia(`(prefers-color-scheme: dark)`).matches;
-}
-
 function setLocalStorage(key: string, item: any) {
-    localStorage.setItem(key, JSON.stringify(item));
+    
 }
 
 function getLocalStorage(key: string) {
@@ -31,16 +24,19 @@ export const Theme = createContext<ThemeContextType>({
 });
 
 export function useThemeToggler() {
-    const preferTheme = isPreferDark() ? 'dark' : 'light';
-    const localTheme = getLocalStorage('theme');
-    const initTheme = localTheme || preferTheme;
-
-    const [theme, setTheme] = useState<ThemeType>(initTheme);
+    const [theme, setTheme] = useState<ThemeType>('light');
 
     const themeToggler = () => theme === 'dark' ? setTheme('light') : setTheme('dark');
 
     useEffect(() => {
-        setLocalStorage('theme', theme);
+        const item = localStorage.getItem('theme');
+        if (item) {
+            setTheme(JSON.parse(item))
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('theme', JSON.stringify(theme));
     }, [theme])
 
     return [theme, themeToggler] as const;
