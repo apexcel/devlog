@@ -21,7 +21,7 @@ const codeblockStyle = css`
         font-family: 'D2Coding ligature', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
         'Courier New', monospace;
         background-color: var(--codeblock-background);
-        color: var(--codeblcok-color);
+        color: var(--codeblock-color);
         text-shadow: none;
 
         .operator {

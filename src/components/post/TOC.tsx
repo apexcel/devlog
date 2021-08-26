@@ -37,7 +37,7 @@ const TOCWrapper = styled.div`
             margin: 0;
         }
         .active {
-            color: var(--sinature-color);
+            color: var(--signature-color);
             font-weight: bold;
             font-size: 1rem;
         }

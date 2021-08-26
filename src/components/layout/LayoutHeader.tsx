@@ -38,7 +38,7 @@ const HeaderLogo = styled.div`
     }
 
     &:hover g {
-        fill: var(--sinature-color);
+        fill: var(--signature-color);
     }
 
     @media screen and (max-width: 1024px) {

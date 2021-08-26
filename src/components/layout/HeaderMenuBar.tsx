@@ -37,7 +37,7 @@ const menuBar1 = css`
     }
     &:hover {
         span {
-            background-color: var(--sinature-color);
+            background-color: var(--signature-color);
             width: 48px;
         }
     }

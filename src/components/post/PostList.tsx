@@ -19,7 +19,7 @@ const PostListItemWrapper = styled.div`
     border-bottom: 1px solid #e0e0e0bd;
 
     &:hover {
-        border-color: var(--sinature-color);
+        border-color: var(--signature-color);
     }
 
     @media screen and (max-width: 768px) {

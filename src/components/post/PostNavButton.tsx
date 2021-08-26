@@ -64,10 +64,10 @@ const PostNavButtonWrapper = styled.div`
             animation-timing-function: ease;
         }
         path {
-            fill: var(--sinature-color);
+            fill: var(--signature-color);
         }
         b, em {
-            color: var(--sinature-color);
+            color: var(--signature-color);
         }
     }
 

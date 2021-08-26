@@ -25,7 +25,7 @@ const PostArticleWrapper = styled.article`
     }
 
     a {
-        color: var(--sinature-color);
+        color: var(--signature-color);
         text-decoration: underline;
     }
 
