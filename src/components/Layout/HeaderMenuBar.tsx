@@ -1,5 +1,4 @@
 import React from 'react';
-import colors from '../../styles/colors';
 import styled, {css} from 'styled-components';
 
 const HeaderMenuWrapper = styled.div`
@@ -19,9 +18,10 @@ const HeaderMenuWrapper = styled.div`
 const menuBar1 = css`
     & span {
         display: block;
-        background-color: ${colors.font};
+        background-color: ${props => props.theme.colors.default};
         width: 48px;
         height: 3px;
+        transition: all 0.25s ease 0s;
 
         &:nth-child(1) {
             width: 36px;
@@ -37,35 +37,34 @@ const menuBar1 = css`
     }
     &:hover {
         span {
-            background-color: ${colors.main};
+            background-color: ${props => props.theme.colors.signature};
             width: 48px;
-            transition: all 0.25s;
         }
     }
 `;
 
 const menuBar2 = css`
-& span {
-    display: block;
-    background-color: ${colors.font};
-    width: 48px;
-    height: 3px;
+    & span {
+        display: block;
+        background-color: ${props => props.theme.colors.default};
+        width: 48px;
+        height: 3px;
+        transition: all 0.25s ease 0s;
 
-    &:nth-child(1) {
-        width: 24px;
-        transform: rotate(35deg) translate(5px, 4px);
-    }
+        &:nth-child(1) {
+            width: 24px;
+            transform: rotate(35deg) translate(5px, 4px);
+        }
 
-    &:nth-child(2) {
-        width: 44px;
-        transform: translate(-3px, 0);
-    }
+        &:nth-child(2) {
+            width: 44px;
+            transform: translate(-3px, 0);
+        }
 
-    &:nth-child(3) {
-        width: 24px;
-        transform: rotate(-35deg) translate(5px, -4px);
-    }
-    transition: all 0.25s;
+        &:nth-child(3) {
+            width: 24px;
+            transform: rotate(-35deg) translate(5px, -4px);
+        }
 }
 `;
 
@@ -83,13 +82,14 @@ const HeaderMenu = styled.div<{headerNavState: boolean}>`
 
 interface HeaderMenuProps {
     headerNavState: boolean;
-    setHeaderNavState: (arg: boolean) => void;
+    headerToggler: () => void;
 }
 
-const HeaderMenuBar: React.FC<HeaderMenuProps> = ({ headerNavState, setHeaderNavState }) => {
+const HeaderMenuBar: React.FC<HeaderMenuProps> = ({ headerNavState, headerToggler }) => {
+
     return (
         <HeaderMenuWrapper>
-            <HeaderMenu headerNavState={headerNavState} onClick={() => setHeaderNavState(!headerNavState)}>
+            <HeaderMenu headerNavState={headerNavState} onClick={headerToggler}>
                 <span></span>
                 <span></span>
                 <span></span>

@@ -20,8 +20,7 @@ const NavWrapper = styled.div<{ isVisible: boolean }>`
         padding: 0;
     }
 
-    transition: transform 0.25s;
-    transition-timing-function: ease;
+    transition: transform 0.25s ease;
 `;
 
 interface MenuNavProps {

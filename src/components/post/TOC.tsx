@@ -1,7 +1,7 @@
 import React, { useRef, useMemo } from 'react'
 import styled from 'styled-components';
-import useEmphasizer from '../hooks/useEmphasizer';
-import useFloating from '../hooks/useFloating';
+import useEmphasizer from '../../hooks/useEmphasizer';
+import useFloating from '../../hooks/useFloating';
 
 const TOCPositioner = styled.div`
     position: relative;

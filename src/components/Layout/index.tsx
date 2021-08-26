@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { useThemeToggler, Theme } from '../../hooks/useThemeToggler';
 import { GlobalStyle, globalTheme } from '../../styles/GlobalStyle';
+import Floater from '../common/Floater';
 import LayoutFooter from './LayoutFooter';
 import LayoutHeader from './LayoutHeader';
 import MenuNav from './MenuNav';
@@ -41,20 +42,27 @@ const Layout: React.FC = ({ children }) => {
     const [headerNavState, setHeaderNavState] = useState(false);
     const [theme, themeToggler] = useThemeToggler();
     
+    const headerToggler = () => {
+        const html = document.documentElement;
+        headerNavState ? html.removeAttribute('style') : html.setAttribute('style', 'overflow: hidden');
+        setHeaderNavState(!headerNavState);
+    }
+
     return (
         <>
             <ThemeProvider theme={globalTheme[theme as string]}>
                 <Theme.Provider value={{ theme, themeToggler }}>
                     <LayoutWrapper>
                         <GlobalStyle />
-                        <LayoutHeader headerNavState={headerNavState} setHeaderNavState={setHeaderNavState} />
+                        <LayoutHeader headerNavState={headerNavState} headerToggler={headerToggler} />
                         <LayoutMain>
+                            {/* <Floater /> */}
                             {children}
                             <MenuNav headerNavState={headerNavState} />
                         </LayoutMain>
                         <LayoutFooter />
                     </LayoutWrapper>
-                    <Membrane headerNavState={headerNavState} onClick={() => setHeaderNavState(false)} />
+                    <Membrane headerNavState={headerNavState} onClick={headerToggler} />
                 </Theme.Provider>
             </ThemeProvider>
         </>

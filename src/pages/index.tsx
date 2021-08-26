@@ -3,7 +3,7 @@ import { PageProps, graphql } from "gatsby"
 import SEO from "../components/SEO"
 import { toKebabCase } from '../utils'
 
-import TaggedPostsInfo from '../components/tags/TaggedPostInfo'
+import TaggedPostsInfo from '../components/post/TaggedPostInfo'
 import PostList from '../components/post/PostList'
 import Layout from '../components/Layout'
 

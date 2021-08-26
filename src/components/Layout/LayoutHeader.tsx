@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
-import colors from '../../styles/colors';
 import Logo from '../../../content/assets/Logo.svg';
 
 import HeaderMenuBar from './HeaderMenuBar';
@@ -19,13 +18,12 @@ const Header = styled.header<{isVisible: boolean}>`
     z-index: 999;
 
     @media screen and (max-width: 1024px) {
-        background: white;
+        background: ${props => props.theme.layout.background};
         height: 72px;
         border-bottom: 1px solid rgba(0,0,0,0.3);
         top: 0px;
         transform: translateY(${props => props.isVisible ? `0px` : `-72px`});
     }
-
     transition: all 0.25s ease;
 `;
 
@@ -33,8 +31,13 @@ const HeaderLogo = styled.div`
     width: auto;
     padding: 14px;
     margin: 0 32px;
+
+    g {
+        fill: ${props => props.theme.colors.default};
+    }
+
     &:hover g {
-        fill: ${colors.main};
+        fill: ${props => props.theme.colors.signature};
     }
 
     @media screen and (max-width: 1024px) {
@@ -52,10 +55,10 @@ const HeaderRight = styled.div`
 
 interface LayoutHeaderProps {
     headerNavState: boolean;
-    setHeaderNavState: (arg: boolean) => void;
+    headerToggler: (arg: boolean) => void;
 }
 
-const LayoutHeader: React.FC<LayoutHeaderProps> = ({ headerNavState, setHeaderNavState }) => {
+const LayoutHeader: React.FC<LayoutHeaderProps> = ({ headerNavState, headerToggler }) => {
 
     const [headerVisibility, setHeaderVisibility] = useState(true);
 
@@ -71,7 +74,7 @@ const LayoutHeader: React.FC<LayoutHeaderProps> = ({ headerNavState, setHeaderNa
                 </Link>
             </HeaderLogo>
             <HeaderRight>
-                <HeaderMenuBar headerNavState={headerNavState} setHeaderNavState={setHeaderNavState}/>
+                <HeaderMenuBar headerNavState={headerNavState} headerToggler={headerToggler}/>
             </HeaderRight>
         </Header>
     )

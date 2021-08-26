@@ -1,5 +1,4 @@
 import { css } from 'styled-components';
-import colors from './colors';
 
 // TODO: 다크모드 컬러 설정
 
@@ -12,8 +11,8 @@ const codeblockStyle = css`
     blockquote {
         margin: 0;
         padding: 1.2rem;
-        border-left: 8px solid ${colors.main};
-        background-color: ${colors.blockquote_bg} !important;
+        border-left: 8px solid ${props => props.theme.colors.default};
+        background-color: ${props => props.theme.blockquote.background} !important;
         margin: 10px 0;
     }
     
@@ -21,8 +20,8 @@ const codeblockStyle = css`
     code[class*='language-'] {
         font-family: 'D2Coding ligature', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
         'Courier New', monospace;
-        background-color: ${colors.codeblock_bg};
-        color: ${colors.codeblock_text};
+        background-color: ${props => props.theme.codeblock.background};
+        color: ${props => props.theme.codeblock.color};
         text-shadow: none;
 
         .operator {
@@ -33,13 +32,13 @@ const codeblockStyle = css`
     pre[class='language-text'] > code[class='language-text'],
     pre[class='language-markdown'],
     code[class='language-markdown'] {
-        background-color: ${colors.blockquote_bg};
-        color: ${colors.font} !important;
+        background-color: ${props => props.theme.blockquote.background};
+        color: ${props => props.theme.colors.default} !important;
     }
     
     code[class='language-text'] {
-        background-color: ${colors.blockquote_bg} !important;
-        color: ${colors.main};
+        background-color: ${props => props.theme.blockquote.background} !important;
+        color: ${props => props.theme.colors.signature};
         padding: 4px !important;
     }
     
@@ -127,7 +126,7 @@ const codeblockStyle = css`
         color: #eb6527;
     }
     .token.parameter {
-        color: ${colors.main};
+        color: ${props => props.theme.colors.signature};
     }
     .token.function {
         color: #5c8ce6;

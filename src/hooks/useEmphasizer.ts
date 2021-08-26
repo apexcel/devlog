@@ -1,5 +1,9 @@
 import { useEffect } from "react";
 
+// TODO: 다른 더 좋은 방법이 있으면 교체하기
+/**
+ * Intersection Observer로 다시 만들어 보기
+ */
 const empahsizeTOCItem = () => {
     const currentY = window.scrollY;
     const offsetY = 15;

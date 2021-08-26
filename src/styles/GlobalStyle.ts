@@ -2,7 +2,18 @@ import { createGlobalStyle, css } from 'styled-components';
 import codeblockStyle from './codeblock.style';
 import katexStyle from './katex.style';
 import tableStyle from './table.style';
-import colors from './colors';
+
+const scrollbarStyle = css`
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: gray;
+}
+`;
 
 const reset = css`
     body {
@@ -36,6 +47,8 @@ const reset = css`
             color: ${props => props.theme.colors.signature};
         }
     }
+
+    ${scrollbarStyle}
 `;
 
 export const globalTheme = {
@@ -49,6 +62,13 @@ export const globalTheme = {
         },
         tag: {
             background: `#e0e2e66f`
+        },
+        codeblock: {
+            background: `#2b2b2b`,
+            color: `#cacaca`
+        },
+        blockquote: {
+            background: `#e6e6e6`
         }
     },
     dark: {
@@ -61,6 +81,13 @@ export const globalTheme = {
         },
         tag: {
             background: `#3737376f`
+        },
+        codeblock: {
+            background: `#2b2b2b`,
+            color: `#cacaca`
+        },
+        blockquote: {
+            background: `#111111`
         }
     }
 };

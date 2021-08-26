@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React, { useRef, useEffect, useMemo, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import ThemeToggler from '../common/ThemeToggler';
-import Tags from '../tags/Tags';
+import Tag from '../common/Tag';
 
 const MenuNavItemWrapper = styled.nav`
     @media screen and (max-width: 1024px) {
@@ -111,7 +111,7 @@ const MenuNavItem: React.FC = () => {
             {renderItems()}
             <MenuTitle>Series</MenuTitle>
             <MenuTitle>Tags</MenuTitle>
-            <Tags tags={nodeData.tags} />
+            <Tag tags={nodeData.tags} />
         </MenuNavItemWrapper>
     )
 };

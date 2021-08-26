@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import colors from '../../styles/colors';
-import Tags from '../tags/Tags';
+import Tag from '../common/Tag';
 import PostWrittenDate from './PostWrittenDate';
 
 const PostListWrapper = styled.div`
@@ -54,7 +54,7 @@ const PostList: React.FC<Record<string, any>> = ({ title, date, tags, slug, exce
                 <PostTitle href={slug}>{title}</PostTitle>
                 <PostWrittenDate date={date} />
             </PostListItemWrapper>
-            <Tags tags={tags} />
+            <Tag tags={tags} />
         </PostListWrapper>
     );
 }

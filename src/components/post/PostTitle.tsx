@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
-import colors from '../../styles/colors';
-import Tags from "../tags/Tags";
-import TOC from "../TOC";
+import Tag from "../common/Tag";
+import TOC from "./TOC";
 import PostWrittenDate from "./PostWrittenDate";
 
 const PostTitleWrapper = styled.div`
@@ -10,7 +9,7 @@ const PostTitleWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-    color: ${colors.font};
+    color: ${props => props.theme.colors.default};
     font-size: 2.7rem;
 `;
 
@@ -23,7 +22,7 @@ const PostTitle: React.FC<PostTitleProps> = ({ frontmatter, toc }) => {
     return (
         <PostTitleWrapper>
             <Title>{frontmatter.title}</Title>
-            <Tags tags={frontmatter.tags} />
+            <Tag tags={frontmatter.tags} />
             <PostWrittenDate date={frontmatter.date} />
             <TOC title={frontmatter.title} toc={toc} />
         </PostTitleWrapper>

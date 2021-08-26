@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     }
 `;
 
-const Tag = styled.a`
+const TagItem = styled.a`
     display: inline-block;
     padding: 4px 10px;
     margin-right: 10px;
@@ -31,14 +31,16 @@ const Tag = styled.a`
     }
 `;
 
-const Tags: React.FC<Tags> = ({ tags }) => {
+interface TagProps {
+    tags: string[]
+}
+
+const Tag: React.FC<TagProps> = ({ tags }) => {
     return (
         <Wrapper>
-            {
-                tags.sort().map(tag => <Tag key={tag} href={`/tags/${toKebabCase(tag)}`}>{tag}</Tag>)
-            }
+            {tags.sort().map(tag => <TagItem key={tag} href={`/tags/${toKebabCase(tag)}`}>{tag}</TagItem>)}
         </Wrapper>
     )
 }
 
-export default Tags;
+export default Tag;

@@ -1,5 +1,4 @@
 import { css } from 'styled-components'
-import colors from './colors';
 
 const tableStyle = css`
 table {
@@ -16,7 +15,7 @@ table {
             flex-basis: 0;
             flex-grow: 1;
             width: 100%;
-            border-bottom: 2px solid ${colors.main};
+            border-bottom: 2px solid ${props => props.theme.colors.default};
             padding: 10px 0;
         }
     }
@@ -32,7 +31,8 @@ table {
             }
 
             &:nth-child(even) {
-                background-color: ${colors.blockquote_bg};
+                color: ${props => props.theme.colors.default};
+                background-color: #6c799c;
             }
 
             &:nth-child(odd) {
