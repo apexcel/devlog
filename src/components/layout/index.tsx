@@ -56,7 +56,11 @@ const Layout: React.FC = ({ children }) => {
             {/* <ThemeProvider theme={globalTheme[theme as string]}> */}
                 <Theme.Provider value={{ theme, themeToggler }}>
                     <GlobalStyle />
+<<<<<<< HEAD
                     <LayoutWrapper>
+=======
+                        <LayoutWrapper>
+>>>>>>> 0efbd7e5238d8df512fb462bfa5511558ab65fc4
                         <LayoutHeader headerNavState={headerNavState} headerToggler={headerToggler} />
                         <LayoutMain>
                             {/* <Floater /> */}
