@@ -18,8 +18,8 @@ const scrollbarStyle = css`
 const customTheme = css`
 body {
     &.light {
-        --color-default: #3d3d3d;
-        --color-signature: #3455bb;
+        --default-color: #3d3d3d;
+        --signature-color: #3455bb;
 
         --layout-background: #fffff;
         --tag-background: #e0e2e66f;
@@ -31,8 +31,8 @@ body {
     }
 
     &.dark {
-        --color-default: #eaeaea;
-        --color-signature: #3455bb;
+        --default-color: #eaeaea;
+        --signature-color: #3455bb;
 
         --layout-background: #1b1b1b;
         --tag-background: #3737376f;
@@ -47,8 +47,10 @@ body {
 
 const reset = css`
     body {
-        background: ${props => props.theme.layout.background};
-        color: ${props => props.theme.colors.default};
+        // background-color: ${props => props.theme.layout.background};
+        background-color: var(--layout-background);
+        // color: ${props => props.theme.colors.default};
+        color: var(--default-color);
         font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif;
         font-weight: 300;
         line-height: 1.8;
@@ -59,7 +61,10 @@ const reset = css`
         padding: 0;
         box-sizing: border-box;
         text-decoration: none;
+        transition: background-color 0.25s ease-in-out;
     }
+
+    ${customTheme}
 
     strong, b {
         color: ${props => props.theme.colors.signature};
