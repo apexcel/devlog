@@ -47,10 +47,6 @@ body {
 
 const reset = css`
     body {
-        // background-color: ${props => props.theme.layout.background};
-        background-color: var(--layout-background);
-        // color: ${props => props.theme.colors.default};
-        color: var(--default-color);
         font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif;
         font-weight: 300;
         line-height: 1.8;

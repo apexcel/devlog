@@ -16,6 +16,10 @@ const LayoutWrapper = styled.section`
         '. main .'
         'footer footer footer';
     margin: 0 auto;
+    background-color: ${props => props.theme.layout.background};
+    color: ${props => props.theme.colors.default};
+    transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+
 `;
 
 const LayoutMain = styled.main`
