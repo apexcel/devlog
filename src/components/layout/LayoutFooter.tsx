@@ -13,11 +13,7 @@ const Footer = styled.footer`
         '. footer-contents .';
     width: 100%;
     height: 128px;
-<<<<<<< HEAD
     background-color: var(--layout-footer-background);
-=======
-    background-color: ${props => props.theme.layout.footerBackground};
->>>>>>> 0efbd7e5238d8df512fb462bfa5511558ab65fc4
 `;
 
 const FooterContents = styled.section`
