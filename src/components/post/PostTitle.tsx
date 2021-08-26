@@ -9,7 +9,7 @@ const PostTitleWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-    color: ${props => props.theme.colors.default};
+    color: var(--default-color);
     font-size: 2.7rem;
 `;
 

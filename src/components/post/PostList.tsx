@@ -19,7 +19,7 @@ const PostListItemWrapper = styled.div`
     border-bottom: 1px solid #e0e0e0bd;
 
     &:hover {
-        border-color: ${props => props.theme.colors.signature};
+        border-color: var(--sinature-color);
     }
 
     @media screen and (max-width: 768px) {
@@ -32,7 +32,7 @@ const PostTitle = styled(Link)`
     display: inline-block;
     width: 700px;
     font-size: 1.3rem;
-    color: ${props => props.theme.colors.default};
+    color: var(--default-color);
     word-break: break-all;
 
     @media screen and (max-width: 768px) {

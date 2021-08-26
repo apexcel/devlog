@@ -13,7 +13,7 @@ const Footer = styled.footer`
         '. footer-contents .';
     width: 100%;
     height: 128px;
-    background-color: ${props => props.theme.layout.background};
+    background-color: var(--layout-footer-background);
 `;
 
 const FooterContents = styled.section`
@@ -35,11 +35,11 @@ const FooterNav = styled.nav`
         }
 
         & g {
-            fill: ;
+            fill: var(--default-color);
         }
 
         span {
-            color: ${props => props.theme.colors.default};
+            color: var(--default-color);
         }
     }
 `;

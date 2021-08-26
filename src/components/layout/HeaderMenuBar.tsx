@@ -18,7 +18,7 @@ const HeaderMenuWrapper = styled.div`
 const menuBar1 = css`
     & span {
         display: block;
-        background-color: ${props => props.theme.colors.default};
+        background-color: var(--default-color);
         width: 48px;
         height: 3px;
         transition: all 0.25s ease 0s;
@@ -37,7 +37,7 @@ const menuBar1 = css`
     }
     &:hover {
         span {
-            background-color: ${props => props.theme.colors.signature};
+            background-color: var(--sinature-color);
             width: 48px;
         }
     }
@@ -46,7 +46,7 @@ const menuBar1 = css`
 const menuBar2 = css`
     & span {
         display: block;
-        background-color: ${props => props.theme.colors.default};
+        background-color: var(--default-color);
 
         width: 48px;
         height: 3px;

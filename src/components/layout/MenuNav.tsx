@@ -9,7 +9,7 @@ const NavWrapper = styled.div<{ isVisible: boolean }>`
     transform: translateX(${props => props.isVisible ? `0px` : `524px`});
     height: 100%;
     width: 432px;
-    background: ${props => props.theme.layout.background};
+    background-color: var(--layout-background);
 
     z-index: 998;
     padding: 108px 46px 46px 46px;

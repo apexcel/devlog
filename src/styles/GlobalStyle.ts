@@ -5,7 +5,7 @@ import tableStyle from './table.style';
 
 const scrollbarStyle = css`
 ::-webkit-scrollbar {
-    background-color: transparent;
+    background-color: #272727;
     width: 8px;
 }
 
@@ -16,39 +16,40 @@ const scrollbarStyle = css`
 `;
 
 const customTheme = css`
-body {
-    &.light {
-        --color-default: #3d3d3d;
-        --color-signature: #3455bb;
+    body {
+        &.light {
+            --default-color: #3d3d3d;
+            --signature-color: #3455bb;
 
-        --layout-background: #fffff;
-        --tag-background: #e0e2e66f;
+            --layout-background: #ffffff;
+            --layout-footer-background: #0c0c0c;
 
-        --codeblock-background: #2b2b2b;
-        --codeblock-color: #cacaca;
+            --tag-background: #e0e2e66f;
 
-        --blockquote-background: #e6e6e6;
+            --codeblock-background: #2b2b2b;
+            --codeblock-color: #cacaca;
+
+            --blockquote-background: #e6e6e6;
+        }
+        &.dark {
+            --default-color: #eaeaea;
+            --signature-color: #3455bb;
+
+            --layout-background: #1b1b1b;
+            --layout-footer-background: #0c0c0c;
+            
+            --tag-background: #3737376f;
+
+            --codeblock-background: #2b2b2b;
+            --codeblock-color: #cacaca;
+
+            --blockquote-background: #111111;
+        }
     }
-
-    &.dark {
-        --color-default: #eaeaea;
-        --color-signature: #3455bb;
-
-        --layout-background: #1b1b1b;
-        --tag-background: #3737376f;
-
-        --codeblock-background: #2b2b2b;
-        --codeblock-color: #cacaca;
-
-        --blockquote-background: #111111;
-    }
-}
 `;
 
 const reset = css`
     body {
-        background: ${props => props.theme.layout.background};
-        color: ${props => props.theme.colors.default};
         font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif;
         font-weight: 300;
         line-height: 1.8;
@@ -59,72 +60,24 @@ const reset = css`
         padding: 0;
         box-sizing: border-box;
         text-decoration: none;
-        transition: color 0.25s ease-in-out, background 0.25s ease-in-out;
     }
 
     strong, b {
-        color: ${props => props.theme.colors.signature};
+        color: var(--signature-color);
         font-weight: bold;
     }
 
     em {
-        color: ${props => props.theme.colors.signature};
+        color: var(--signature-color);
     }
 
     a {
         text-decoration: none;
-        color: ${props => props.theme.colors.default};
+        color: var(--default-color);
         &:hover {
-            color: ${props => props.theme.colors.signature};
+            color: var(--signature-color);
         }
     }
-
-    ${scrollbarStyle}
-`;
-
-export const globalTheme = {
-    light: {
-        colors: {
-            default: `#3d3d3d`,
-            signature: `#3455bb`
-        },
-        layout: {
-            background: `#ffffff`
-        },
-        tag: {
-            background: `#e0e2e66f`
-        },
-        codeblock: {
-            background: `#2b2b2b`,
-            color: `#cacaca`
-        },
-        blockquote: {
-            background: `#e6e6e6`
-        }
-    },
-    dark: {
-        colors: {
-            default: `#eaeaea`,
-            signature: `#3455bb`
-        },
-        layout: {
-            background: `#1b1b1b`
-        },
-        tag: {
-            background: `#3737376f`
-        },
-        codeblock: {
-            background: `#2b2b2b`,
-            color: `#cacaca`
-        },
-        blockquote: {
-            background: `#111111`
-        }
-    }
-};
-
-export const GlobalStyle = createGlobalStyle`
-    ${reset}
 
     h1 {
         font-size: 2.3rem;
@@ -159,6 +112,12 @@ export const GlobalStyle = createGlobalStyle`
         user-select: none;
     }
 
+    ${customTheme}
+    ${scrollbarStyle}
+`;
+
+export const GlobalStyle = createGlobalStyle`
+    ${reset}
     ${katexStyle}
     ${codeblockStyle}
     ${tableStyle}

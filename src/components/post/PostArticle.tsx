@@ -25,7 +25,7 @@ const PostArticleWrapper = styled.article`
     }
 
     a {
-        color: ${props => props.theme.colors.signature};
+        color: var(--sinature-color);
         text-decoration: underline;
     }
 

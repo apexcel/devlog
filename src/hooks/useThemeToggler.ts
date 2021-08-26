@@ -12,17 +12,10 @@ export const Theme = createContext<ThemeContextType>({
 });
 
 export function useThemeToggler() {
-    const isOkay = typeof window !== 'undefined'
-    let preRenderedTheme: ThemeType;
-    if (isOkay) {
-        preRenderedTheme = window.__theme;
-    }
-    else {
-        preRenderedTheme = 'light';
-    }
+    const preRenderedTheme: ThemeType = typeof window !== 'undefined' ? window.__theme : 'light';
     const [theme, setTheme] = useState<ThemeType>(preRenderedTheme);
+
     const themeToggler = () => {
-        console.log(window.__theme, preRenderedTheme, theme)
         if (theme === 'dark') {
             setTheme('light') 
             window.__setTheme('light');
@@ -34,15 +27,11 @@ export function useThemeToggler() {
     }
 
     useEffect(() => {
-        setTheme(window.__theme);
-
+        if (typeof window !== 'undefined') {
+            setTheme(window.__theme);
+        }
         window.__onThemeChange = (theme) => setTheme(theme);
     }, [theme])
-
-
-    // useEffect(() => {
-    //     localStorage.setItem('theme', JSON.stringify(theme));
-    // }, [theme])
 
     return [theme, themeToggler] as const;
 }
