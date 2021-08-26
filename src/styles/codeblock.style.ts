@@ -11,7 +11,7 @@ const codeblockStyle = css`
     blockquote {
         margin: 0;
         padding: 1.2rem;
-        border-left: 8px solid ${props => props.theme.colors.default};
+        border-left: 8px solid ${props => props.theme.colors.signature};
         background-color: ${props => props.theme.blockquote.background} !important;
         margin: 10px 0;
     }
