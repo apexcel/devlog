@@ -13,7 +13,7 @@ const Footer = styled.footer`
         '. footer-contents .';
     width: 100%;
     height: 128px;
-    background-color: ${props => props.theme.layout.background};
+    background-color: ${props => props.theme.layout.footerBackground};
 `;
 
 const FooterContents = styled.section`
@@ -35,7 +35,7 @@ const FooterNav = styled.nav`
         }
 
         & g {
-            fill: ;
+            fill: ${props => props.theme.colors.default};
         }
 
         span {

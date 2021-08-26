@@ -5,7 +5,7 @@ import tableStyle from './table.style';
 
 const scrollbarStyle = css`
 ::-webkit-scrollbar {
-    background-color: transparent;
+    background-color: #272727;
     width: 8px;
 }
 
@@ -59,8 +59,6 @@ const reset = css`
         text-decoration: none;
         transition: background-color 0.25s ease-in-out;
     }
-
-    ${customTheme}
 
     strong, b {
         color: ${props => props.theme.colors.signature};
@@ -122,7 +120,8 @@ export const globalTheme = {
             signature: `#3455bb`
         },
         layout: {
-            background: `#ffffff`
+            background: `#ffffff`,
+            footerBackground: `#0c0c0c`
         },
         tag: {
             background: `#e0e2e66f`
@@ -141,7 +140,8 @@ export const globalTheme = {
             signature: `#3455bb`
         },
         layout: {
-            background: `#1b1b1b`
+            background: `#1b1b1b`,
+            footerBackground: `#0c0c0c`
         },
         tag: {
             background: `#3737376f`
