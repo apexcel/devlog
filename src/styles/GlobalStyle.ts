@@ -15,6 +15,36 @@ const scrollbarStyle = css`
 }
 `;
 
+const customTheme = css`
+body {
+    &.light {
+        --color-default: #3d3d3d;
+        --color-signature: #3455bb;
+
+        --layout-background: #fffff;
+        --tag-background: #e0e2e66f;
+
+        --codeblock-background: #2b2b2b;
+        --codeblock-color: #cacaca;
+
+        --blockquote-background: #e6e6e6;
+    }
+
+    &.dark {
+        --color-default: #eaeaea;
+        --color-signature: #3455bb;
+
+        --layout-background: #1b1b1b;
+        --tag-background: #3737376f;
+
+        --codeblock-background: #2b2b2b;
+        --codeblock-color: #cacaca;
+
+        --blockquote-background: #111111;
+    }
+}
+`;
+
 const reset = css`
     body {
         background: ${props => props.theme.layout.background};
@@ -29,6 +59,7 @@ const reset = css`
         padding: 0;
         box-sizing: border-box;
         text-decoration: none;
+        transition: color 0.25s ease-in-out, background 0.25s ease-in-out;
     }
 
     strong, b {

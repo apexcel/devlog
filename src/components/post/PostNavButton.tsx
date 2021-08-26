@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import SVG from '../common/SVG';
@@ -96,8 +97,8 @@ const PostNavButtonWrapper = styled.div`
 
 `;
 
-const LinkTo = styled.a<{isHidden: boolean}>`
-    visibility: ${props => props.isHidden ? 'hidden' : 'visible'};
+const LinkTo = styled(Link)`
+    visibility: ${props => props['aria-hidden'] ? 'hidden' : 'visible'};
 
     @media screen and (max-width: 768px) {
         width: 100%;
@@ -118,11 +119,12 @@ const PostNavButton: React.FC<PostNavButtonsProps> = ({ postInfo, dir }) => {
         postTitle = postInfo.frontmatter.title;
     }
     else {
+        postLink = '/';
         isHidden = true;
     }
 
     return (
-        <LinkTo isHidden={isHidden} href={postLink} rel={dir}>
+        <LinkTo to={postLink} aria-hidden={isHidden} rel={dir}>
             <PostNavButtonWrapper data-dir={dir}>
                 {dir === 'prev'
                     ? <SVG

@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { useRef, useEffect, useMemo, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import ThemeToggler from '../common/ThemeToggler';
@@ -16,24 +16,24 @@ const MenuTitle = styled.h3``;
 const SubItemWrapper = styled.div`
     margin: 10px 0;
 `;
-const SubItemTitle = styled.h6<{active: boolean}>`
+const SubItemTitle = styled.h6`
     border-left: 1px solid rgba(0, 0, 0, 0.7);
     display: inline-block;
     cursor: pointer;
-    color: ${props => props.active ? props.theme.colors.signature : props.theme.colors.default};
+    color: ${props => props['aria-hidden'] ? props.theme.colors.signature : props.theme.colors.default};
     margin: 0;
-    padding-left: ${props => props.active ? '12px' : '8px'};
-    font-weight: ${props => props.active ? 'bold' : 'regular'};
+    padding-left: ${props => props['aria-hidden'] ? '12px' : '8px'};
+    font-weight: ${props => props['aria-hidden'] ? 'bold' : 'regular'};
 `;
 const SubItemCount = styled.span`
     font-size: 0.8rem;
 `;
 
-const SubItemContentWrapper = styled.div<{ active: boolean }>`
-    display: ${props => props.active ? 'block' : 'none'};
-    height: ${props => props.active ? 'auto' : 0};
+const SubItemContentWrapper = styled.div`
+    display: ${props => props['aria-hidden'] ? 'block' : 'none'};
+    height: ${props => props['aria-hidden'] ? 'auto' : 0};
 `;
-const SubItemContent = styled.a`
+const SubItemContent = styled(Link)`
     display: block;
     font-size: 0.9rem;
     margin-left: 18px;
@@ -92,11 +92,11 @@ const MenuNavItem: React.FC = () => {
         const values = Object.values(nodeData.items);
         return categoryTitles.map((cTitle, i) =>
             <SubItemWrapper key={i}>
-                <SubItemTitle active={i === subContentNumber} onClick={() => contentNumberToggler(i)}>{cTitle}</SubItemTitle><SubItemCount>({values[i].length})</SubItemCount>
-                <SubItemContentWrapper active={i === subContentNumber}>
+                <SubItemTitle aria-hidden={i === subContentNumber} onClick={() => contentNumberToggler(i)}>{cTitle}</SubItemTitle><SubItemCount>({values[i].length})</SubItemCount>
+                <SubItemContentWrapper aria-hidden={i === subContentNumber}>
                     {
                         values[i].map((v, j) =>
-                            <SubItemContent href={v.slug} key={j}>{v.title}</SubItemContent>
+                            <SubItemContent to={v.slug} key={j}>{v.title}</SubItemContent>
                         )
                     }
                 </SubItemContentWrapper>

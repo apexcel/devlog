@@ -1,18 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-function setLocalStorage(key: string, item: any) {
-    
-}
-
-function getLocalStorage(key: string) {
-    const item = localStorage.getItem(key);
-    if (item) {
-        return JSON.parse(item);
-    }
-}
-
 export type ThemeType = 'light' | 'dark';
-
 export interface ThemeContextType {
     theme: ThemeType;
     themeToggler: () => void;
@@ -24,20 +12,37 @@ export const Theme = createContext<ThemeContextType>({
 });
 
 export function useThemeToggler() {
-    const [theme, setTheme] = useState<ThemeType>('light');
-
-    const themeToggler = () => theme === 'dark' ? setTheme('light') : setTheme('dark');
-
-    useEffect(() => {
-        const item = localStorage.getItem('theme');
-        if (item) {
-            setTheme(JSON.parse(item))
+    const isOkay = typeof window !== 'undefined'
+    let preRenderedTheme: ThemeType;
+    if (isOkay) {
+        preRenderedTheme = window.__theme;
+    }
+    else {
+        preRenderedTheme = 'light';
+    }
+    const [theme, setTheme] = useState<ThemeType>(preRenderedTheme);
+    const themeToggler = () => {
+        console.log(window.__theme, preRenderedTheme, theme)
+        if (theme === 'dark') {
+            setTheme('light') 
+            window.__setTheme('light');
+        } 
+        else {
+            setTheme('dark');
+            window.__setTheme('dark');
         }
-    }, [])
+    }
 
     useEffect(() => {
-        localStorage.setItem('theme', JSON.stringify(theme));
+        setTheme(window.__theme);
+
+        window.__onThemeChange = (theme) => setTheme(theme);
     }, [theme])
+
+
+    // useEffect(() => {
+    //     localStorage.setItem('theme', JSON.stringify(theme));
+    // }, [theme])
 
     return [theme, themeToggler] as const;
 }

@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import React from 'react'
 import styled from 'styled-components'
 import { toKebabCase } from '../../utils';
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
     }
 `;
 
-const TagItem = styled.a`
+const TagItem = styled(Link)`
     display: inline-block;
     padding: 4px 10px;
     margin-right: 10px;
@@ -38,7 +39,7 @@ interface TagProps {
 const Tag: React.FC<TagProps> = ({ tags }) => {
     return (
         <Wrapper>
-            {tags.sort().map(tag => <TagItem key={tag} href={`/tags/${toKebabCase(tag)}`}>{tag}</TagItem>)}
+            {tags.sort().map(tag => <TagItem key={tag} to={`/tags/${toKebabCase(tag)}`}>{tag}</TagItem>)}
         </Wrapper>
     )
 }

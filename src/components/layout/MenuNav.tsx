@@ -10,6 +10,7 @@ const NavWrapper = styled.div<{ isVisible: boolean }>`
     height: 100%;
     width: 432px;
     background: ${props => props.theme.layout.background};
+
     z-index: 998;
     padding: 108px 46px 46px 46px;
     overflow-y: auto;

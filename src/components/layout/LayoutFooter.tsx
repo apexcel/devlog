@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Logo from '../../../content/assets/Logo.svg';
 
 import SVG from '../common/SVG';
-import colors from '../../styles/colors';
 
 const Footer = styled.footer`
     grid-area: footer;
@@ -14,7 +13,7 @@ const Footer = styled.footer`
         '. footer-contents .';
     width: 100%;
     height: 128px;
-    background-color: ${colors.footer_bg};
+    background-color: ${props => props.theme.layout.background};
 `;
 
 const FooterContents = styled.section`
@@ -36,11 +35,11 @@ const FooterNav = styled.nav`
         }
 
         & g {
-            fill: ${colors.font_bright};
+            fill: ;
         }
 
         span {
-            color: ${colors.font_bright};
+            color: ${props => props.theme.colors.default};
         }
     }
 `;

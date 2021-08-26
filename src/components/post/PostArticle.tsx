@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import colors from '../../styles/colors';
 import PostFooter from './PostFooter';
 
 const PostArticleWrapper = styled.article`
@@ -26,7 +25,7 @@ const PostArticleWrapper = styled.article`
     }
 
     a {
-        color: ${colors.main};
+        color: ${props => props.theme.colors.signature};
         text-decoration: underline;
     }
 

@@ -1,6 +1,6 @@
+import { Link } from 'gatsby';
 import React from 'react'
 import styled from 'styled-components';
-import colors from '../../styles/colors';
 import Tag from '../common/Tag';
 import PostWrittenDate from './PostWrittenDate';
 
@@ -19,7 +19,7 @@ const PostListItemWrapper = styled.div`
     border-bottom: 1px solid #e0e0e0bd;
 
     &:hover {
-        border-color: ${colors.main};
+        border-color: ${props => props.theme.colors.signature};
     }
 
     @media screen and (max-width: 768px) {
@@ -27,7 +27,7 @@ const PostListItemWrapper = styled.div`
     }
 `;
 
-const PostTitle = styled.a`
+const PostTitle = styled(Link)`
     font-weight: 400;
     display: inline-block;
     width: 700px;
@@ -46,12 +46,12 @@ interface PostListProps {
 }
 
 
-const PostList: React.FC<Record<string, any>> = ({ title, date, tags, slug, excerpt }) => {
+const PostList: React.FC<Record<string, any>> = ({ title, date, tags, slug }) => {
 
     return (
         <PostListWrapper>
             <PostListItemWrapper>
-                <PostTitle href={slug}>{title}</PostTitle>
+                <PostTitle to={slug}>{title}</PostTitle>
                 <PostWrittenDate date={date} />
             </PostListItemWrapper>
             <Tag tags={tags} />

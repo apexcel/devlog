@@ -5,7 +5,7 @@ import { toKebabCase } from '../utils'
 
 import TaggedPostsInfo from '../components/post/TaggedPostInfo'
 import PostList from '../components/post/PostList'
-import Layout from '../components/Layout'
+import Layout from '../components/layout'
 
 const Index: React.FC<PageProps<DataType>> = ({ data, location }) => {
 	let posts = data.allMarkdownRemark.nodes,
@@ -43,7 +43,6 @@ const Index: React.FC<PageProps<DataType>> = ({ data, location }) => {
 								title={title}
 								date={date}
 								tags={tags}
-								excerpt={post.excerpt}
 								slug={post.fields.slug}
 							/>
 						)

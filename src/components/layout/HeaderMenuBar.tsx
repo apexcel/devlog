@@ -47,6 +47,7 @@ const menuBar2 = css`
     & span {
         display: block;
         background-color: ${props => props.theme.colors.default};
+
         width: 48px;
         height: 3px;
         transition: all 0.25s ease 0s;
