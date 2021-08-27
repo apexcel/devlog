@@ -12,7 +12,7 @@ const codeblockStyle = css`
         margin: 0;
         padding: 1.2rem;
         border-left: 8px solid var(--signature-color);
-        background-color: var(--blockquote-color) !important;
+        background-color: var(--blockquote-background-color) !important;
         margin: 10px 0;
     }
     
@@ -20,7 +20,7 @@ const codeblockStyle = css`
     code[class*='language-'] {
         font-family: 'D2Coding ligature', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
         'Courier New', monospace;
-        background-color: var(--codeblock-background);
+        background-color: var(--codeblock-background-color);
         color: var(--codeblock-color);
         text-shadow: none;
 
@@ -32,12 +32,12 @@ const codeblockStyle = css`
     pre[class='language-text'] > code[class='language-text'],
     pre[class='language-markdown'],
     code[class='language-markdown'] {
-        background-color: var(--blockquote-color);
+        background-color: var(--blockquote-background-color);
         color: var(--default-color) !important;
     }
     
     code[class='language-text'] {
-        background-color: var(--blockquote-color) !important;
+        background-color: var(--blockquote-background-color) !important;
         color: var(--signature-color);
         padding: 4px !important;
     }

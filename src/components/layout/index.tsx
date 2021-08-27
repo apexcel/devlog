@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { useThemeToggler, Theme } from '../../hooks/useThemeToggler';
 import { GlobalStyle } from '../../styles/GlobalStyle';
 import Floater from '../common/Floater';
@@ -44,7 +44,7 @@ const Membrane = styled.div<{ headerNavState: boolean }>`
 const Layout: React.FC = ({ children }) => {
     const [headerNavState, setHeaderNavState] = useState(false);
     const [theme, themeToggler] = useThemeToggler();
-    
+
     const headerToggler = () => {
         const html = document.documentElement;
         headerNavState ? html.removeAttribute('style') : html.setAttribute('style', 'overflow: hidden');
@@ -53,21 +53,19 @@ const Layout: React.FC = ({ children }) => {
 
     return (
         <>
-            {/* <ThemeProvider theme={globalTheme[theme as string]}> */}
-                <Theme.Provider value={{ theme, themeToggler }}>
-                    <GlobalStyle />
-                    <LayoutWrapper>
-                        <LayoutHeader headerNavState={headerNavState} headerToggler={headerToggler} />
-                        <LayoutMain>
-                            {/* <Floater /> */}
-                            {children}
-                            <MenuNav headerNavState={headerNavState} />
-                        </LayoutMain>
-                        <LayoutFooter />
-                    </LayoutWrapper>
-                    <Membrane headerNavState={headerNavState} onClick={headerToggler} />
-                </Theme.Provider>
-            {/* </ThemeProvider> */}
+            <Theme.Provider value={{ theme, themeToggler }}>
+                <GlobalStyle />
+                <LayoutWrapper>
+                    <LayoutHeader headerNavState={headerNavState} headerToggler={headerToggler} />
+                    <LayoutMain>
+                        {/* <Floater /> */}
+                        {children}
+                        <MenuNav headerNavState={headerNavState} />
+                    </LayoutMain>
+                    <LayoutFooter />
+                </LayoutWrapper>
+                <Membrane headerNavState={headerNavState} onClick={headerToggler} />
+            </Theme.Provider>
         </>
     )
 };

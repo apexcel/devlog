@@ -26,10 +26,10 @@ const customTheme = css`
 
             --tag-background: #e0e2e66f;
 
-            --codeblock-background: #2b2b2b;
+            --codeblock-background-color: #2b2b2b;
             --codeblock-color: #cacaca;
 
-            --blockquote-background: #e6e6e6;
+            --blockquote-background-color: #e6e6e6;
         }
         &.dark {
             --default-color: #eaeaea;
@@ -40,10 +40,10 @@ const customTheme = css`
             
             --tag-background: #3737376f;
 
-            --codeblock-background: #2b2b2b;
+            --codeblock-background-color: #2b2b2b;
             --codeblock-color: #cacaca;
 
-            --blockquote-background: #111111;
+            --blockquote-background-color: #111111;
         }
     }
 `;
