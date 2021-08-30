@@ -1,10 +1,1 @@
-# Devlog
-
-[Link](https://www.apexcel.blog)
-
-## Tech Stack
-
-- Gatsby
-- Typescript
-- Styled-Component
-- Sass (Legacy)
+A personal [blog](https://www.apexcel.blog) that records what I've learned.
