@@ -86,6 +86,9 @@ const MenuNavItem: React.FC = () => {
     };
 
     const nodeData = parseNodeData();
+    const resetDocumentStyle = () => {
+        document.documentElement.removeAttribute('style');
+    }
 
     const renderItems = () => {
         const categoryTitles = Object.keys(nodeData.items);
@@ -96,7 +99,7 @@ const MenuNavItem: React.FC = () => {
                 <SubItemContentWrapper aria-hidden={i === subContentNumber}>
                     {
                         values[i].map((v, j) =>
-                            <SubItemContent to={v.slug} key={j}>{v.title}</SubItemContent>
+                            <SubItemContent to={v.slug} key={j} onClick={resetDocumentStyle}>{v.title}</SubItemContent>
                         )
                     }
                 </SubItemContentWrapper>
