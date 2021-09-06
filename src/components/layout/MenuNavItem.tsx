@@ -5,6 +5,8 @@ import ThemeToggler from '../common/ThemeToggler';
 import Tag from '../common/Tag';
 
 const MenuNavItemWrapper = styled.nav`
+    margin-top: 10px;
+    
     @media screen and (max-width: 1024px) {
         padding: 72px 14px 14px 14px;
     }
