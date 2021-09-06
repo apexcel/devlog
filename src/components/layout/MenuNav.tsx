@@ -11,7 +11,7 @@ const NavWrapper = styled.div<{ isVisible: boolean }>`
     width: 432px;
     background-color: var(--layout-background);
 
-    z-index: 999;
+    z-index: 997;
     padding: 108px 46px 46px 46px;
     overflow-y: auto;
 

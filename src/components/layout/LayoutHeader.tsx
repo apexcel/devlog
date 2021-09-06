@@ -15,7 +15,7 @@ const Header = styled.header<{isVisible: boolean}>`
     width: 100%;
     height: 108px;
     margin: 0 auto;
-    z-index: 9;
+    z-index: 999;
 
     @media screen and (max-width: 1024px) {
         background: var(--layout-background);
