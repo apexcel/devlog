@@ -48,7 +48,7 @@ console.log(~~(bigRealNumber)); // 0 🤔
 | 오른쪽 시프트(우측 시프트) | a << b | 왼쪽 피연산자를 오른쪽 피연산자만큼 오른쪽으로 시프트합니다. 오른쪽으로 넘치는 비트는 버리고, 왼쪽은 제일 큰 비트의 값으로 채웁니다. |
 | 부호 없는 오른쪽 시프트(우측 논리 시프트) | a >>> b |왼쪽 피연산자를 오른쪽 피연산자만큼 오른쪽으로 시프트합니다. 오른쪽으로 넘치는 비트는 버리고, 왼쪽은 0으로 채웁니다. |
 
-#### NOT 논리 연산자와 보수
+### NOT 논리 연산자와 보수
 
 ```js
 function to32Bit(n) {
@@ -77,8 +77,7 @@ to32Bit(~~(2 ** 32 - 1)); // -1           11111111111111111111111111111111
 ## 참조(Reference)
 
 - "숫자형", *Javascript Info*, https://ko.javascript.info/number.
-- "JS is Weird", *jsisweird*, https://jsisweird.com/.
 - "IEEE 754", *Wikipedia*, https://ko.wikipedia.org/wiki/IEEE_754.
 - "1의 보수", *Wikipedia*, https://ko.wikipedia.org/wiki/1%EC%9D%98_%EB%B3%B4%EC%88%98.
 - "논리 시프트", *Wikipedia*, https://ko.wikipedia.org/wiki/%EB%85%BC%EB%A6%AC_%EC%8B%9C%ED%94%84%ED%8A%B8.
-- "Negative numbers to binary string in JavaScript", *Stack overflow* https://stackoverflow.com/questions/16155592/negative-numbers-to-binary-string-in-javascript.
+- "Negative numbers to binary string in JavaScript", *Stack overflow*, https://stackoverflow.com/questions/16155592/negative-numbers-to-binary-string-in-javascript.
