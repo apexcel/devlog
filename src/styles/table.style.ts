@@ -2,29 +2,15 @@ import { css } from 'styled-components'
 
 const tableStyle = css`
 table {
-    display: block;
+    width: 100%;
     border-collapse: collapse;
-    text-align: left;
+    border: 1px solid var(--default-color);
 
     thead {
-        display: block;
-        tr {
-            display: flex;
-        }
-        th {
-            flex-basis: 0;
-            flex-grow: 1;
-            width: 100%;
-            border-bottom: 2px solid var(--default-color);
-            padding: 10px 0;
-        }
+        border-bottom: 1px solid var(--default-color);
     }
 
     tbody {
-        display: table;
-        table-layout: fixed;
-        width: 100%;
-        
         tr {
             &:hover {
                 opacity: 0.8;
@@ -32,20 +18,18 @@ table {
 
             &:nth-child(even) {
                 color: var(--default-color);
-                background-color: #6c799c;
+                background-color: #767676;
             }
 
             &:nth-child(odd) {
             }
             border-bottom: 1px solid rgba(0, 0, 0, 0.4);
         }
+    }
 
-        td {
-            padding: 10px 0;
-            white-space: nowrap;
-            overflow: auto;
-            word-break: break-all;
-        }
+    th, td {
+        padding: 12px;
+        border-left: 1px solid var(--default-color);
     }
 }
 `;
