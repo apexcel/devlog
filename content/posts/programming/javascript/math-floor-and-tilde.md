@@ -28,11 +28,11 @@ console.log(~~(bigRealNumber)); // 0 🤔
 
 자바스크립트는 숫자형을 배정밀도 부동소수점 숫자로 알려진 64비트 형식의 [IEEE 754](https://ko.wikipedia.org/wiki/IEEE_754)를 사용한다. 64비트 중 54비트는 숫자를 저장하는데에 사용하고 11비트는 소수점 위치를, 나머지 1비트는 부호를 저장하는데에 사용한다.
 
-만약 64비트를 초과하는 경우라면 `Infinity`로 처리한다. 정수형의 최대 최소 값의 범위는 $-(2^{54}-1)$에서 $2^{54}-1$이며 이를 위해 `Number.MAX_SAFE_INTEGER`와 `Number.MIN_SAFE_INTEGER` 값을 제공한다.
+만약 64비트를 초과하는 경우라면 `Infinity`로 처리한다. 정수로 나타낼 수 있는 최댓값과 최솟값의 범위는 $-(2^{54}-1)$에서 $2^{54}-1$이며 이를 위해 `Number.MAX_SAFE_INTEGER`와 `Number.MIN_SAFE_INTEGER` 값을 제공한다.
 
 ### 비트 연산자
 
-자바스크립트에서 [비트 연산자(bitwise operators)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Expressions_and_Operators##bitwise_operators)는 다음과 개념적으로 다음과 같이 동작한다.
+자바스크립트에서 [비트 연산자(bitwise operators)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Expressions_and_Operators##bitwise_operators)는 개념적으로 다음과 같이 동작한다.
 
 1. 피연산자들을 32비트 정수로 변환하며 숫자가 32비트를 초과할 경우 가장 큰 비트부터 버린다.
 2. 각 비트 자리에 대응하는 수 끼리 연산을 진행한다. 첫 번째 비트는 첫 번째 비트끼리 두 번째 비트는 두 번째 비트 끼리 그리고 32번째 비트는 32번째 비트와 연산을 한다.
