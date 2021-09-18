@@ -24,13 +24,13 @@ console.log(Math.floor(bigRealNumber)); // 4294967296
 console.log(~~(bigRealNumber)); // 0 🤔
 ```
 
-#### 숫자형
+### 숫자형
 
 자바스크립트는 숫자형을 배정밀도 부동소수점 숫자로 알려진 64비트 형식의 [IEEE 754](https://ko.wikipedia.org/wiki/IEEE_754)를 사용한다. 64비트 중 54비트는 숫자를 저장하는데에 사용하고 11비트는 소수점 위치를, 나머지 1비트는 부호를 저장하는데에 사용한다.
 
 만약 64비트를 초과하는 경우라면 `Infinity`로 처리한다. 정수형의 최대 최소 값의 범위는 $-(2^{54}-1)$에서 $2^{54}-1$이며 이를 위해 `Number.MAX_SAFE_INTEGER`와 `Number.MIN_SAFE_INTEGER` 값을 제공한다.
 
-#### 비트 연산자
+### 비트 연산자
 
 자바스크립트에서 [비트 연산자(bitwise operators)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Expressions_and_Operators##bitwise_operators)는 다음과 개념적으로 다음과 같이 동작한다.
 
@@ -38,7 +38,7 @@ console.log(~~(bigRealNumber)); // 0 🤔
 2. 각 비트 자리에 대응하는 수 끼리 연산을 진행한다. 첫 번째 비트는 첫 번째 비트끼리 두 번째 비트는 두 번째 비트 끼리 그리고 32번째 비트는 32번째 비트와 연산을 한다.
 3. 연산의 결과를 비트단위로 구축한다.
 
-###### 비트 시프트 연산자
+#### 비트 시프트 연산자
 
 비트 연산자 중에서 시프트 연산은 비트를 움직일 수 있는데 자바스크립트는 `<<` 좌측 시프트, `>>` 우측 시프트 그리고 `>>>` 우측 [논리 시프트(logical shift)](https://ko.wikipedia.org/wiki/%EB%85%BC%EB%A6%AC_%EC%8B%9C%ED%94%84%ED%8A%B8)을 지원한다.
 
@@ -48,7 +48,7 @@ console.log(~~(bigRealNumber)); // 0 🤔
 | 오른쪽 시프트(우측 시프트) | a << b | 왼쪽 피연산자를 오른쪽 피연산자만큼 오른쪽으로 시프트합니다. 오른쪽으로 넘치는 비트는 버리고, 왼쪽은 제일 큰 비트의 값으로 채웁니다. |
 | 부호 없는 오른쪽 시프트(우측 논리 시프트) | a >>> b |왼쪽 피연산자를 오른쪽 피연산자만큼 오른쪽으로 시프트합니다. 오른쪽으로 넘치는 비트는 버리고, 왼쪽은 0으로 채웁니다. |
 
-###### NOT 논리 연산자와 보수
+#### NOT 논리 연산자와 보수
 
 ```js
 function to32Bit(n) {
