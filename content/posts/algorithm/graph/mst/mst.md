@@ -151,7 +151,7 @@ for (let i = 0; i < g.length; i += 1) {
 
 ![Prim Example](prim-result.png)
 
-모든 정점들이 선택되었고 선택되지 않은 간선들을 지우게되면 크루스칼과 같은 모양을 띄는 것을 볼 수 있다.
+선택되지 않은 간선들을 지우게되면 크루스칼과 같은 모양을 띄는 것을 볼 수 있다.
 
 ### 구현
 
@@ -240,7 +240,7 @@ const Prim = (graph, begin) => {
 
 ![MST Solved](MSTSolve.png)
 
-최소 스패닝 트리를 찾는 [백준 1197번](https://www.acmicpc.net/problem/1197) 문제의 결과이며 차례대로 C++로 작성한 프림, JS로 작성한 크루스칼, 프림이다. JS의 압도적인 메모리와 실행시간..😒😒😒
+최소 스패닝 트리를 찾는 [백준 1197번](https://www.acmicpc.net/problem/1197) 문제의 결과이며 차례대로 C++로 작성한 프림, JS로 작성한 크루스칼, 프림이다.
 
 ## 참조(References)
 
