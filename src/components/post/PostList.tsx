@@ -30,7 +30,7 @@ const PostListItemWrapper = styled.div`
 const PostTitle = styled(Link)`
     font-weight: 400;
     display: inline-block;
-    width: 700px;
+    width: 690px;
     font-size: 1.3rem;
     color: var(--default-color);
     word-break: break-all;
