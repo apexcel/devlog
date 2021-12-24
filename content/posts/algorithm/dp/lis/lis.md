@@ -1,6 +1,6 @@
 ---
-title: "최장 증가 부분 수열(Logest Increasing Subsequence, LIS) 알고리즘"
-tags: ["LIS", "Dynamic Programming", "Binary Search"]
+title: "최장 증가 부분 수열(Logest Increasing Subsequence, LIS)"
+tags: ["Algorithm", "LIS", "Dynamic Programming", "Binary Search"]
 category: "Algorithm"
 date: "2021-12-24T04:51:15.402Z"
 ---
