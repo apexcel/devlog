@@ -79,12 +79,12 @@ $f(n)$은 완전 탐색과 비슷하게 $n-1$ 개 부분 문제로 나뉘고 이
 
 ```js
 function binSearch(arr, target) {
-    let lo = 0, hi = arr.length - 1, mid = Math.floor((lo + hi) / 2);
-    while (lo <= hi) {
+    let lo = 0, hi = arr.length - 1, mid;
+    while (lo < hi) {
         mid = Math.floor((lo + hi) / 2);
-        arr[mid] < target ? lo = mid + 1 : hi = mid - 1;
+        arr[mid] < target ? lo = mid + 1 : hi = mid;
     }
-    return hi + 1;
+    return lo;
 }
 
 function lis3(seq) {
