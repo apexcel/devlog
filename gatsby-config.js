@@ -7,7 +7,7 @@ module.exports = {
       githun: 'apexcel',
     },
     description: `Blog about the web and software development.`,
-    siteUrl: `https://www.apexcel.blog`,
+    siteUrl: `https://apexcel.netlify.app`,
     social: {
     },
   },
@@ -114,8 +114,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
-        host: `https://www.apexcel.blog`,
-        sitemap: `https://www.apexcel.blog/sitemap.xml`
+        host: `https://apexcel.netlify.app`,
+        sitemap: `https://apexcel.netlify.app/sitemap.xml`
       }
     }
   ],

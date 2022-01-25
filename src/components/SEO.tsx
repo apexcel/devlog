@@ -64,7 +64,7 @@ const SEO: React.FC<SEOProps> = ({
                 },
                 {
                     name: "google-site-verification",
-                    content: "OnjN4gflTR9bWQw5zZz4PJ_hAfNkEEjaepj0zruubTQ"
+                    content: "a0Q59zU9WStQKofq8Yao_s8zhne8Wv7-EzeV8BvH0eA"
                 }, 
                 {
                     name: "naver-site-verification",

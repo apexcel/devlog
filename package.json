@@ -1,7 +1,7 @@
 {
   "name": "devlog",
   "version": "1.0.0",
-  "description": "[Link](https://www.apexcel.blog)",
+  "description": "[Link](https://apexcel.netlify.app)",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
