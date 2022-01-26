@@ -70,48 +70,42 @@ const MenuNavItem: React.FC = () => {
 
     const parseNodeData = () => {
         const nodes = data.allMarkdownRemark.nodes;
-        const items = {};
-        let uniqueTags = new Set();
+        const posts = {};
+        const uniqueTags = new Set();
 
-        for (let i = 0; i < nodes.length; i += 1) {
-            const { category, title, tags } = nodes[i].frontmatter;
-            const { slug } = nodes[i].fields;
+        for (let node of nodes) {
+            const { slug } = node.fields;
+            const { category, title, tags } = node.frontmatter;
 
-            items[category] = items[category] ? [...items[category], { title, slug }] : [{ title, slug }];
+            posts[category] = posts[category] ? [...posts[category], { title, slug }] : [{ title, slug }];
             tags.forEach(tag => uniqueTags.add(tag));
         }
 
         return {
-            items: items,
+            posts: posts,
             tags: Array.from(uniqueTags) as string[]
         };
     };
 
     const nodeData = parseNodeData();
-    const resetDocumentStyle = () => {
-        document.documentElement.removeAttribute('style');
-    }
+    const resetDocumentStyle = () => document.documentElement.removeAttribute('style');
 
     const renderItems = () => {
-        const categoryTitles = Object.keys(nodeData.items);
-        const values = Object.values(nodeData.items);
-        return categoryTitles.map((cTitle, i) =>
+        const metaData = Object.entries<{ slug: string, title: string }[]>(nodeData.posts);
+        return metaData.map(([categoryTitle, posts], i) =>
             <SubItemWrapper key={i}>
-                <SubItemTitle aria-hidden={i === subContentNumber} onClick={() => contentNumberToggler(i)}>{cTitle}</SubItemTitle><SubItemCount>({values[i].length})</SubItemCount>
+                <SubItemTitle aria-hidden={i === subContentNumber} onClick={() => contentNumberToggler(i)}>{categoryTitle}</SubItemTitle>
+                <SubItemCount>({posts.length})</SubItemCount>
                 <SubItemContentWrapper aria-hidden={i === subContentNumber}>
-                    {
-                        values[i].map((v, j) =>
-                            <SubItemContent to={v.slug} key={j} onClick={resetDocumentStyle}>{v.title}</SubItemContent>
-                        )
-                    }
+                    { posts.map(({ title, slug }, j) => <SubItemContent to={slug} key={j} onClick={resetDocumentStyle}>{title}</SubItemContent>) }
                 </SubItemContentWrapper>
             </SubItemWrapper>
-        )
+        );
     };
 
     return (
         <MenuNavItemWrapper>
-            <ThemeToggler/>
+            <ThemeToggler />
             <MenuTitle>Category</MenuTitle>
             {renderItems()}
             <MenuTitle>Series</MenuTitle>

@@ -46,22 +46,21 @@ type SVGProps = {
     height: number
     color: string
     viewBox: string
+    fill: string
 }
 
 export default function SVG(props) {
     const { title, name, pathClassName, svgClassName, width, height, color, viewBox, fill }: SVGProps = props;
 
     const renderPath = (name) => {
-        return svg[name].map((v, i) => {
-            return (
-                <path
-                    className={pathClassName}
-                    key={i}
-                    d={v}
-                    fill={color ? color : 'black'}
-                />
-            )
-        })
+        return svg[name].map((v, i) => (
+            <path
+                className={pathClassName}
+                key={i}
+                d={v}
+                fill={color ? color : 'black'}
+            />
+        ))
     };
 
     return (
