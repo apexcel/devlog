@@ -3,11 +3,11 @@ module.exports = {
     title: `Apexcel Devlog`,
     author: {
       name: `Apexcel`,
-      summary: `Blog about the web and software development.`,
-      githun: 'apexcel',
+      summary: `Apexcel Devlog`,
+      github: 'apexcel',
     },
-    description: `Blog about the web and software development.`,
-    siteUrl: `https://apexcel.netlify.app`,
+    description: `Apexcel Devlog`,
+    siteUrl: `https://apexcel.netlify.app/`,
     social: {
     },
   },
@@ -114,8 +114,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
-        host: `https://apexcel.netlify.app`,
-        sitemap: `https://apexcel.netlify.app/sitemap.xml`
+        host: `https://apexcel.netlify.app/`,
+        sitemap: `https://apexcel.netlify.app/sitemap/sitemap-index.xml`
       }
     }
   ],
