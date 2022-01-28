@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 
 
-const WrittenDate = styled.span`
+const WrittenDate = styled.time`
     display: inline-block;
     flex: 0 0 auto;
     color: #4a4a4a;
@@ -25,7 +25,7 @@ const PostWrittenDate: React.FC<PostWrittenDate> = ({ date }) => {
     
     const written = `${year}년 ${month}월 ${dayOfMonth}일`;
     return (
-        <WrittenDate>
+        <WrittenDate dateTime={`${year}/${month}/${dayOfMonth}`}>
             {written}
         </WrittenDate>
     )

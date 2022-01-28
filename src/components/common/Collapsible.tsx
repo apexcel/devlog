@@ -6,6 +6,7 @@ const Top = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 `;
 
 const Title = styled.div`

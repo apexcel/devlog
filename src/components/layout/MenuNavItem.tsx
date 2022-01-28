@@ -9,6 +9,7 @@ import { toKebabCase } from '../../utils';
 const MenuTop = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 6px;
 `;
 
