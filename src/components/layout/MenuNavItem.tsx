@@ -3,38 +3,47 @@ import React, { useRef, useEffect, useMemo, useState, useCallback } from 'react'
 import styled from 'styled-components';
 import ThemeToggler from '../common/ThemeToggler';
 import Tag from '../common/Tag';
+import Collapsible from '../common/Collapsible';
+import { toKebabCase } from '../../utils';
 
-const MenuNavItemWrapper = styled.nav`
-    margin-top: 10px;
-    
-    @media screen and (max-width: 1024px) {
-        padding: 72px 14px 14px 14px;
+const MenuTop = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+`;
+
+const CloseButton = styled.div`
+    position: relative;
+    height: 36px;
+    width: 36px;
+
+    ::before, ::after {
+        position: absolute;
+        content: '';
+        top: 50%;
+        height: 3px;
+        width: 36px;
+        transform: rotate(-45deg);
+        background-color: var(--default-color);
+    }
+
+    ::after {
+        transform: rotate(45deg);
+    }
+
+    :hover {
+        ::before, ::after {
+            background-color: var(--signature-color);
+        }
+        cursor: pointer;
     }
 `;
 
-const MenuTitle = styled.h3``;
-
-
 const SubItemWrapper = styled.div`
-    margin: 10px 0;
-`;
-const SubItemTitle = styled.h6`
-    border-left: 1px solid rgba(0, 0, 0, 0.7);
-    display: inline-block;
-    cursor: pointer;
-    color: ${props => props['aria-hidden'] ? `var(--signature-color)` : `var(--default-color)`};
-    margin: 0;
-    padding-left: ${props => props['aria-hidden'] ? '12px' : '8px'};
-    font-weight: ${props => props['aria-hidden'] ? 'bold' : 'regular'};
-`;
-const SubItemCount = styled.span`
-    font-size: 0.8rem;
+    margin-top: 10px;
 `;
 
-const SubItemContentWrapper = styled.div`
-    display: ${props => props['aria-hidden'] ? 'block' : 'none'};
-    height: ${props => props['aria-hidden'] ? 'auto' : 0};
-`;
+
 const SubItemContent = styled(Link)`
     display: block;
     font-size: 0.9rem;
@@ -45,28 +54,24 @@ const SubItemContent = styled(Link)`
     text-overflow: ellipsis;
 `;
 
-const MenuNavItem: React.FC = () => {
+const MenuNavItem: React.FC<{ menuToggler: () => void }> = ({ menuToggler }) => {
 
     const data: DataType = useStaticQuery(graphql`
-    query {
-        allMarkdownRemark {
-            nodes {
-                frontmatter {
-                    tags
-                    category
-                    title
-                }
-                fields {
-                    slug
+        query {
+            allMarkdownRemark {
+                nodes {
+                    frontmatter {
+                        tags
+                        category
+                        title
+                    }
+                    fields {
+                        slug
+                    }
                 }
             }
         }
-    }`);
-
-    const [subContentNumber, setSubContentNumber] = useState(-1);
-    const contentNumberToggler = (index: number) => {
-        setSubContentNumber(subContentNumber === index ? -1 : index);
-    };
+    `);
 
     const parseNodeData = () => {
         const nodes = data.allMarkdownRemark.nodes;
@@ -94,24 +99,25 @@ const MenuNavItem: React.FC = () => {
         const metaData = Object.entries<{ slug: string, title: string }[]>(nodeData.posts);
         return metaData.map(([categoryTitle, posts], i) =>
             <SubItemWrapper key={i}>
-                <SubItemTitle aria-hidden={i === subContentNumber} onClick={() => contentNumberToggler(i)}>{categoryTitle}</SubItemTitle>
-                <SubItemCount>({posts.length})</SubItemCount>
-                <SubItemContentWrapper aria-hidden={i === subContentNumber}>
-                    { posts.map(({ title, slug }, j) => <SubItemContent to={slug} key={j} onClick={resetDocumentStyle}>{title}</SubItemContent>) }
-                </SubItemContentWrapper>
+                <Collapsible title={<Link to={`/category/${toKebabCase(categoryTitle)}`}>{categoryTitle}({posts.length})</Link>}>
+                    {posts.map(({ title, slug }, j) => <SubItemContent to={slug} key={j} onClick={resetDocumentStyle}>{title}</SubItemContent>)}
+                </Collapsible>
             </SubItemWrapper>
         );
     };
 
     return (
-        <MenuNavItemWrapper>
-            <ThemeToggler />
-            <MenuTitle>Category</MenuTitle>
+        <>
+            <MenuTop>
+                <ThemeToggler />
+                <CloseButton onClick={menuToggler} />
+            </MenuTop>
+            <h3>Category</h3>
             {renderItems()}
-            <MenuTitle>Series</MenuTitle>
-            <MenuTitle>Tags</MenuTitle>
+            <h3>Series</h3>
+            <h3>Tags</h3>
             <Tag tags={nodeData.tags} />
-        </MenuNavItemWrapper>
+        </>
     )
 };
 

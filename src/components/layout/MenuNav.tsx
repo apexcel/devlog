@@ -6,13 +6,12 @@ const NavWrapper = styled.div<{ isVisible: boolean }>`
     position: fixed;
     top: 0;
     right: 0;
-    transform: translateX(${props => props.isVisible ? `0px` : `524px`});
+    transform: translateX(${props => props.isVisible ? `0px` : `512px`});
     height: 100%;
     width: 432px;
     background-color: var(--layout-background);
-
+    padding: 0 40px;
     z-index: 997;
-    padding: 108px 46px 46px 46px;
     overflow-y: auto;
 
     @media screen and (max-width: 1024px) {
@@ -24,14 +23,25 @@ const NavWrapper = styled.div<{ isVisible: boolean }>`
     transition: transform 0.25s ease;
 `;
 
+const MenuNavItemWrapper = styled.nav`
+    padding: 14px 0 14px;
+
+    @media screen and (max-width: 1024px) {
+        padding: 14px;
+    }
+`;
+
 interface MenuNavProps {
-    headerNavState: boolean;
+    toggleState: boolean
+    menuToggler: () => void
 }
 
-const MenuNav: React.FC<MenuNavProps> = ({ headerNavState }) => {
+const MenuNav: React.FC<MenuNavProps> = ({ toggleState, menuToggler }) => {
     return (
-        <NavWrapper isVisible={headerNavState}>
-            <MenuNavItem />
+        <NavWrapper isVisible={toggleState}>
+            <MenuNavItemWrapper>
+                <MenuNavItem menuToggler={menuToggler}/>
+            </MenuNavItemWrapper>
         </NavWrapper>
     )
 };

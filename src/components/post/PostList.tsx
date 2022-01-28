@@ -28,25 +28,27 @@ const PostListItemWrapper = styled.div`
 `;
 
 const PostTitle = styled(Link)`
-    font-weight: 400;
     display: inline-block;
-    width: 690px;
-    font-size: 1.3rem;
+    flex: 1 1 auto;
+    font-weight: bold;
+    font-size: 18px;
     color: var(--default-color);
     word-break: break-all;
 
     @media screen and (max-width: 768px) {
-        font-size: 1.1rem;
+        font-size: 16px;
         width: 100%;
     }
 `;
 
 interface PostListProps {
-
+    title: string
+    date: string
+    tags: string[]
+    slug: string
 }
 
-
-const PostList: React.FC<Record<string, any>> = ({ title, date, tags, slug }) => {
+const PostList: React.FC<PostListProps> = ({ title, date, tags, slug }) => {
 
     return (
         <PostListWrapper>

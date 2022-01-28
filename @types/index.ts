@@ -24,6 +24,7 @@ declare global {
     }
 
     interface MarkdownRemarkNode {
+        id: string;
         frontmatter?: Frontmatter;
         fields?: Fields;
         excerpt?: string;

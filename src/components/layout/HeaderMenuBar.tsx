@@ -1,5 +1,5 @@
-import React from 'react';
-import styled, {css} from 'styled-components';
+import React, { Dispatch, SetStateAction } from 'react';
+import styled from 'styled-components';
 
 const HeaderMenuWrapper = styled.div`
     justify-self: start;
@@ -15,7 +15,15 @@ const HeaderMenuWrapper = styled.div`
     }
 `;
 
-const menuBar1 = css`
+const HeaderMenu = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+
     & span {
         display: block;
         background-color: var(--default-color);
@@ -43,54 +51,15 @@ const menuBar1 = css`
     }
 `;
 
-const menuBar2 = css`
-    & span {
-        display: block;
-        background-color: var(--default-color);
-
-        width: 48px;
-        height: 3px;
-        transition: all 0.25s ease 0s;
-
-        &:nth-child(1) {
-            width: 24px;
-            transform: rotate(35deg) translate(5px, 4px);
-        }
-
-        &:nth-child(2) {
-            width: 44px;
-            transform: translate(-3px, 0);
-        }
-
-        &:nth-child(3) {
-            width: 24px;
-            transform: rotate(-35deg) translate(5px, -4px);
-        }
-}
-`;
-
-const HeaderMenu = styled.div<{headerNavState: boolean}>`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-evenly;
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-
-    ${props => props.headerNavState ? menuBar2 : menuBar1}
-`;
-
 interface HeaderMenuProps {
-    headerNavState: boolean;
-    headerToggler: () => void;
+    menuToggler: () => void
 }
 
-const HeaderMenuBar: React.FC<HeaderMenuProps> = ({ headerNavState, headerToggler }) => {
+const HeaderMenuBar: React.FC<HeaderMenuProps> = ({ menuToggler }) => {
 
     return (
         <HeaderMenuWrapper>
-            <HeaderMenu headerNavState={headerNavState} onClick={headerToggler}>
+            <HeaderMenu onClick={menuToggler}>
                 <span></span>
                 <span></span>
                 <span></span>

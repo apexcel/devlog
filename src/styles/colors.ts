@@ -10,5 +10,5 @@ export default {
 
     blockquote_bg: '#e6e6e6',
 
-    tag_bg: '#e0e2e66f'
+    tag_bg: '#cdd0d56f'
 }

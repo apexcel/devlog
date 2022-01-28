@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 
 const WrittenDate = styled.span`
-    display: inline-block,
-    color: #919191;
-    marginTop: 12px;
+    display: inline-block;
+    flex: 0 0 auto;
+    color: #4a4a4a;
+    padding-left: 10px;
+    font-size: 14px;
 
     @media screen and (max-width: 768px) {
-        width: 130px;
-        font-size: 0.7rem;
+        font-size: 12px;
     }
 `;
 

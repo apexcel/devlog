@@ -6,25 +6,20 @@ import Logo from '../../../content/assets/Logo.svg';
 import SVG from '../common/SVG';
 
 const Footer = styled.footer`
-    grid-area: footer;
-    display: grid;
-    grid-template-columns: auto minmax(0, 868px) auto;
-    grid-template-areas:
-        '. footer-contents .';
-    width: 100%;
-    height: 128px;
     background-color: var(--layout-footer-background);
 `;
 
-const FooterContents = styled.section`
-    grid-area: footer-contents;
+const FooterContents = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 128px;
+    max-width: 720px;
     padding: 14px;
+    margin: 0 auto;
 `;
 
-const FooterNav = styled.nav`
+const FotterLogo = styled.div`
     & > a {
         display: flex;
         flex-direction: row;
@@ -70,14 +65,13 @@ const LayoutFooter: React.FC = () => {
     return (
         <Footer>
             <FooterContents>
-                <FooterNav>
+                <FotterLogo>
                     <Link to='/'>
-                        <Logo width='32px' height='32px' />
-                        <span>Apexcel's Devlog</span>
+                        <Logo width='32px' height='32px' fill="red"/>
                     </Link>
-                </FooterNav>
+                </FotterLogo>
                 <FooterIcons>
-                    <Mail aria-valuetext={mailText} title='Copy e-Mail' onClick={copyEmail} ><SVG name='gmail' color='white' width='32px' height='32px' viewBox='0 0 216 216' /></Mail>
+                    <Mail title='Copy email' onClick={copyEmail} ><SVG name='gmail' color='white' width='32px' height='32px' viewBox='0 0 216 216' /></Mail>
                     <a href='//github.com/apexcel' title='Github'><SVG name='github' color='white' width='32px' height='32px' viewBox='0 0 24 24' /></a>
                 </FooterIcons>
             </FooterContents>

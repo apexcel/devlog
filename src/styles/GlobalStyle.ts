@@ -53,9 +53,8 @@ const reset = css`
         font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif;
         font-weight: 300;
         line-height: 1.8;
-        font-size: 14pt;
+        font-size: 16px;
         text-shadow: none;
-        vertical-align: baseline;
         margin: 0;
         padding: 0;
         box-sizing: border-box;

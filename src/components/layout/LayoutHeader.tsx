@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
@@ -13,14 +13,13 @@ const Header = styled.header<{isVisible: boolean}>`
     align-items: center;
     top: 0;
     width: 100%;
-    height: 108px;
+    height: 72px;
     margin: 0 auto;
-    z-index: 999;
+    z-index: 991;
 
     @media screen and (max-width: 1024px) {
         background: var(--layout-background);
-
-        height: 72px;
+        height: 64px;
         border-bottom: 1px solid rgba(0,0,0,0.3);
         top: 0px;
         transform: translateY(${props => props.isVisible ? `0px` : `-72px`});
@@ -55,11 +54,10 @@ const HeaderRight = styled.div`
 `;
 
 interface LayoutHeaderProps {
-    headerNavState: boolean;
-    headerToggler: () => void;
+    menuToggler: () => void
 }
 
-const LayoutHeader: React.FC<LayoutHeaderProps> = ({ headerNavState, headerToggler }) => {
+const LayoutHeader: React.FC<LayoutHeaderProps> = ({ menuToggler }) => {
 
     const [headerVisibility, setHeaderVisibility] = useState(true);
 
@@ -71,11 +69,11 @@ const LayoutHeader: React.FC<LayoutHeaderProps> = ({ headerNavState, headerToggl
         <Header isVisible={headerVisibility}>
             <HeaderLogo>
                 <Link to='/'>
-                    <Logo width='52px' height='52px' />
+                    <Logo width='36px' height='36px' />
                 </Link>
             </HeaderLogo>
             <HeaderRight>
-                <HeaderMenuBar headerNavState={headerNavState} headerToggler={headerToggler}/>
+                <HeaderMenuBar menuToggler={menuToggler}/>
             </HeaderRight>
         </Header>
     )

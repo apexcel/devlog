@@ -9,7 +9,7 @@ date: "2021-08-17T11:22:55.148Z"
 
 도커 네트워크를 이용해서 각각 실행된 컨테이너를 연결하기 위한 논리적 네트워크이다. 도커는 컨테이너 내부 IP를 순차적으로 할당하며 내부 IP는 도커가 설치된 호스트에서만 사용할 수 있는데 외부와 연결해주는 것은 컨테이너가 시작할 때마다 호스트의 `veth`라는 네트워크 인터페이스를 생성하여 이루어진다. 호스트에서 `ifconfig` 명령어를 통해 네트워크 인터페이스를 확인하면 컨테이너 수 만큼 생성된 `veth`와 이들을 이어주는 `docker0`를 확인 할 수 있다.
 
-![Docker Container Network](../../../assets/docker/network/network1.png)
+![Docker Container Network](network1.png)
 
 - 컨테이너에 외부 네트워크를 제공하기 위해서 `veth`로 시작하는 가상 네트워크 인터페이스를 생성한다.
 - 이는 도커 엔진이 자동으로 생성한다.
@@ -33,7 +33,7 @@ date: "2021-08-17T11:22:55.148Z"
 
 도커 네트워크를 이용하여 컨테이너를 연결해보자. nginx와 mysql 이미지를 받아 각각 컨테이너를 생성하고 같은 네트워크로 지정하여 nignx에서 접근이 가능한 지 확인해 볼 것이다.
 
-![Docker Container Connection](../../../assets/docker/volume/container-connection.png)
+![Docker Container Connection](container-connection.png)
 
 먼저 사용될 사용자 정의 도커 네트워크를 생성한다. 생성된 네트워크는 `docker network connect [container_name]`와 `docker network disconnect [container_name]`를 이용하여 붙이거나 제거할 수 있다.
 

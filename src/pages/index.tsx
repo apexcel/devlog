@@ -1,45 +1,35 @@
 import React from 'react'
 import { PageProps, graphql } from "gatsby"
-import SEO from "../components/SEO"
-import { toKebabCase } from '../utils'
 
-import TaggedPostsInfo from '../components/post/TaggedPostInfo'
+import SEO from "../components/SEO"
 import PostList from '../components/post/PostList'
 import Layout from '../components/layout'
 
-const Index: React.FC<PageProps<DataType>> = ({ data, location }) => {
-	let posts = data.allMarkdownRemark.nodes,
-		tagValue: string, 
-		totalCount: number;
+import { toKebabCase } from '../utils'
 
-	// 인덱스 페이지가 아닐 때
-	if (location.pathname !== '/') {
-		// 패스 URL이 tags/??? 형태이면
-		if (location.pathname.match(/(tags\/)/g)) {
-			// 해당 그룹으로 포스트 대체
-			const postTag = location.pathname.split('/')[2];
-			const taggedPosts = data.allMarkdownRemark.group.find(post => {
-				if (toKebabCase(post.fieldValue) === postTag) {
-					tagValue = post.fieldValue;
-					return true;
-				}
-			});
-			totalCount = taggedPosts.totalCount;
-			posts = taggedPosts.nodes;
-		}
+const Index: React.FC<PageProps<DataType>> = ({ data, location }) => {
+	const nodes = data.allMarkdownRemark.nodes;
+
+	const Slot = (quantity) => {
+		const [_, classify, name] = location.pathname.split('/');
+		return (
+			<h2>
+				{classify.toLocaleUpperCase()}: {name} #{quantity}
+			</h2>
+		)
 	}
 
-	if (posts.length > 0) {
+	const renderPost = (posts, classified = false) => {
 		return (
 			<Layout>
 				<SEO title="Apexcel Devlog" />
-				{tagValue ? <TaggedPostsInfo tagValue={tagValue} totalCount={totalCount} /> : ''}
+				{classified ? Slot(posts.length) : ''}
 				{
-					posts.map((post, i) => {
+					posts.map(post => {
 						const { title, date, tags } = post.frontmatter;
 						return (
 							<PostList
-								key={i}
+								key={post.id}
 								title={title}
 								date={date}
 								tags={tags}
@@ -50,6 +40,31 @@ const Index: React.FC<PageProps<DataType>> = ({ data, location }) => {
 				}
 			</Layout>
 		)
+	};
+
+	const filterPost = (key: string, prop: string) => {
+		return nodes.filter(post => {
+			const val = post.frontmatter[key];
+			if (Array.isArray(val)) {
+				return val.findIndex(v => toKebabCase(v) === prop) > -1 ? true : false;
+			}
+			else {
+				return (val as string).toLowerCase() === prop;
+			}
+		})
+	}
+
+	const route = () => {
+		const [key, prop, ...rest] = location.pathname.split('/').filter(Boolean);
+		if (key === 'tags' || key === 'category') {
+			return renderPost(filterPost(key, prop), true);
+		}
+		return renderPost(nodes);
+	}
+
+
+	if (nodes.length > 0) {
+		return route();
 	}
 
 	return (
@@ -62,15 +77,18 @@ const Index: React.FC<PageProps<DataType>> = ({ data, location }) => {
 export default Index
 
 export const pageQuery = graphql`
-query {
-    site {
+{
+	site {
 		siteMetadata {
 			title
 		}
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+	}
+	allMarkdownRemark (
+		sort: { fields: [frontmatter___date], order: DESC },
+	) {
 		nodes {
 			excerpt(truncate: true)
+			id
 			fields {
 				slug
 			}
@@ -79,24 +97,25 @@ query {
 				title
 				description
 				tags
+				category
 			}
 		}
-		group(field: frontmatter___tags) {
+		group (field: frontmatter___tags) {
 			nodes {
 				excerpt(truncate: true)
-				fields {
+					fields {
 					slug
 				}
 				frontmatter {
 					date
+					title
 					description
 					tags
-					title
+					category
 				}
 			}
-		fieldValue
-		totalCount
+			fieldValue
+			totalCount
 		}
 	}
-}
-`
+}`
