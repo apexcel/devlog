@@ -45,6 +45,12 @@ const SEO: React.FC<SEOProps> = ({
             }}
             title={title}
             titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+            link={[
+                {
+                    rel: 'canonical',
+                    href: 'https://apexcel.netlify.app'
+                }
+            ]}
             meta={[
                 {
                     name: `description`,
