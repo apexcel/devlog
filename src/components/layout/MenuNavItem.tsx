@@ -100,7 +100,7 @@ const MenuNavItem: React.FC<{ menuToggler: () => void }> = ({ menuToggler }) => 
         const metaData = Object.entries<{ slug: string, title: string }[]>(nodeData.posts);
         return metaData.map(([categoryTitle, posts], i) =>
             <SubItemWrapper key={i}>
-                <Collapsible title={<Link to={`/category/${toKebabCase(categoryTitle)}`}>{categoryTitle}({posts.length})</Link>}>
+                <Collapsible title={<Link to={`/category/${toKebabCase(categoryTitle)}`} onClick={resetDocumentStyle}>{categoryTitle}({posts.length})</Link>}>
                     {posts.map(({ title, slug }, j) => <SubItemContent to={slug} key={j} onClick={resetDocumentStyle}>{title}</SubItemContent>)}
                 </Collapsible>
             </SubItemWrapper>

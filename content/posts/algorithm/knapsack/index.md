@@ -170,5 +170,5 @@ items.forEach(([w, v]) => {
 ## 참조(Reference)
 
 - "배낭 문제", *Wikipedia*, https://ko.wikipedia.org/wiki/%EB%B0%B0%EB%82%AD_%EB%AC%B8%EC%A0%9C
-- Richard Neapolitan, Kumarss Naimipour, *홍릉과학출판사*, 도경구 옮김, 알고리즘 기초(Foundation of Algorithm) 4th.
-- Kamal Rawat, Meenakshi, *한빛미디어*, 박상은 옮김, 다이내믹 프로그래밍 완전 정복: 빠르고 우아한 상향식 문제 풀이법(Dynamic Programming for Coding Interviews: A Bottom-Up approach to problem solving) 1st.
+- Richard Neapolitan, Kumarss Naimipour, (도경구 옮김), *홍릉과학출판사*, 알고리즘 기초(Foundation of Algorithm) 4th.
+- Kamal Rawat, Meenakshi, (박상은 옮김), *한빛미디어*, 다이내믹 프로그래밍 완전 정복: 빠르고 우아한 상향식 문제 풀이법(Dynamic Programming for Coding Interviews: A Bottom-Up approach to problem solving) 1st.
