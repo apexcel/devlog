@@ -77,7 +77,7 @@ const MenuNavItem: React.FC<{ menuToggler: () => void }> = ({ menuToggler }) => 
     const parseNodeData = () => {
         const nodes = data.allMarkdownRemark.nodes;
         const posts = {};
-        const uniqueTags = new Set();
+        const uniqueTags = new Set<string[]>();
 
         for (let node of nodes) {
             const { slug } = node.fields;
@@ -89,7 +89,7 @@ const MenuNavItem: React.FC<{ menuToggler: () => void }> = ({ menuToggler }) => 
 
         return {
             posts: posts,
-            tags: Array.from(uniqueTags) as string[]
+            tags: Array.from(uniqueTags)
         };
     };
 
@@ -98,6 +98,7 @@ const MenuNavItem: React.FC<{ menuToggler: () => void }> = ({ menuToggler }) => 
 
     const renderItems = () => {
         const metaData = Object.entries<{ slug: string, title: string }[]>(nodeData.posts);
+
         return metaData.map(([categoryTitle, posts], i) =>
             <SubItemWrapper key={i}>
                 <Collapsible title={<Link to={`/category/${toKebabCase(categoryTitle)}`} onClick={resetDocumentStyle}>{categoryTitle}({posts.length})</Link>}>

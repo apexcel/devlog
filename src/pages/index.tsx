@@ -14,7 +14,7 @@ const Index: React.FC<PageProps<DataType>> = ({ data, location }) => {
 		const [_, classify, name] = location.pathname.split('/');
 		return (
 			<h2>
-				{classify.toLocaleUpperCase()}: {name} #{quantity}
+				{classify.toUpperCase()}: {name} #{quantity}
 			</h2>
 		)
 	}
@@ -42,14 +42,14 @@ const Index: React.FC<PageProps<DataType>> = ({ data, location }) => {
 		)
 	};
 
-	const filterPost = (key: string, prop: string) => {
+	const filterPost = (key: keyof Frontmatter, prop: string) => {
 		return nodes.filter(post => {
 			const val = post.frontmatter[key];
 			if (Array.isArray(val)) {
 				return val.findIndex(v => toKebabCase(v) === prop) > -1 ? true : false;
 			}
 			else {
-				return (val as string).toLowerCase() === prop;
+				return toKebabCase(val) === prop;
 			}
 		})
 	}
