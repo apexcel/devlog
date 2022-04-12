@@ -111,6 +111,11 @@ const reset = css`
         user-select: none;
     }
 
+    ol, ul {
+        padding: 0;
+        list-style-position: inside;
+    }
+
     ${customTheme}
     ${scrollbarStyle}
 `;
