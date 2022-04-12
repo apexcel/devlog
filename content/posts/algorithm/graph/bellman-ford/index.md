@@ -87,9 +87,9 @@ const BellmanFord = (graph, begin) => {
         update = false;
         // 간선들을 순회
         for (let curr = 1; curr <= V; curr += 1) {
-            for (let i = 0; i < graph[curr].length; i += 1) {
-                const [next, weight] = graph[curr][i];
-                if (dist[next] > dist[curr] + weight) {
+            for (let [next, weight] of graph[curr]) {
+                // 한 번이라도 방문된 노드면서 완화 가능하면
+                if (dist[curr] !== INF && dist[next] > dist[curr] + weight) {
                     dist[next] = dist[curr] + weight;
                     update = true;
                 }
@@ -136,7 +136,8 @@ const BellmanFord2 = (graph, begin) => {
     for (let i = 1; i <= V; i += 1) {
         for (let j = 0; j < graph.length; j += 1) {
             const [from, to, weight] = graph[j];
-            if (dist[to] > dist[from] + weight) {
+            // 한 번이라도 방문된 노드면서 완화 가능하면
+            if (dist[from] !== INF && dist[to] > dist[from] + weight) {
                 dist[to] = dist[from] + weight;
             }
         }
