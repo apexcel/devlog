@@ -41,21 +41,21 @@ class DisjointSet {
         this.set = [];
     }
 
-    makeSet = n => {
+    makeSet(n) {
         for (let i = 0; i < n; i += 1) {
             this.set[i] = i;
         }
     }
 
-    find = u => {
-        if (u === this.set[u]) return u;
-        return this.find(this.set[u]);
-    }
-
-    union = (u, v) => {
+    union(u, v) {
         u = this.find(u), v = this.find(v);
         if (u === v) return;
         this.set[u] = v;
+    }
+
+    find(u) {
+        if (u === this.set[u]) return u;
+        return this.find(this.set[u]);
     }
 }
 ```
@@ -78,15 +78,20 @@ class DisjointSet {
 각 노드에 랭크를 표시했다. 집합 A와 B를 합치기 위해 전체 랭크가 1인 B집합을 전체 랭크가 2인 A 집합에 붙였고 전체 랭크의 크기는 늘어나지 않았다. 합치는 두 집합의 랭크가 같은 경우에만 전체 랭크의 크기가 커진다.
 
 ```js
-    makeSet = n => {
+class DisjointSet {
+    constructor() {
+        this.set = [];
         this.rank = [];
+    }
+
+    makeSet(n) {
         for (let i = 0; i < n; i += 1) {
             this.set[i] = i;
             this.rank[i] = 0;
         }
     }
 
-    union = (u, v) => {
+    union(u, v) {
         u = this.find(u), v = this.find(v);
         if (this.rank[u] > this.rank[v]) {
             this.set[v] = u;
@@ -98,6 +103,12 @@ class DisjointSet {
             }
         }
     }
+
+    find(u) {
+        if (u === this.set[u]) return u;
+        return this.find(this.set[u]);
+    }
+}
 ```
 
 weighted union 을 이용하기 위해 기존 코드에 몇 가지를 추가했다.
@@ -119,7 +130,7 @@ weighted union 을 이용하기 위해 기존 코드에 몇 가지를 추가했�
 위 그림을 보면 좌측의 `e` 노드의 경우 `d - c - a` 순서로 부모를 탐색해나간다. 탐색을 한 번 수행 했으므로 다음 번 `e` 노드의 루트 노드를 바로 `a` 노드로 바꾸어 준다면 다음 번 `e`를 탐색할 때 불필요한 과정을 거칠 필요가 없는 것이다.
 
 ```js
-find = u => {
+find(u) {
     if (u === this.set[u]) return u;
     return this.set[u] = find(this.set[u]);
 }
@@ -134,6 +145,44 @@ find = u => {
 > $log^*n = min(k | loglog...logn <= 1)$
 
 $log^*n$은 $n$에 $log$를 `k`번 적용할 때 `1`이하가 된다는 뜻으로, [Ackermann fucntion](https://ko.wikipedia.org/wiki/%EC%95%84%EC%BB%A4%EB%A7%8C_%ED%95%A8%EC%88%98)와 관련이 있다. 간략히 말하면 다룰 수 있는 모든 수에 대해 5보다 작으며 평균적으로 상수 시간이 걸린다.
+
+## 최종 코드
+
+```js
+class DisjointSet {
+    constructor() {
+        this.set = [];
+        this.rank = [];
+        this.size = 0;
+    }
+
+    makeSet(n) {
+        for (let i = 0; i < n; i += 1) {
+            this.set[i] = i;
+            this.rank[i] = 0;
+        }
+        this.size = this.rank.length;
+    }
+
+    union(u, v) {
+        u = this.find(u), v = this.find(v);
+        if (this.rank[u] > this.rank[v]) {
+            this.set[v] = u;
+        }
+        else {
+            this.set[u] = v;
+            if (this.rank[u] === this.rank[v]) {
+                this.rank[v] += 1;
+            }
+        }
+    }
+
+    find(u) {
+        if (u === this.set[u]) return u;
+        return this.set[u] = this.find(this.set[u]);
+    }
+}
+```
 
 ## 참조(References)
 
