@@ -39,11 +39,11 @@ const Dijkstra = (graph, begin) => {
         const [node, weight] = pq.pop();
         if (dist[node] < weight) continue;
 
-        for (let i = 0; i < graph[node].length; i += 1) {
-            const [nextNode, nextWeight] = graph[node][i];
-            if (dist[nextNode] > weight + nextWeight) {
-                dist[nextNode] = weight + nextWeight;
-                pq.insert([nextNode, weight + nextWeight]);
+        for (let [nextNode, nextWeight] of graph[node]) {
+            const weightSum = weight + nextWeight;
+            if (dist[nextNode] > weightSum) {
+                dist[nextNode] = weightSum;
+                pq.insert([nextNode, weightSum])
             }
         }
     }
